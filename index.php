@@ -8,4 +8,6 @@ require_once(TEMPLATE_PATH . "/menu_manager.php");
 Here goes the code. you can use any HTML tags outside the php block or use them inside an echo "";
 <?php
 require_once(TEMPLATE_PATH . "/footer.php");
+
+echo "test";
 ?>
