@@ -1,0 +1,31 @@
+.header{
+height: 120px;
+width:100%;
+text-align: center; /*alinhamento do texto*/
+font-family:Courier New;
+font-size:30px;	
+}
+.image{
+background-image: url(../image/layout/background.jpg); /* Insere a imagem */
+background-repeat: no-repeat;
+background-size: cover;
+}
+.container{
+position: fixed;
+left:5%;
+right:5%;
+width: 90%;
+height:90%;
+background-color: white;
+color: black;
+text-align: left;
+}
+.footer {
+position: fixed;
+left: 0;
+bottom: 0;
+width: 100%;
+background-color:#ccc;
+color: black;
+text-align: center;
+}
