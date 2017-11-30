@@ -9,7 +9,7 @@ require_once(TEMPLATE_PATH . "/header.php");
         
 			<input type="password" id="inputPassword" class="form-control" placeholder="Password" required><br />
         
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>Teste
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
 		</form>
 <?php 
 require_once(TEMPLATE_PATH . "/footer.php");
