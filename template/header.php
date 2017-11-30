@@ -6,12 +6,9 @@
     <meta name="description" content="Page for staff and manager login">
     <meta name="author" content="Bruno&Talita">
     <link rel="icon" href="image/layout/favicon.ico">
-		
-
+	<link href="library/bootstrap.min.css" rel="stylesheet">
+    <link href="css/general.css" rel="stylesheet">	
     <title>Rostering System</title>
-    <link href="library/bootstrap.min.css" rel="stylesheet">
-    <link href="css/general.css" rel="stylesheet">
-	
   </head>
 
   <body class="body">
