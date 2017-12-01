@@ -3,6 +3,10 @@ define('__ROOT__', dirname(dirname(__FILE__)));
 require_once(__ROOT__.'/RosteringSystem/resource/config.php');
 
 require_once(TEMPLATE_PATH . "/header.php");
+
+require_once(TEMPLATE_PATH . "/menu_manager.php");
+
+
 ?>
 <br>1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel metus ullamcorper, pretium tellus vel, tristique tellus. Suspendisse commodo est ac commodo porttitor. Mauris dui velit, efficitur sit amet vehicula sit amet, mattis nec odio. Aliquam dictum ullamcorper dapibus. Quisque rhoncus congue iaculis. Duis mattis, turpis non commodo eleifend, augue metus sollicitudin tortor, et pharetra mauris eros non neque. In ac lorem eros. Pellentesque non metus vitae odio ultricies consequat.
 
