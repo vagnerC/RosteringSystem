@@ -1,54 +1,77 @@
-<nav id="primary_nav_wrap">
+<!DOCTYPE html>
+<html>
+<head>
+<title> Drop down navigation bar and menu</title>
+<style>
+body{
+margin:0;
+background: #f2f2f2f;
+}
+.nav{
+width:100%;
+background:#000033;
+height:80px;
+}
+ul{
+list-style:none;
+padding:0;
+margin:0;
+position:absolute;
+}
+ul li {
+float:left;
+margin-top:20px;
+}
+ul li a{
+width:150px;
+color:white;
+display:block;
+text-decoration:none;
+font-size:20px;
+text-align:center;
+padding:10px;
+border-raidus:10px;
+font-family:Century Gothic;
+font-weight:bold;
+}
+a:hover{
+background:#669900;
+}
+ul li ul {
+background:#000033;
+}
+ul li ul li{
+float:none;
+}
+ul li ul{
+display:none;
+}
+ul li:hover ul {
+display:block;
+}
+</style>
+</head>
+<body>
+<div class ="nav">
 <ul>
-  <li class="current-menu-item"><a href="#">Home</a></li>
-  <li><a href="#">Menu 1</a>
-    <ul>
-      <li><a href="#">Sub Menu 1</a></li>
-      <li><a href="#">Sub Menu 2</a></li>
-      <li><a href="#">Sub Menu 3</a></li>
-      <li><a href="#">Sub Menu 4</a>
-        <ul>
-          <li><a href="#">Deep Menu 1</a>
-            <ul>
-              <li><a href="#">Sub Deep 1</a></li>
-              <li><a href="#">Sub Deep 2</a></li>
-              <li><a href="#">Sub Deep 3</a></li>
-                <li><a href="#">Sub Deep 4</a></li>
-            </ul>
-          </li>
-          <li><a href="#">Deep Menu 2</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Sub Menu 5</a></li>
-    </ul>
-  </li>
-  <li><a href="#">Menu 2</a>
-    <ul>
-      <li><a href="#">Sub Menu 1</a></li>
-      <li><a href="#">Sub Menu 2</a></li>
-      <li><a href="#">Sub Menu 3</a></li>
-    </ul>
-  </li>
-  <li><a href="#">Menu 3</a>
-    <ul>
-      <li class="dir"><a href="#">Sub Menu 1</a></li>
-      <li class="dir"><a href="#">Sub Menu 2 THIS IS SO LONG IT MIGHT CAUSE AN ISSEUE BUT MAYBE NOT?</a>
-        <ul>
-          <li><a href="#">Category 1</a></li>
-          <li><a href="#">Category 2</a></li>
-          <li><a href="#">Category 3</a></li>
-          <li><a href="#">Category 4</a></li>
-          <li><a href="#">Category 5</a></li>
-        </ul>
-      </li>
-      <li><a href="#">Sub Menu 3</a></li>
-      <li><a href="#">Sub Menu 4</a></li>
-      <li><a href="#">Sub Menu 5</a></li>
-    </ul>
-  </li>
-  <li><a href="#">Menu 4</a></li>
-  <li><a href="#">Menu 5</a></li>
-  <li><a href="#">Menu 6</a></li>
-  <li><a href="#">Contact Us</a></li>
+<li><a href ="#"> Home</a></li>
+<li><a href ="#"> Requests</a></li>
+<li><a href ="#"> Messages</a></li>
+<li><a href ="#"> Roster</a></li>
+<li><a href ="#"> Payments</a>
+<ul>
+<li><a href ="#"> more 1</a></li>
+<li><a href ="#"> more 2</a></li>
+<li><a href ="#"> more 3</a></li>
+<li><a href ="#"> more 4</a></li>
+<li><a href ="#"> More 5</a>
+
+
 </ul>
-</nav>
+</li>
+<li><a href ="#"> Settings</a></li>
+<li><a href ="#"> Sign Out</a></li>
+</ul>
+</div>
+</body>
+</html>
