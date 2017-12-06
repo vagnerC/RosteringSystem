@@ -8,6 +8,8 @@ require_once(TEMPLATE_PATH . "/menu_manager.php");
 
 
 ?>
+<br> 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
 <br>1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vel metus ullamcorper, pretium tellus vel, tristique tellus. Suspendisse commodo est ac commodo porttitor. Mauris dui velit, efficitur sit amet vehicula sit amet, mattis nec odio. Aliquam dictum ullamcorper dapibus. Quisque rhoncus congue iaculis. Duis mattis, turpis non commodo eleifend, augue metus sollicitudin tortor, et pharetra mauris eros non neque. In ac lorem eros. Pellentesque non metus vitae odio ultricies consequat.
 
 <br>2 - Ut gravida ultricies pulvinar. Sed pellentesque ultrices ligula, in euismod turpis imperdiet ac. Mauris eleifend posuere eros tristique porta. Phasellus sollicitudin condimentum urna non maximus. Vestibulum laoreet felis in neque aliquam, at efficitur eros laoreet. Maecenas turpis nisi, venenatis id dignissim et, sagittis a erat. Praesent cursus malesuada tellus a sagittis.
