@@ -32,7 +32,14 @@ function draw_calendar($month,$year){
     
     /** QUERY THE DATABASE FOR AN ENTRY FOR THIS DAY !!  IF MATCHES FOUND, PRINT THEM !! **/
     //$calendar.= str_repeat('<p></p>',2);
-    $calendar.= '<p>test</p>';
+    
+    if($year == 2018 and $month == 02 AND $list_day == 3):
+        $calendar.= '<p>John (09 - 18)</p>';
+    elseif($year == 2018 and $month == 02 AND $list_day == 20):
+        $calendar.= '<p>Mary (13 - 22)</p>';
+    else:
+        $calendar.= '<p></p>';
+    endif;
     
     $calendar.= '</td>';
     if($running_day == 6):
