@@ -7,6 +7,7 @@
     <meta name="author" content="Bruno&Talita">
     <link rel="icon" href="image/layout/favicon.ico">
 	<link href="library/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link href="css/general.css" rel="stylesheet">	
     <title>Rostering System</title>
   </head>

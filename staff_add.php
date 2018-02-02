@@ -4,42 +4,46 @@ require_once(__ROOT__.'/RosteringSystem/resource/config.php');
 
 require_once(TEMPLATE_PATH . "/header.php");
 
-require_once(TEMPLATE_PATH . "/menu_manager.php");
-
-
 ?>
+	<div class="form-style-2">
+		<div class="form-style-2-heading"> Staff details</div>
+		<form action="" method="post">
+			<label for="field1"><span>Name <span class="required">*</span></span><input type="text" class="input-field" name="field1" value="" /></label>
+			<label for="field2"><span>Surname <span class="required">*</span></span><input type="text" class="input-field" name="field2" value="" /></label>
+			<label for="field3"><span>Email <span class="required">*</span></span><input type="text" class="input-field" name="field3" value="" /></label>
+			<label><span>Telephone</span><input type="text" class="tel-number-field" name="tel_no_1" value="" maxlength="4" />-<input type="text" class="tel-number-field" name="tel_no_2" value="" maxlength="4"  />-<input type="text" class="tel-number-field" name="tel_no_3" value="" maxlength="10"  /></label>
+			<label><span>Next of Kin Name<span class="required">*</span></span><input type="text" class="input-field" name="field1" value="" /></label>
+			<label><span>Next of Kin Telephone</span><input type="text" class="tel-number-field" name="tel_no_1" value="" maxlength="4" />-<input type="text" class="tel-number-field" name="tel_no_2" value="" maxlength="4"  />-<input type="text" class="tel-number-field" name="tel_no_3" value="" maxlength="10"  /></label>
+			<label><span>Minimum Hours</span><input type="number" min="1" max="10"></label><br>
+			<label><span>Maximum Hours</span><input type="number" min="1" max="10"></label><br/>
+			
+			<label><span>Department</span><select name="field4" class="select-field">
+			<option value="Kithen">Kitchen</option>
+			<option value="floor">Floor</option>
+			</select></label>
+			
+			<label><span>Position</span><select name="field4" class="select-field">
+			<option value="Waiter">Waiter</option>
+			<option value="Supervisor">Supervisor</option>
+			<option value="Kitchen Porter">Kitchen Porter</option>
+			<option value="Chef">Chef</option>
+			<option value="Manager">Manager</option>
+			</select></label>
+					 
+  			<label><span>Availability</span><br/><br/>
+  			<input type="checkbox" id="Monday">  Monday <br/>
+   			<input type="checkbox" id="Tuesday"> Tuesday <br/>
+   			<input type="checkbox" id="Wednesday">  Wednesday <br />
+   			<input type="checkbox" id="Thursday">  Thursday <br />
+   			<input type="checkbox" id="Friday">  Friday <br/>
+   			<input type="checkbox" id="Saturday">  Saturday <br />
+			<input type="checkbox" id="Sunday">  Sunday <br/>  
+  			</label>
 
-<br>
-<br>
-<form>
-  Name:<input type="text" name="name"><br>
-  Surname:<input type="text" name="surname"><br>
-  Email:<input type="email" name="email"><br>
-  Mobile Number:<input type="tel" name="mobilenumber"><br>
-  Next Kin Name:<input type="text" name="nextkinname"><br>
-  Next Kin Mobile Number:<input type="tel" name="nextkinmobilenumber"><br>
-  Minimum hours:<input type="number" name="minimumhours" min="0" max="24"><br>
-  Maximum hours:<input type="number" name="maximumhours" min="0" max="24"><br>
-  Department:<input list="department" name="department">
-  <datalist id="department">
-    <option value="Kitchen">
-    <option value="Restaurant">
-    </datalist><br>
-  Position:<input list="position" name="position">
-   <datalist id="position">
-    <option value="KitchenPorter">
-    <option value="Supervisor">
-    <option value="Floor Staff">
-    </datalist><br>  
-  Days Available:<input type="checkbox" name="day1" value="Sunday"> Sunday<br>
-                 <input type="checkbox" name="day2" value="Monday"> Monday<br>
-                 <input type="checkbox" name="day3" value="Tuesday"> Tuesday<br>
-                 <input type="checkbox" name="day4" value="Wednesday"> Wednesday<br>
-                 <input type="checkbox" name="day5" value="Thursday"> Thursday<br>
-                 <input type="checkbox" name="day6" value="Friday"> Friday<br>
-                 <input type="checkbox" name="day7" value="Saturday"> Saturday<br>	
-                   <input type="submit">
-</form>
+			<label><span>&nbsp;</span><input type="submit" value="Submit" /></label>
+			</form>
+	</div>
+
 <?php 
 require_once(TEMPLATE_PATH . "/footer.php");
 ?>
