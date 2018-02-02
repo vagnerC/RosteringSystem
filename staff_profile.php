@@ -4,28 +4,44 @@ require_once(__ROOT__.'/RosteringSystem/resource/config.php');
 
 require_once(TEMPLATE_PATH . "/header.php");
 ?>
-		<form class="form-staff-profile">
-			<input type="text" id="userName" name="	userName" class="form-control" placeholder="Name" required autofocus><br />
-        	<input type="text" id="userSurname" class="form-control" placeholder="Surname" required autofocus><br />
-            <input type="email" id="userEmail" class="form-control" placeholder="Email" required autofocus><br />
-  			<input type="text" id="userMobileNumber" class="form-control" placeholder="Mobile Number" required autofocus><br />
-  			<input type="text" id="nextOfKinName" class="form-control" placeholder="Next of Kin Name" required autofocus><br />
-  			<input type="text" id="nextOfKinMobile" class="form-control" placeholder="Next of Kin Mobile Number" required autofocus><br />
-   			<input type="text" id="minimumHours" class="form-control" placeholder="Minimum Hours" required autofocus><br />
-   			<input type="text" id="maximumHours" class="form-control" placeholder="Maximum Hours" required autofocus><br />
-   			<input type="text" id="hourWage" class="form-control" placeholder="Hour Wage" required autofocus><br />
-   			
-   			<label for='formDaysAvailable[]'>Select the days you are available:</label><br>
-   			<input type="text" id="position" class="form-control" placeholder="Position" required autofocus><br />
-   			<input type="checkbox" id="daysAvailable" class="form-control" placeholder="Sunday" required autofocus><br />
-   			<input type="checkbox" id="daysAvailable" class="form-control" placeholder="Monday" required autofocus><br />
-   			<input type="checkbox" id="daysAvailable" class="form-control" placeholder="Tuesday" required autofocus><br />
-   			<input type="checkbox" id="daysAvailable" class="form-control" placeholder="Wednesday" required autofocus><br />
-   			<input type="checkbox" id="daysAvailable" class="form-control" placeholder="Thursday" required autofocus><br />
-   			<input type="checkbox" id="daysAvailable" class="form-control" placeholder="Friday" required autofocus><br />
-   			<input type="checkbox" id="daysAvailable" class="form-control" placeholder="Saturday" required autofocus><br />
+	<div class="form-style-2">
+		<div class="form-style-2-heading"> Staff Profile</div>
+		<form action="" method="post">
+			<label for="field1"><span>Name <span class="required">*</span></span><input type="text" class="input-field" name="field1" value="" /></label>
+			<label for="field2"><span>Surname <span class="required">*</span></span><input type="text" class="input-field" name="field2" value="" /></label>
+			<label for="field3"><span>Email <span class="required">*</span></span><input type="text" class="input-field" name="field3" value="" /></label>
+			<label><span>Telephone</span><input type="text" class="tel-number-field" name="tel_no_1" value="" maxlength="4" />-<input type="text" class="tel-number-field" name="tel_no_2" value="" maxlength="4"  />-<input type="text" class="tel-number-field" name="tel_no_3" value="" maxlength="10"  /></label>
+			<label><span>Next of Kin Name<span class="required">*</span></span><input type="text" class="input-field" name="field1" value="" /></label>
+			<label><span>Next of Kin Telephone</span><input type="text" class="tel-number-field" name="tel_no_1" value="" maxlength="4" />-<input type="text" class="tel-number-field" name="tel_no_2" value="" maxlength="4"  />-<input type="text" class="tel-number-field" name="tel_no_3" value="" maxlength="10"  /></label>
+			<label><span>Minimum Hours</span><input type="number" min="1" max="10"></label><br>
+			<label><span>Maximum Hours</span><input type="number" min="1" max="10"></label><br/>
+			<label><span>Hour Wage</span><input type="number" min="9.45" max="15"></label><br/>
+			
+			<label><span>Department</span><select name="field4" class="select-field">
+			<option value="Kithen">Kitchen</option>
+			<option value="floor">Floor</option>
+			</select></label>
+			
+			<label><span>Position</span><select name="field4" class="select-field">
+			<option value="Waiter">Waiter</option>
+			<option value="Supervisor">Supervisor</option>
+			<option value="Kitchen Porter">Kitchen Porter</option>
+			<option value="Chef">Chef</option>
+			<option value="Manager">Manager</option>
+			</select></label>
+					 
+  			<label><span>Availability</span><br/><br/>
+  			<input type="checkbox" id="Monday">  Monday <br/>
+   			<input type="checkbox" id="Tuesday"> Tuesday <br/>
+   			<input type="checkbox" id="Wednesday">  Wednesday <br />
+   			<input type="checkbox" id="Thursday">  Thursday <br />
+   			<input type="checkbox" id="Friday">  Friday <br/>
+   			<input type="checkbox" id="Saturday">  Saturday <br />
+			<input type="checkbox" id="Sunday">  Sunday <br/>  
+  			</label>
 
-		</form>
+			</form>
+	</div>
 <?php 
 require_once(TEMPLATE_PATH . "/footer.php");
 ?>	
