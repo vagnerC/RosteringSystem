@@ -7,7 +7,7 @@ function draw_calendar($month,$year){
     /* table headings */
     
     $calendar .= '<tr class="calendar-row">';
-    $calendar .= '<td colspan="7" class="calendar-day-head">'.date('F')."/".date('Y').'</td>';
+    $calendar .= '<td colspan="7" class="calendar-day-head">'.date("F", mktime(0, 0, 0, $month, 10))."/".$year.'</td>';
     $calendar .= '</tr>';
     
     $headings = array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
