@@ -8,19 +8,39 @@ require_once(TEMPLATE_PATH . "/header.php");
 
 // $daysOfWeek = array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
 
-// https://stackoverflow.com/questions/13719116/dealing-with-time-in-php-mysql
+// Test https://stackoverflow.com/questions/13719116/dealing-with-time-in-php-mysql
 
 
 $daysOfWeek = array(
 				array(
 					"day"=>"Monday",
-					"Open"=> ,
-					"Close"=>17:00),
+					"Open"=> "09:00",
+					"Close"=>"17:00"),
 				array(
 					"day"=>"Tuesday",
-					"Open"=>10:00,
-					"Close"=>18:00
-				)
+					"Open"=>"10:00",
+					"Close"=>"18:00"),
+
+				array(
+					"day"=>"Wednesday",
+					"Open"=>"09:00",
+					"Close"=>"17:00"),
+				array(
+					"day"=>"Thursday",
+					"Open"=>"10:00",
+					"Close"=>"18:00"),
+				array(
+					"day"=>"Friday",
+					"Open"=>"10:00" ,
+					"Close"=>"17:00"),
+				array(
+					"day"=>"Saturday",
+					"Open"=>"10:00",
+					"Close"=>"18:00"),
+				array(
+					"day"=>"Sunday",
+					"Open"=>"09:00" ,
+					"Close"=>"17:00")
 			);
 
 echo "<div class='container'>".
