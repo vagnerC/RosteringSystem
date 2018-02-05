@@ -8,57 +8,115 @@ require_once(TEMPLATE_PATH . "/header.php");
 
 // $daysOfWeek = array("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday");
 
-// Test https://stackoverflow.com/questions/13719116/dealing-with-time-in-php-mysql
+// https://stackoverflow.com/questions/13719116/dealing-with-time-in-php-mysql
+
 
 
 $daysOfWeek = array(
 				array(
 					"day"=>"Monday",
-					"Open"=> "09:00",
-					"Close"=>"17:00"),
+					"Open"=> "",
+					"Close"=>""),
 				array(
 					"day"=>"Tuesday",
-					"Open"=>"10:00",
-					"Close"=>"18:00"),
+					"Open"=>"",
+					"Close"=>""),
 
 				array(
 					"day"=>"Wednesday",
-					"Open"=>"09:00",
-					"Close"=>"17:00"),
+					"Open"=>"",
+					"Close"=>""),
 				array(
 					"day"=>"Thursday",
-					"Open"=>"10:00",
-					"Close"=>"18:00"),
+					"Open"=>"",
+					"Close"=>""),
 				array(
 					"day"=>"Friday",
-					"Open"=>"10:00" ,
-					"Close"=>"17:00"),
+					"Open"=>"" ,
+					"Close"=>""),
 				array(
 					"day"=>"Saturday",
-					"Open"=>"10:00",
-					"Close"=>"18:00"),
+					"Open"=>"",
+					"Close"=>""),
 				array(
 					"day"=>"Sunday",
-					"Open"=>"09:00" ,
-					"Close"=>"17:00")
+					"Open"=>"" ,
+					"Close"=>"")
 			);
 
-echo "<div class='container'>".
-	 	"<div class='row'>".
-		  "<div class='col-sm'></div>";	
-		foreach($daysOfWeek as $val){
-			 echo "<div class='col-sm'><b>".$val['day']."</b></div>";
+
+/** It returns all the days of the week**/
+function getDaysOfTheWeek(){
+	GLOBAL $daysOfWeek;
+	foreach($daysOfWeek as $val){
+			echo "<div class='col-sm'><b>".$val['day']."</b></div>";//	  $val['day'];
 		}
-		echo "</div><br>".
-	 	"<div class='row'>".
-	 		"<div class='col-sm-6'>".
-	 			"<p>Opening Hours</p>".
+	
+}
 
-	 		"</div>".
-		"</div>".
-"</div>";
+/** It prints a number of columns to select time **/
+function printBlockOfTime(){
+	GLOBAL $daysOfWeek;
+	for($i =0; $i< sizeof($daysOfWeek);$i++){
+				echo "<div class='col-sm'>
+						<select name='".$i."'".get_times()."></select></div>";
+			}
+}
+
+/** It returns a string list of time AM/PM **/
+function get_times( $default = '19:00', $interval = '+30 minutes' ) {
+
+    $output = '';
+
+    $current = strtotime( '00:00' );
+    $end = strtotime( '23:59' );
+
+    while( $current <= $end ) {
+        $time = date( 'H:i', $current );
+        $sel = ( $time == $default ) ? ' selected' : '';
+
+        $output .= "<option value=\"{$time}\"{$sel}>" . date( 'h.i A', $current ) .'</option>';
+        $current = strtotime( $interval, $current );
+    }
+
+    return $output;
+}
 
 
+?>
 
+
+<div class="container">
+	
+	<div class="row">
+		<div class="col-sm">
+			<p><b>Days</b></p>
+		</div>
+		<?php 
+			echo getDaysOfTheWeek();
+		?>
+	</div>
+
+	<div class="row">
+		<div class="col-sm">
+			<p><b>Open:</b></p>	
+		</div>
+		<?php
+		 	echo printBlockOfTime();
+		  ?>
+	</div>
+	
+	<div class="row">
+		<div class="col-sm">
+			<p><b>Close:</b></p> 
+		</div>
+		<?php
+			echo printBlockOfTime();
+		?>
+		
+	</div>
+</div>
+
+ <?php
 require_once(TEMPLATE_PATH . "/footer.php");
 ?>
