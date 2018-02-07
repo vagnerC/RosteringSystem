@@ -7,7 +7,7 @@ require_once(TEMPLATE_PATH . "/header.php");
 ?>
 	<div class="form-style-2">
 		<div class="form-style-2-heading"> Add Staff </div>
-		<form action="" method="post">
+		<form action="staff_add.php" method="post">
 			<label for="field1"><span>Name <span class="required">*</span></span><input type="text" class="input-field" name="field1" value="" /></label>
 			<label for="field2"><span>Surname <span class="required">*</span></span><input type="text" class="input-field" name="field2" value="" /></label>
 			<label for="field3"><span>Email <span class="required">*</span></span><input type="text" class="input-field" name="field3" value="" /></label>
