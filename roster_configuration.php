@@ -1,4 +1,8 @@
 <?php
+/**
+*@author Felipe Mello
+*@version 0.2
+**/
 define('__ROOT__', dirname(dirname(__FILE__)));
 require_once(__ROOT__.'/RosteringSystem/resource/config.php');
 require_once(TEMPLATE_PATH . "/header.php");
@@ -49,16 +53,18 @@ $daysOfWeek = array(
 function getDaysOfTheWeek(){
 	GLOBAL $daysOfWeek;
 	foreach($daysOfWeek as $val){
-			echo "<div class='col-sm'><b>".$val['day']."</b></div>";//	  $val['day'];
+			echo "<div class='col'><b>".$val['day']."</b></div>";//	  $val['day'];
 		}
 	
 }
+
+
 
 /** It prints a number of columns to select time **/
 function printBlockOfTime(){
 	GLOBAL $daysOfWeek;
 	for($i =0; $i< sizeof($daysOfWeek);$i++){
-				echo "<div class='col-sm'>
+				echo "<div class='col'>
 						<select name='".$i."'".get_times()."></select></div>";
 			}
 }
@@ -84,13 +90,34 @@ function get_times( $default = '19:00', $interval = '+30 minutes' ) {
 
 
 ?>
+<style type="text/css">
+	.title{
+		text-align: center;
+		letter-spacing: 5px;
+	}
+	.hline{
+		display: block;
+		width: 100%;
+		height: 1px;
+		border: 0;
+		border-top: 1px solid #ccc;
+		margin: 1em 0;
+		padding: 0;
 
+	}
+</style>
 
-<div class="container">
-	
+<div class="container-fluid" id="openClose">
 	<div class="row">
-		<div class="col-sm">
-			<p><b>Days</b></p>
+		<div class="col">
+			<h4 class="title">Opening Hours</h4>
+		</div>
+
+	</div>
+	<br>
+	<div class="row">
+		<div class="col">
+			<p><b></b></p>
 		</div>
 		<?php 
 			echo getDaysOfTheWeek();
@@ -98,16 +125,16 @@ function get_times( $default = '19:00', $interval = '+30 minutes' ) {
 	</div>
 
 	<div class="row">
-		<div class="col-sm">
+		<div class="col">
 			<p><b>Open:</b></p>	
 		</div>
 		<?php
 		 	echo printBlockOfTime();
-		  ?>
+		 ?>
+
 	</div>
-	
 	<div class="row">
-		<div class="col-sm">
+		<div class="col">
 			<p><b>Close:</b></p> 
 		</div>
 		<?php
@@ -115,7 +142,32 @@ function get_times( $default = '19:00', $interval = '+30 minutes' ) {
 		?>
 		
 	</div>
+	<br>
+	<div class="row row-centered">
+		<div class="col" style="text-align: right">
+			<button id="cancelOpeningTime" type="button" class="btn btn-danger">Cancel</button>
+		</div>
+
+		<div class="col" style="text-align: left;">
+			<button id="submitOpeningTime" type="button" class="btn btn-success">Submit</button>
+		</div>
+	</div>
+	<br>
+	<div class="hline"></div>
+	<br>
+	<div class="row">
+		<div class="col">
+			<h4 class="title">Staff Hours</h4>
+		</div>
+	</div>
+	
+
+
 </div>
+
+
+
+
 
  <?php
 require_once(TEMPLATE_PATH . "/footer.php");
