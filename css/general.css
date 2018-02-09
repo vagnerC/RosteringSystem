@@ -8,7 +8,7 @@ font-size: 350%;
 padding-top: 1.5%;
 }
 .background{
-background-image: url(../image/layout/background.jpg); /* Insere a imagem */
+background-image: url(../image/layout/background.jpg); /* Image */
 background-repeat: no-repeat;
 background-size: cover;
 }
