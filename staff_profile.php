@@ -210,6 +210,8 @@ function test_input($data) {
     
   </div>
 </div>
+
+
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="Phone number ">Phone number </label>  

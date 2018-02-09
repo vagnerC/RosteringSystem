@@ -122,10 +122,7 @@ function test_input($data) {
 
     <!-- Custom CSS -->
     <style>
-    body {
-        padding-top: 70px;
-        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    }
+   
 
     .othertop{margin-top:10px;}
     </style>
@@ -210,6 +207,8 @@ function test_input($data) {
     
   </div>
 </div>
+
+
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="Phone number ">Phone number </label>  
