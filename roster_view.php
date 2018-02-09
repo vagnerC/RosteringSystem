@@ -6,8 +6,8 @@ require_once(TEMPLATE_PATH . "/header.php");
 require_once("calendar.php");
 
 	echo draw_calendar(date('m'), date('Y'));
-	echo "<p>";
-	echo draw_calendar(date('m')+4, date('Y'));
+	//echo "<p>";
+	//echo draw_calendar(date('m')+4, date('Y'));
 
 	require_once(TEMPLATE_PATH . "/footer.php");
 ?>
