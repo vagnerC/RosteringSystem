@@ -7,15 +7,16 @@ require_once(TEMPLATE_PATH . "/header.php");
 
 // define variables and set to empty values
 $nameErr = $surnameErr = $emailErr = $telephoneErr = $nextOfKinNameErr = $nextOfKinPhoneErr = $minHourErr = $maxHourErr = $departmentErr = $positionErr = $availabilityErr ="";
-$name = $surname = $email = $telephone = $nextOfKinName = $nextOfKinPhone = $minHour = $maxHour = $department = $position = $availability ="";
+$firstName= $lastName = $emailAddress = $phoneNumber = $secondaryPhoneNumber = $nextOfKinName = $nextOfKinPhoneNumber 
+= $address = $minHour = $maxHour = $department = $position = $availability ="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	if (empty($_POST["name"])) {
+	if (empty($_POST["firstName"])) {
 		$nameErr = "Name is required";
 	} else {
-		$name = test_input($_POST["name"]);
+		$name = test_input($_POST["firstName"]);
 		// check if name only contains letters and whitespace
-		if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
+		if (!preg_match("/^[a-zA-Z ]*$/",$firstName)) {
 			$nameErr = "Only letters and white space allowed";
 		}
 	}
@@ -103,37 +104,32 @@ function test_input($data) {
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>User profile form </title>
+    
+ <title>User profile form </title>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
     <!-- Bootstrap Core CSS -->
 <!--     <link href="css/bootstrap.min.css" rel="stylesheet"> -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
 
+<!-- Special version of Bootstrap that only affects content wrapped in .bootstrap-iso -->
+<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
+
+<!--Font Awesome (added because you use icons in your prepend/append)-->
+<link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+<!-- Inline CSS based on choices in "Settings" tab -->
+<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
+
+
     <!-- Custom CSS -->
     <style>
-   
-
-    .othertop{margin-top:10px;}
+       .othertop{margin-top:10px;}
     </style>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
+    
 </head>
 
 <body>
@@ -151,30 +147,26 @@ function test_input($data) {
 
 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="First Name">First Name </label>  
-  <div class="col-md-4">
- <div class="input-group">
-       <div class="input-group-addon">
-        <i class="fa fa-user">
-        </i>
-       </div>
-       <input id="First Name" name="First Name" type="text" placeholder="First Name" class="form-control input-md" value="<?php echo $name;?>">
-      </div>
-
-    
-  </div>
-
-  
+  	<label class="col-md-4 control-label" for="firstName">First Name </label>  
+  	<div class="col-md-4">
+ 		<div class="input-group">
+       		<div class="input-group-addon">
+        	<i class="fa fa-user"></i>
+       		</div>
+       		<input id="firstName" name="firstName" type="text" placeholder="First Name" class="form-control input-md" value="<?php echo $firstName;?>">
+     	 </div>
+	</div>
 </div>
+
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Last Name">Last Name</label>  
+  <label class="col-md-4 control-label" for="lastName">Last Name</label>  
   <div class="col-md-4">
  <div class="input-group">
        <div class="input-group-addon">
         <i class="fa fa-user">
         </i>
        </div>
-       <input id="Last Name" name="Last Name" type="text" placeholder="Last Name" class="form-control input-md" value="<?php echo $surname;?>">
+       <input id="lastName" name="lastName" type="text" placeholder="Last Name" class="form-control input-md" value="<?php echo $lastName;?>">
       </div>
 
     
@@ -185,40 +177,43 @@ function test_input($data) {
 
 <!-- File Button --> 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Upload photo">Upload photo</label>
+  <label class="col-md-4 control-label" for="uploadPhoto">Upload photo</label>
   <div class="col-md-4">
-    <input id="Upload photo" name="Upload photo" class="input-file" type="file">
+    <input id="uploadPhoto" name="uploadPhoto" class="input-file" type="file">
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Date Of Birth">Date Of Birth</label>  
+  <label class="col-md-4 control-label" for="dateOfBirth">Date Of Birth</label>  
   <div class="col-md-4">
 
   <div class="input-group">
-       <div class="input-group-addon">
-     <i class="fa fa-birthday-cake"></i>
-        
+   
+	<div class="col-sm-20">
+       <div class="input-group">
+        <div class="input-group-addon">
+         <i class="fa fa-calendar">
+         </i>
+        </div>
+        <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text"/>
        </div>
-       <input id="Date Of Birth" name="Date Of Birth" type="text" placeholder="Date Of Birth" class="form-control input-md">
-      </div>
+      </div>      </div>
   
     
   </div>
 </div>
 
-
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Phone number ">Phone number </label>  
+  <label class="col-md-4 control-label" for="phoneNumber ">Phone number </label>  
   <div class="col-md-4">
   <div class="input-group">
        <div class="input-group-addon">
      <i class="fa fa-phone"></i>
         
        </div>
-    <input id="Phone number " name="Phone number " type="text" placeholder="Primary Phone number " class="form-control input-md" value="<?php echo $primaryPhone;?>">
+    <input id="phoneNumber" name="phoneNumber" type="text" placeholder="Primary Phone number " class="form-control input-md" value="<?php echo $phoneNumber;?>">
     
       </div>
       <div class="input-group othertop">
@@ -226,7 +221,7 @@ function test_input($data) {
      <i class="fa fa-mobile fa-1x" style="font-size: 20px;"></i>
         
        </div>
-    <input id="Phone number " name="Secondary Phone number " type="text" placeholder=" Secondary Phone number " class="form-control input-md" value="<?php echo $secondaryPhone;?>">
+    <input id="secondaryPhoneNumber" name="secondaryPhoneNumber" type="text" placeholder=" Secondary Phone number " class="form-control input-md" value="<?php echo $secondaryPhoneNumber;?>">
     
       </div>
   
@@ -235,14 +230,14 @@ function test_input($data) {
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Email Address">Email Address</label>  
+  <label class="col-md-4 control-label" for="emailAddress">Email Address</label>  
   <div class="col-md-4">
   <div class="input-group">
        <div class="input-group-addon">
      <i class="fa fa-envelope-o"></i>
         
        </div>
-    <input id="Email Address" name="Email Address" type="text" placeholder="Email Address" class="form-control input-md" value="<?php echo $email;?>">
+    <input id="emailAddress" name="Email Address" type="text" placeholder="Email Address" class="form-control input-md" value="<?php echo $emailAddress;?>">
     
       </div>
   
@@ -252,14 +247,14 @@ function test_input($data) {
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Next of kin Name">Next of kin Name</label>  
+  <label class="col-md-4 control-label" for="nextOfKinName">Next of kin Name</label>  
   <div class="col-md-4">
   <div class="input-group">
        <div class="input-group-addon">
       <i class="fa fa-male" style="font-size: 20px;"></i>
         
        </div>
-      <input id="Next of kin Name" name="Next of kin Name" type="text" placeholder="Next of kin Name" class="form-control input-md">
+      <input id="nextOfKinName" name="nextOfKinName" type="text" placeholder="Next of kin Name" class="form-control input-md" value="<?php echo $nextOfKinName;?>">
 
       </div>
     
@@ -269,38 +264,28 @@ function test_input($data) {
 <!-- Text input-->
 
 <div class="form-group">
-  <label class="col-md-4 control-label" for="NK Phone number "> Next of Kin Phone Number </label>  
-  <div class="col-md-4">
-  <div class="input-group">
-       <div class="input-group-addon">
-     <i class="fa fa-phone"></i>
-        
-       </div>
-    <input id="NK Phone number " name="NK Phone number " type="text" placeholder="Primary Phone number " class="form-control input-md">
-    
-      </div>
-      <div class="input-group othertop">
-       <div class="input-group-addon">
-     <i class="fa fa-mobile fa-1x" style="font-size: 20px;"></i>
-        
-       </div>
-    <input id="Phone number " name="Secondary Phone number " type="text" placeholder=" Secondary Phone number " class="form-control input-md">
-    
-      </div>
-  
-  </div>
+  <label class="col-md-4 control-label" for="nextOfKinPhoneNumber"> Next of Kin Phone Number </label>  
+  	<div class="col-md-4">
+  		<div class="input-group">
+       		<div class="input-group-addon">
+     			<i class="fa fa-phone"></i>
+            </div>
+    		<input id="nextOfKinPhoneNumber" name="nextOfKinPhoneNumber" type="text" placeholder="Next of Kin Phone number " class="form-control input-md" value="<?php echo $nextOfKinPhoneNumber;?>">
+           
+ 		 </div>
+	</div>
 </div>
 
 <!-- Multiple Radios (inline) -->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="Department">Department</label>
+  <label class="col-md-4 control-label" for="department">Department</label>
   <div class="col-md-4"> 
-    <label class="radio-inline" for="Department-0">
-      <input type="radio" name="Department" id="floor" value="<?php echo $floor;?>" checked="checked">
+    <label class="radio-inline" for="floor">
+      <input type="radio" name="department" id="floor" value="<?php echo $floor;?>" >
       Floor
     </label> 
-    <label class="radio-inline" for="Department-1">
-      <input type="radio" name="Department" id="kitchen" value="<?php echo $kitchen;?>">
+    <label class="radio-inline" for="kitchen">
+      <input type="radio" name="department" id="kitchen" value="<?php echo $kitchen;?>">
       Kitchen
     </label> 
     
@@ -312,7 +297,7 @@ function test_input($data) {
   <label class="col-md-4 control-label" for="radios">Position</label>
   <div class="col-md-4"> 
     <label class="radio-inline" for="radios-0">
-      <input type="radio" name="Manager" id="Manager" value="1" checked="checked" value="<?php echo $position;?>">
+      <input type="radio" name="Manager" id="Manager" value="1" value="<?php echo $position;?>">
       Manager
     </label> 
     <label class="radio-inline" for="radios-1">
@@ -330,29 +315,15 @@ function test_input($data) {
   </div>
 </div>
 
-<!-- Text input-->
+<!-- Textarea -->
 <div class="form-group">
-  <label class="col-md-4 control-label col-xs-12" for="Permanent Address">Permanent Address</label>  
-  <div class="col-md-2  col-xs-4">
-  <input id="Permanent Address" name="Permanent Address" type="text" placeholder="District" class="form-control input-md " value="<?php echo $addressDistrict;?>">
+  <label class="col-md-4 control-label" for="address)">Address</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" rows="1"  id="address" name="address">Overview  value="<?php echo $address;?> </textarea>
   </div>
-
-  <div class="col-md-2 col-xs-4">
-
-  <input id="Permanent Address" name="Permanent Address" type="text" placeholder="Area" class="form-control input-md " value="<?php echo $addressArea;?>">
-  </div>
- 
 </div>
 
-<div class="form-group">
-  <label class="col-md-4 control-label" for="Permanent Address"></label>  
-  <div class="col-md-2  col-xs-4">
-  <input id="Permanent Address" name="Permanent Address" type="text" placeholder="Street" class="form-control input-md" value="<?php echo $addressStreet;?>">
-  </div>
- 
-</div>
-
-
+	
 
 <!-- Multiple Checkboxes -->
 <div class="form-group">
@@ -434,6 +405,7 @@ function test_input($data) {
    </div>
     <!-- jQuery Version 1.11.1 -->
     <script src="js/jquery.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
@@ -442,50 +414,24 @@ function test_input($data) {
 
 </html>
 
-	<div class="form-style-2">
-		<div class="form-style-2-heading"> Add Staff </div>
-		<form action="staff_add.php" method="post">
-			<label for="name"><span>Name <span class="required">*</span></span><input type="text" class="input-field" name="name" value="" /></label>
-			<label for="surname"><span>Surname <span class="required">*</span></span><input type="text" class="input-field" name="surname" value="" /></label>
-			<label for="email"><span>Email <span class="required">*</span></span><input type="text" class="input-field" name="email" value="" /></label>
-			<label><span>Telephone</span><input type="text" class="tel-number-field" name="tel_no_1" value="" maxlength="4" />-<input type="text" class="tel-number-field" name="tel_no_2" value="" maxlength="4"  />-<input type="text" class="tel-number-field" name="tel_no_3" value="" maxlength="10"  /></label>
-			<label><span>Next of Kin Name<span class="required">*</span></span><input type="text" class="input-field" name="field1" value="" /></label>
-			<label><span>Next of Kin Telephone</span><input type="text" class="tel-number-field" name="tel_no_1" value="" maxlength="4" />-<input type="text" class="tel-number-field" name="tel_no_2" value="" maxlength="4"  />-<input type="text" class="tel-number-field" name="tel_no_3" value="" maxlength="10"  /></label>
-			<label><span>Minimum Hours</span><input type="number" min="1" max="10" name="minHour" ></label><br>
-			<label><span>Maximum Hours</span><input type="number" min="1" max="10" name="maxHour" ></label><br/>
-			
-			<label><span>Department</span><select name="department" class="select-field">
-			<option value="Kithen">Kitchen</option>
-			<option value="floor">Floor</option>
-			</select></label>
-			
-			<label><span>Position</span><select name="position" class="select-field">
-			<option <?php if (isset($position) && $position=="Waiter") echo "checked";?> value="Waiter">Waiter</option>
-			<option <?php if (isset($position) && $position=="Supervisor") echo "checked";?> value="Supervisor">Supervisor</option>
-			<option <?php if (isset($position) && $position=="Kitchen Porter") echo "checked";?> value="Kitchen Porter">Kitchen Porter</option>
-			<option <?php if (isset($position) && $position=="Chef") echo "checked";?> value="Chef">Chef</option>
-			<option <?php if (isset($position) && $position=="Manager") echo "checked";?> value="Manager">Manager</option>
-			</select></label>
-					 
-  			<label><span>Availability</span><br/><br/>
-  			<input type="checkbox" id="Monday" name="availability" <?php if (isset($availability) && $availability=="monday") echo "checked";?> value="monday" >  Monday <br/>
-   			<input type="checkbox" id="Tuesday" name="availability" <?php if (isset($availability) && $availability=="monday") echo "checked";?> value="tuesday"> Tuesday <br/>
-   			<input type="checkbox" id="Wednesday" name="availability" <?php if (isset($availability) && $availability=="monday") echo "checked";?> value="wednesday">  Wednesday <br />
-   			<input type="checkbox" id="Thursday" name="availability" <?php if (isset($availability) && $availability=="monday") echo "checked";?> value="thursday">  Thursday <br />
-   			<input type="checkbox" id="Friday" name="availability" <?php if (isset($availability) && $availability=="monday") echo "checked";?>  value="friday">  Friday <br/>
-   			<input type="checkbox" id="Saturday" name="availability" <?php if (isset($availability) && $availability=="monday") echo "checked";?> value="saturday">  Saturday <br />
-   			<input type="checkbox" id="Sunday" name="availability" <?php if (isset($availability) && $availability=="monday") echo "checked";?> value=sunday>  Sunday <br/>  
-  			</label>
 
-			<label><span>&nbsp;</span><input type="submit" value="Submit" /></label>
-			</form>
-	</div>
-	
-	
-	
-	
-	
-	
+
+<!-- Include Date Range Picker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+<script>
+	$(document).ready(function(){
+		var date_input=$('input[name="date"]'); //our date input has the name "date"
+		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+		date_input.datepicker({
+			format: 'dd/mm/yyyy',
+			container: container,
+			todayHighlight: true,
+			autoclose: true,
+		})
+	})
+</script>
 
 <?php 
 require_once(TEMPLATE_PATH . "/footer.php");
