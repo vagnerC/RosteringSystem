@@ -76,6 +76,14 @@ require_once(TEMPLATE_PATH . "/header.php");
 
 </div>
 </div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label" ></label>  
+  <div class="col-md-4">
+  <input class="btn btn-primary" type="submit" value="Save">
+    
+  </div>
+</div>
 </fieldset>
 </form>
 
