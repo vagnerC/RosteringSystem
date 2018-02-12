@@ -1,7 +1,7 @@
 <?php
 /**
 *@author Felipe Mello
-*@version 0.2
+*@version 0.3
 **/
 define('__ROOT__', dirname(dirname(__FILE__)));
 require_once(__ROOT__.'/RosteringSystem/resource/config.php');
