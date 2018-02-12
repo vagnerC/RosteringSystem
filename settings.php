@@ -42,7 +42,7 @@ require_once(TEMPLATE_PATH . "/header.php");
 <fieldset>
 
 <!-- Form Name -->
-<legend>Settings</legend>
+<legend>Change email and password</legend>
 
 <!-- Text input-->
 <div class="form-group">
