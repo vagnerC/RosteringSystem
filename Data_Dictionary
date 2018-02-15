@@ -1,0 +1,38 @@
+staff_add.php
+	firstName
+	lastName
+	uploadPhoto
+	dateOfBirth
+	phoneNumber
+	secondaryPhoneNumber
+	emailAddress
+	nextOfKinName
+	nextOfKinPhoneNumber
+	department
+	position
+	availability
+	minimumHours
+	maximumHours
+	
+staff_profile.php
+	firstName
+	lastName
+	uploadPhoto
+	dateOfBirth
+	phoneNumber
+	secondaryPhoneNumber
+	emailAddress
+	nextOfKinName
+	nextOfKinPhoneNumber
+	nextOfKinSecondaryPhoneNumber
+	department
+	position
+	availability
+	minimumHours
+	maximumHours
+	
+staff_search.php
+	firstName
+	lastName
+	phoneNumber
+	emailAddress
