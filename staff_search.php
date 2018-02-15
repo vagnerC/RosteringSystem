@@ -4,90 +4,27 @@ require_once(__ROOT__.'/RosteringSystem/resource/config.php');
 
 require_once(TEMPLATE_PATH . "/header.php");
 
+$firstName= $lastName = $emailAddress = $phoneNumber = $secondaryPhoneNumber = "";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	if (empty($_POST["name"])) {
-		$nameErr = "Name is required";
-	} else {
-		$name = test_input($_POST["name"]);
-		// check if name only contains letters and whitespace
-		if (!preg_match("/^[a-zA-Z ]*$/",$name)) {
-			$nameErr = "Only letters and white space allowed";
-		}
-	}
-	if (empty($_POST["surname"])) {
-		$surnameErr = "Surname is required";
-	} else {
-		$surname = test_input($_POST["surname"]);
-		// check if name only contains letters and whitespace
-		if (!preg_match("/^[a-zA-Z ]*$/",$surname)) {
-			$surnameErr = "Only letters and white space allowed";
-		}
-	}
-	if (empty($_POST["email"])) {
-		$emailErr = "Email is required";
-	} else {
-		$email = test_input($_POST["email"]);
-		// check if e-mail address is well-formed
-		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			$emailErr = "Invalid email format";
-		}
-	}
-	if (empty($_POST["telephone"])) {
-		$telephoneErr = "Name is required";
-	} else {
-		$telephone = test_input($_POST["telephone"]);
-		// check if name only contains only number
-		if (!preg_match("/^[a-zA-Z ]*$/",$telephone)) {
-			$telephoneErr = "Only number and white space allowed";
-		}
-	}
-}
-	function test_input($data) {
-		$data = trim($data);
-		$data = stripslashes($data);
-		$data = htmlspecialchars($data);
-		return $data;
-	}
 ?>
-<title> Search Staff </title>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
-    <!-- Bootstrap Core CSS -->
-<!--     <link href="css/bootstrap.min.css" rel="stylesheet"> -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
 
-    <!-- Custom CSS -->
-    <style>
-    body {
-        padding-top: 70px;
-        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    }
+ <!-- Custom CSS -->
+<style>
+ body {
+ padding-top: 70px;
+ }
+ .othertop{margin-top:10px;}
+</style>
 
-    .othertop{margin-top:10px;}
-    </style>
+<div class="container">
+	<div class="row">
+		<div class="col-md-10 ">
+		<form class="form-horizontal">
+		<fieldset>
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-</head>
-
-<body>
-
-   <div class="container">
-<div class="row">
-<div class="col-md-10 ">
-<form class="form-horizontal">
-<fieldset>
-
-<!-- Form Name -->
 <legend>Search Staff </legend>
-
-<!-- Text input-->
-
 
 <!-- Text input-->
 <div class="form-group">
@@ -115,10 +52,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	</div>
 </div>
 
-
-  
-</div>
-
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="Phone number ">Phone number </label>  
@@ -128,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      <i class="fa fa-phone"></i>
         
        </div>
-    <input id="Phone number " name="Phone number " type="text" placeholder="Primary Phone number " class="form-control input-md" value="<?php echo $primaryPhone;?>">
+    <input id="Phone number " name="Phone number " type="text" placeholder="Primary Phone number " class="form-control input-md" value="<?php echo $phoneNumber?>">
     
       </div>
       <div class="input-group othertop">
@@ -136,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      <i class="fa fa-mobile fa-1x" style="font-size: 20px;"></i>
         
        </div>
-    <input id="Phone number " name="Secondary Phone number " type="text" placeholder=" Secondary Phone number " class="form-control input-md" value="<?php echo $secondaryPhone;?>">
+    <input id="Phone number " name="Secondary Phone number " type="text" placeholder=" Secondary Phone number " class="form-control input-md" value="<?php echo $secondaryPhoneNumber;?>">
     
       </div>
   
@@ -152,7 +85,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
      <i class="fa fa-envelope-o"></i>
         
        </div>
-    <input id="Email Address" name="Email Address" type="text" placeholder="Email Address" class="form-control input-md" value="<?php echo $email;?>">
+    <input id="Email Address" name="Email Address" type="text" placeholder="Email Address" class="form-control input-md" value="<?php echo $emailAddress;?>">
     
       </div>
   
@@ -170,11 +103,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </fieldset>
 </form>
 </div>
-<div class="col-md-2 hidden-xs">
-<img src="http://websamplenow.com/30/userprofile/images/avatar.jpg" class="img-responsive img-thumbnail ">
-  </div>
-
-
 </div>
    </div>
     <!-- jQuery Version 1.11.1 -->

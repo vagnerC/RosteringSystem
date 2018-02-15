@@ -12,7 +12,15 @@ require_once("calendar.php");
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+<style>
+.calendarClass {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2%;
+    width: 90%;
+ </style>
+}
 	<br><br><br>
 	<div class="panel-group">
     	<div class="panel panel-primary">
@@ -31,10 +39,7 @@ require_once("calendar.php");
 	</div>			
 
 	<div class="panel panel-primary">
-	<div class="panel-body" display="block" margin-left: auto;
-    margin-right: auto;
-    width: 40%;>
-	
+	<div class="calendarClass">
 	<?php 
 		echo draw_calendar(date('m'), date('Y'));
 	?>
