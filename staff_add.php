@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 <?php
 define('__ROOT__', dirname(dirname(__FILE__)));
 require_once(__ROOT__.'/RosteringSystem/resource/config.php');
@@ -399,3 +401,4 @@ function test_input($data) {
 <?php 
 require_once(TEMPLATE_PATH . "/footer.php");
 ?>
+>>>>>>> branch 'master' of https://github.com/vagnerC/RosteringSystem.git
