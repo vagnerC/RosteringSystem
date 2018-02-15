@@ -208,7 +208,7 @@ function test_input($data) {
 
 <!-- Text input-->
 <div class="form-group">
-	<label class="col-md-4 control-label" for="emailAddress">Email Address</label>  
+	<label class="col-md-4 control-label" for="emailAddress">Email Address --</label>  
     <div class="col-md-4">
 		<div class="input-group">
 			<div class="input-group-addon">
