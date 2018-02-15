@@ -171,7 +171,7 @@ function get_times( $default = '00:00', $interval = '+30 minutes' ) {
 
 	<div class="row">
 		<div class="col" style="text-align: right">
-		<button type="button" class="btn btn-info">Cancel</button>
+			<button type="button" class="btn btn-info">Cancel</button>
 		</div>
 		<div class="col" style="text-align: left">
 			<button onclick="saveOpenClose()" type="button" class="btn btn-info">Save</button>
