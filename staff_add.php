@@ -5,109 +5,14 @@ require_once(__ROOT__.'/RosteringSystem/resource/config.php');
 require_once(TEMPLATE_PATH . "/header.php");
 
 
-
 // define variables and set to empty values
 $nameErr = $surnameErr = $emailErr = $telephoneErr = $nextOfKinNameErr = $nextOfKinPhoneErr = $minHourErr = $maxHourErr = $departmentErr = $positionErr = $availabilityErr ="";
 $firstName= $lastName = $emailAddress = $phoneNumber = $secondaryPhoneNumber = $nextOfKinName = $nextOfKinPhoneNumber
 = $address = $minHour = $maxHour = $department = $position = $availability ="";
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-	if (empty($_POST["firstName"])) {
-		$nameErr = "Name is required";
-	} else {
-		$name = test_input($_POST["firstName"]);
-		// check if name only contains letters and whitespace
-		if (!preg_match("/^[a-zA-Z ]*$/",$firstName)) {
-			$nameErr = "Only letters and white space allowed";
-		}
-	}
-	if (empty($_POST["surname"])) {
-		$surnameErr = "Surname is required";
-	} else {
-		$surname = test_input($_POST["surname"]);
-		// check if name only contains letters and whitespace
-		if (!preg_match("/^[a-zA-Z ]*$/",$surname)) {
-			$surnameErr = "Only letters and white space allowed";
-		}
-	}
-	if (empty($_POST["email"])) {
-		$emailErr = "Email is required";
-	} else {
-		$email = test_input($_POST["email"]);
-		// check if e-mail address is well-formed
-		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-			$emailErr = "Invalid email format";
-		}
-	}
-	if (empty($_POST["telephone"])) {
-		$telephoneErr = "Name is required";
-	} else {
-		$telephone = test_input($_POST["telephone"]);
-		// check if name only contains only number
-		if (!preg_match("/^[a-zA-Z ]*$/",$telephone)) {
-			$telephoneErr = "Only number and white space allowed";
-		}
-	}
-	if (empty($_POST["nextOfKinName"])) {
-		$nextOfKinNameErr= "Name is required";
-	} else {
-		$nextOfKinName = test_input($_POST["nextOfKinName"]);
-		// check if name only contains letters and whitespace
-		if (!preg_match("/^[a-zA-Z ]*$/",$nextOfKinName)) {
-			$nextOfKinNameErr = "Only letters and white space allowed";
-		}
-	}
-	if (empty($_POST["nextOfKinPhone"])) {
-		$nextOfKinPhoneErr = "Name is required";
-	} else {
-		$nextOfKinPhone = test_input($_POST["nextOfKinPhone"]);
-		// check if name only contains only number
-		if (!preg_match("/^[a-zA-Z ]*$/",$nextOfKinPhone)) {
-			$nextOfKinPhoneErr= "Only number and white space allowed";
-		}
-	}
-	if (empty($_POST["minHour"])) {
-		$minHourErr = "Mininum Hours Available is required";
-	} else {
-		$minHour= test_input($_POST["minHour"]);
-	}
-	if (empty($_POST["maxHour"])) {
-		$maxHourErr = "Maximum Hours Available is required";
-	} else {
-		$maxHour= test_input($_POST["maxHour"]);
-	}
-	if (empty($_POST["department"])) {
-		$departmentErr= "Department is required";
-	} else {
-		$department = test_input($_POST["department"]);
-	}
-	if (empty($_POST["position"])) {
-		$positionErr = "Position is required";
-	} else {
-		$position = test_input($_POST["nextOfKinName"]);
-	}
-	if (empty($_POST["availability"])) {
-		$availabilityErr = "Availability is required";
-	} else {
-		$availability = test_input($_POST["availability"]);
-	}
-	if (empty($_POST["comment"])) {
-		$comment = "";
-	} else {
-		$comment = test_input($_POST["comment"]);
-	}
-}
-function test_input($data) {
-	$data = trim($data);
-	$data = stripslashes($data);
-	$data = htmlspecialchars($data);
-	return $data;
-}
 
 ?>
-
-<head>
-<title>User profile form </title>
+	
 <!-- Bootstrap Core CSS -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
 <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
@@ -116,16 +21,10 @@ function test_input($data) {
 <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
 
-<!-- Inline CSS based on choices in "Settings" tab -->
-<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}</style>
-
 <!-- Custom CSS -->
 <style>
 .othertop{margin-top:10px;}
 </style>
-</head>
-
-<body>
 
 <div class="container">
 	<div class="row">
@@ -208,7 +107,7 @@ function test_input($data) {
 
 <!-- Text input-->
 <div class="form-group">
-	<label class="col-md-4 control-label" for="emailAddress">Email Address --</label>  
+	<label class="col-md-4 control-label" for="emailAddress">Email Address</label>  
     <div class="col-md-4">
 		<div class="input-group">
 			<div class="input-group-addon">

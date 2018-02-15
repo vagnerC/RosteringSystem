@@ -31,7 +31,9 @@ require_once("calendar.php");
 	</div>			
 
 	<div class="panel panel-primary">
-	<div text-align="center">
+	<div class="panel-body" display="block" margin-left: auto;
+    margin-right: auto;
+    width: 40%;>
 	
 	<?php 
 		echo draw_calendar(date('m'), date('Y'));
