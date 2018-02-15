@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 <?php
 define('__ROOT__', dirname(dirname(__FILE__)));
 require_once(__ROOT__.'/RosteringSystem/resource/config.php');
@@ -7,9 +5,10 @@ require_once(__ROOT__.'/RosteringSystem/resource/config.php');
 require_once(TEMPLATE_PATH . "/header.php");
 
 
+
 // define variables and set to empty values
 $nameErr = $surnameErr = $emailErr = $telephoneErr = $nextOfKinNameErr = $nextOfKinPhoneErr = $minHourErr = $maxHourErr = $departmentErr = $positionErr = $availabilityErr ="";
-$firstName= $lastName = $emailAddress = $phoneNumber = $secondaryPhoneNumber = $nextOfKinName = $nextOfKinPhoneNumber 
+$firstName= $lastName = $emailAddress = $phoneNumber = $secondaryPhoneNumber = $nextOfKinName = $nextOfKinPhoneNumber
 = $address = $minHour = $maxHour = $department = $position = $availability ="";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -401,4 +400,3 @@ function test_input($data) {
 <?php 
 require_once(TEMPLATE_PATH . "/footer.php");
 ?>
->>>>>>> branch 'master' of https://github.com/vagnerC/RosteringSystem.git

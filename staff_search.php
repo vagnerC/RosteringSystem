@@ -4,6 +4,7 @@ require_once(__ROOT__.'/RosteringSystem/resource/config.php');
 
 require_once(TEMPLATE_PATH . "/header.php");
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 	if (empty($_POST["name"])) {
 		$nameErr = "Name is required";
@@ -49,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		return $data;
 	}
 ?>
-	    <title> Search Staff </title>
+<title> Search Staff </title>
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
     <!-- Bootstrap Core CSS -->
 <!--     <link href="css/bootstrap.min.css" rel="stylesheet"> -->
@@ -88,35 +89,32 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!-- Text input-->
 
 
+<!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="First Name">First Name </label>  
-  <div class="col-md-4">
- <div class="input-group">
-       <div class="input-group-addon">
-        <i class="fa fa-user">
-        </i>
-       </div>
-       <input id="First Name" name="First Name" type="text" placeholder="First Name" class="form-control input-md" value="<?php echo $name;?>">
-      </div>
-
-    
-  </div>
-
-  
+  	<label class="col-md-4 control-label" for="firstName">First Name </label>  
+  	<div class="col-md-4">
+ 		<div class="input-group">
+       		<div class="input-group-addon">
+        	<i class="fa fa-user"></i>
+       		</div>
+       		<input id="firstName" name="firstName" type="text" placeholder="First Name" class="form-control input-md" value="<?php echo $firstName;?>">
+     	 </div>
+	</div>
 </div>
-<div class="form-group">
-  <label class="col-md-4 control-label" for="Last Name">Last Name</label>  
-  <div class="col-md-4">
- <div class="input-group">
-       <div class="input-group-addon">
-        <i class="fa fa-user">
-        </i>
-       </div>
-       <input id="Last Name" name="Last Name" type="text" placeholder="Last Name" class="form-control input-md" value="<?php echo $surname;?>">
-      </div>
 
-    
-  </div>
+<!-- Text input-->
+<div class="form-group">
+ 	<label class="col-md-4 control-label" for="lastName">Last Name</label>  
+  	<div class="col-md-4">
+ 		<div class="input-group">
+        	<div class="input-group-addon">
+        	<i class="fa fa-user"></i>
+        	</div>
+       		<input id="lastName" name="lastName" type="text" placeholder="Last Name" class="form-control input-md" value="<?php echo $lastName;?>">
+		</div>
+	</div>
+</div>
+
 
   
 </div>
@@ -188,6 +186,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 </html>
+
 <?php 
 require_once(TEMPLATE_PATH . "/footer.php");
 ?>
