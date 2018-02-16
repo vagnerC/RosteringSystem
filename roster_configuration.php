@@ -186,8 +186,8 @@ function get_times( $default = '00:00', $interval = '+30 minutes' ) {
 
 	</div>
 	<br>
-	<div class="row">
-		<div class="col">
+	<div class="row" id="staffHours">
+		<!-- <div class="col" id="sundayStaff">
 			<p>Sunday</p>
 			<div class="row">
 				<div class="col">Time</div>
@@ -237,7 +237,7 @@ function get_times( $default = '00:00', $interval = '+30 minutes' ) {
 				<div class="col">Staff</div>
 			</div>
 		</div>
-
+ -->
 
 	</div>
 </div>	
