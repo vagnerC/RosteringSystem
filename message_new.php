@@ -30,26 +30,26 @@ require_once(TEMPLATE_PATH . "/header.php");
 
 <!-- Text input-->
 <div class="form-group">
-	<label class="col-md-4 control-label" for=“sendTo”>Send to:</label>  
+	<label class="col-md-4 control-label" for=â€œsendToâ€�>Send to:</label>  
     <div class="col-md-4">
 		<div class="input-group">
 			<div class="input-group-addon">
-     		<i class="fa fa-envelope-o"></i>
+     		<i class="fa fa-male"></i>
 			</div>
-    		<input id="emailAddress" name=“Send To“ type="text" placeholder="Email Address" class="form-control input-md" value="<?php echo $emailAddress;?>">
+    		<input id="emailAddress" name=â€œSend Toâ€œ type="text" placeholder="Email Address" class="form-control input-md" value="<?php echo $emailAddress;?>">
 		</div>
  	</div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-	<label class="col-md-4 control-label" for=“subject”>Subject</label>  
+	<label class="col-md-4 control-label" for=â€œsubjectâ€�>Subject</label>  
     <div class="col-md-4">
  		<div class="input-group">
 			<div class="input-group-addon">
-			<i class="fa fa-male" style="font-size: 20px;"></i>
+			<i class="fa fa-envelope-o" style="font-size: 10px;"></i>
        	    </div>
-       		<input id=“subject” name=“subject” type="text" placeholder=“Subject” class="form-control input-md" value="<?php echo $nextOfKinName;?>">
+       		<input id=â€œsubjectâ€� name=â€œsubjectâ€� type="text" placeholder=â€œSubjectâ€� class="form-control input-md" value="<?php echo $nextOfKinName;?>">
         </div>
     </div>
 </div>
@@ -65,7 +65,7 @@ require_once(TEMPLATE_PATH . "/header.php");
 <div class="form-group">
   <label class="col-md-4 control-label" ></label>  
   <div class="col-md-4">
-  <input class="btn btn-primary" type=“submit” value="Send">
+  <input class="btn btn-primary" type=â€œsubmitâ€� value="Send">
   </div>
 </div>
 
