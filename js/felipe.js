@@ -1,5 +1,5 @@
 console.log("Connected to felipe.js");
-
+	var days = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
 	var month ={
 		'January':[], //31 days
 		'February':[], //28 days
@@ -23,13 +23,14 @@ console.log("Connected to felipe.js");
 		'week5':[],
 	}
 	var daysOftheWeek ={
+		'Sunday':[],
 		'Monday':[],
 		'Tuesday':[],
 		'Wednesday':[],
 		'Thursday':[],
 		'Friday':[],
-		'Saturday':[],
-		'Sunday':[]
+		'Saturday':[]
+		
 	}
 	// daysOftheWeek.Monday.push(monday)''
 
@@ -67,10 +68,21 @@ console.log("Connected to felipe.js");
  	/** get the open/close time of each day of the daysOftheWeek
  	*	and store it in it's variable then store the var in the daysOftheWeek array
  	**/
+ 	function replace(x,y,z){
+ 		x = x.replace("y","z");
+ 		return x
+ 	}
  	function saveOpenClose(){
  		/**Sunday**/
- 		window.sunday.Open = document.getElementById("sundayOpen").value;
- 		window.sunday.Close = document.getElementById("sundayClose").value;
+ 		var sundayOpen, sundayClose;
+ 		sundayOpen = document.getElementById("sundayOpen").value;
+ 		sundayOpen = sundayOpen.replace(":","");
+ 		
+ 		sundayClose = document.getElementById("sundayClose").value;
+ 		sundayClose = sundayClose.replace(":","");
+
+ 		window.sunday.Open = sundayOpen;
+ 		window.sunday.Close = sundayClose;
  		daysOftheWeek.Sunday.push(sunday);
 
  		/**Monday**/
@@ -105,11 +117,48 @@ console.log("Connected to felipe.js");
 
  		console.log("Open and closing time is save into the daysOfweekArray")
 
+ 		generateStaffHours();
  		
+ 	}
+ 	//return the openTime
+ 	function getOpenTime(x){
+ 		return x.Open;
+ 	}
+ 	function getCloseTime(x){
+ 		return x.Close;
  	}
 
  	function generateStaffHours(daysOftheWeek){
- 		daysOftheWeek
+ 		//this is a row
+ 		var columns, row, colInRow;
+ 		var start = document.getElementById("staffHours"); 
+
+ 		for(var i=0; i< days.length;i++){
+ 			columns = document.createElement("div");
+	 		columns.className = "col";
+
+ 			columns.innerHTML += "<p>"+days[i]+"</p>";
+ 			start.appendChild(columns);
+
+ 			//j = opening time      j < close time
+ 			var x = sunday.Open;
+ 			for(var j=0; j<8; j++){
+ 				row = document.createElement("div");
+		 		row.className = "row";
+
+		 		colInRow = document.createElement("div");
+		 		colInRow.className = "col";
+
+		 		var next = j+1;
+ 				colInRow.innerHTML = j+" to "+next;
+ 				row.appendChild(colInRow);
+ 			 	columns.appendChild(row);
+ 			}
+
+ 		}
+ 		//create 7 coluns in this for each day of the week
+
+
 
  	}
 // 	// example monday.open.push(value);
