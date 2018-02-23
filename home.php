@@ -20,7 +20,7 @@ require_once("calendar.php");
     padding: 2%;
     width: 90%;
  </style>
-}
+
 	<br><br><br>
 	<div class="panel-group">
     	<div class="panel panel-primary">
