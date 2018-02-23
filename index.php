@@ -1,9 +1,16 @@
 <?php
+session_start();
 define('__ROOT__', dirname(dirname(__FILE__)));
 require_once(__ROOT__ . "/RosteringSystem/resource/config.php");
-require_once(__ROOT__ . "/RosteringSystem/resource/config.php");
-include_once 'template/newHeader.php';
+require_once(TEMPLATE_PATH . "/header.php");
 ?>
+<!-- Bootstrap Core CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+
+<!--Font Awesome (added because you use icons in your prepend/append)-->
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
+
+
 <script type="text/javascript">
 $('document').ready(function()
 { 
@@ -35,16 +42,11 @@ $('document').ready(function()
 			type : 'POST',
 			url  : 'index_process.php',
 			data : data,
-			beforeSend: function()
-			{	
-				$("#error").fadeOut();
-				$("#login").html('<span class="glyphicon glyphicon-transfer"></span>&nbsp; sending...');
-			},
 			success: function(response)
 			{						
 				if(response=="ok"){
-					$("#login").html('<img src="image/content/btn-ajax-loader.gif" /> &nbsp; Signing In ...');
-					setTimeout(' window.location.href = "home.php"; ',3000);
+					$("#login").html('<span class="glyphicon glyphicon-refresh"></span> &nbsp; Signing In...');
+					setTimeout('window.location.href = "home.php"; ',500);
 				} else {
 					$("#error").fadeIn(1000, function(){						
 						$("#error").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-info-sign"></span> &nbsp; '+response+'</div>');
@@ -55,33 +57,71 @@ $('document').ready(function()
 		});
 		return false;
 	}
-	   /* login submit */
 });
 </script>
+<form class="form-horizontal" method="post" id="login-form">
+	<div class="row">
+		<div class="col-md-12 ">
+			
+				<fieldset  style='border: 1px solid red;'>
+					
+					<div class="form-group">
+					<label class="col-md-4 control-label" for="newEmail"></label>
+						<div class="col-md-4">
+							<div id="error"></div>
+						</div>
+					</div>
+					
+<!-- 					<div class="form-group"> -->
+<!-- 						<div class="col-md-16" style='border: 1px solid red;'>-->
+							<?php 
+// 							if(isset($_SESSION['user_info'])){
+// 							     echo "<br>NAME: ".$_SESSION['user_info']['name'];
+// 							     echo "<br>DEPARTMENT: ".$_SESSION['user_info']['department'];
+// 							     echo "<br>POSITION: ".$_SESSION['user_info']['position'];
+// 							     echo "  <a href='logout.php'>LOGOUT</a>";
+// 							}
+// 							?>
+<!-- 						</div> -->
+<!-- 					</div> -->
+					
+					<div class="form-group">
+					<label class="col-md-4 control-label" for="newEmail"></label>
+						<div class="col-md-4">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-envelope-o"></i>
+								</div>
+							<input id="username" name="username" type="text" placeholder="Username" class="form-control input-md" value="">
+							</div>
+						</div>
+					</div>
 
-<div class="signin-form">
-	<form class="form-signin" method="post" id="login-form">
-        
-		<div id="error"></div>
-        
-		<div class="form-group">
-			<input type="text" name="username" id="username" class="form-control" placeholder="Username" />
-		</div>
-        
-		<div class="form-group">
-			<input type="password" name="password" id="password" class="form-control" placeholder="Password"/>
-		</div>
-       
-		<hr />
-        
-		<div class="form-group">
-			<button type="submit" name="login" id="login" class="btn btn-default">
-			<span class="glyphicon glyphicon-log-in"></span> &nbsp; Sign In
-			</button> 
-		</div>  
-		
-	</form>
+					<div class="form-group">
+					<label class="col-md-4 control-label" for="newPassword"></label>
+						<div class="col-md-4">
+							<div class="input-group">
+								<div class="input-group-addon">
+									<i class="fa fa-key"></i>
+								</div>
+							<input id="password" name="password" type="password" placeholder="Password" class="form-control input-md" value="">
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group">
+  					<label class="col-md-4 control-label" ></label>  
+  						<div class="col-md-4">
+							<button type="submit" name="login" id="login" class="btn btn-primary">
+    								<i class="glyphicon glyphicon-log-in"></i> &nbsp; Login
+							</button>
+  						</div>
+					</div>
+				</fieldset>
+			
+	</div>
 </div>
+</form>
 <?php 
 require_once(TEMPLATE_PATH . "/footer.php");
 ?>

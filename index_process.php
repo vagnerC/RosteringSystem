@@ -1,36 +1,48 @@
 <?php
 session_start();
-//require_once 'dbconfig.php';
+define('__ROOT__', dirname(dirname(__FILE__)));
+require_once(__ROOT__ . "/RosteringSystem/resource/config.php");
+require_once(RESOURCE_PATH . "/database.php");
 
-if(isset($_POST['login']))
-{
-    $username = trim($_POST['username']);
-    $password = trim($_POST['password']);
-    
-    //$password = md5($user_password);
-    
-    try
-    {
-        
-//         $stmt = $db_con->prepare("SELECT * FROM tbl_users WHERE user_email=:email");
-//         $stmt->execute(array(":email"=>$user_email));
-//         $row = $stmt->fetch(PDO::FETCH_ASSOC);
-//         $count = $stmt->rowCount();
-        
-//         if($row['user_password']==$password){
-            
-            echo "ok"; // log in
-//             $_SESSION['user_session'] = $row['user_id'];
-//         }
-//         else{
-            
-//             echo "Email or Password does not exist"; // wrong details
-//         }
-        
-    }
-    catch(PDOException $e){
-        echo $e->getMessage();
-    }
-}
+$username 	= $_POST['username'];
+$password 	= $_POST['password'];
 
+//$password 	= md5($password.'RosteringSystem2018');
+
+try{
+    $sql = "SELECT 
+            idStaff,
+            nameStaff,
+            positionName,
+            departmentName
+            FROM staff 
+            INNER JOIN position ON position_idPosition = idPosition
+            INNER JOIN department ON department_idDepartment = idDepartment            
+            WHERE email = ? 
+            AND password = ?";
+    $sth = $DBH->prepare($sql);
+    
+    $sth->bindParam(1, $username, PDO::PARAM_INT);
+    $sth->bindParam(2, $password, PDO::PARAM_INT);
+    
+    $sth->execute();
+    
+    if($sth->rowCount() > 0){
+        echo "ok";
+        
+        $rec = $sth->fetch(PDO::FETCH_ASSOC);
+        $idStaff            = $rec['idStaff'];
+        $nameStaff          = $rec['nameStaff'];
+        $positionName       = $rec['positionName'];
+        $departmentName     = $rec['departmentName'];
+        
+        $user_info = array("id"=>$idStaff, "name"=>$nameStaff, "position"=>$positionName, "department"=>$departmentName);
+        
+        $_SESSION['user_info'] = $user_info;
+    }
+    else{
+        echo "User or Password incorrect.";
+    }
+    
+} catch(PDOException $e) {echo $e;}
 ?>
