@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
     <head>
-    		<meta charset="utf-8" />
+    	<meta charset="utf-8" />
         <title>Rostering System</title>
 		<link rel="icon" href="image/layout/favicon.ico">
 		<link rel="stylesheet" type="text/css" href="library/bootstrap.min.css">
@@ -10,9 +10,14 @@
 		<script type="text/javascript" src="library/validation.min.js"></script>
 		<script type="text/javascript" src="library/bootstrap.min.js"></script>
 	</head>
-    <header class="header">
-		Rostering System
-    </header>
+
+<body class="background">
     
-    <body class="background">
-  		<div class="container">
+	<header class="header">
+		<h1>Rostering<span>System</h1>
+	</header>
+    <div class="container1">
+  		<?php include 'menu_staff.php';?> 
+	</div>
+		<div class="container">
+  		
