@@ -68,7 +68,7 @@ $('document').ready(function()
 					<div class="form-group">
 					<label class="col-md-4 control-label" for="newEmail"></label>
 						<div class="col-md-4">
-							<div id="error"></div>
+							<div id="error"></div> 
 						</div>
 					</div>
 					
