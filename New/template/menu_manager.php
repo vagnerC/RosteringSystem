@@ -1,4 +1,9 @@
-	<ul class="nav-menu">
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
 		<li class="menu-active"><a href="#body">Home</a></li>
 		
 		<li class="menu-has-children"><a href="#about">Staff</a>
@@ -34,3 +39,5 @@
 		
 		<li><a href ="#"> Sign Out</a></li>
 	</ul>
+	</div>
+	</nav>
