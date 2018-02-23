@@ -72,7 +72,7 @@ $('document').ready(function()
 						</div>
 					</div>
 					
-<!-- 					<div class="form-group"> -->
+<!-- 					<div class="form-group"> --> 
 <!-- 						<div class="col-md-16" style='border: 1px solid red;'>-->
 							<?php 
 // 							if(isset($_SESSION['user_info'])){
