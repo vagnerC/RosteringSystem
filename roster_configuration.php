@@ -3,6 +3,9 @@
 *@author Felipe Mello
 *@version 0.3
 **/
+/**Roster Configuration 
+	In this section the manager will configure the week: what time and which days the shop will be opened, how many staff the shop will need per hour.
+**/
 define('__ROOT__', dirname(dirname(__FILE__)));
 require_once(__ROOT__.'/RosteringSystem/resource/config.php');
 require_once(TEMPLATE_PATH . "/header.php");
@@ -108,27 +111,6 @@ function selectNumberOption($min, $max) {
   
 
 ?>
-
-<style type="text/css">
-	.title{
-		text-align: center;
-		letter-spacing: 5px;
-	}
-	.hline{
-		display: block;
-		width: 100%;
-		height: 1px;
-		border: 0;
-		border-top: 1px solid #ccc;
-		margin: 1em 0;
-		padding: 0;
-
-	}
-	.smallTxt{
-		color: blue;
-	}
-	
-</style>
 
 <script type="text/javascript" src="js/jquery-3.3.1.js"></script> 
 
@@ -255,7 +237,7 @@ function selectNumberOption($min, $max) {
 		</div>
 	</div>
 	<br>
-		<div class="row">
+	<div class="row">
 		<div class="col" style="text-align: right">
 			<button type="button" class="btn btn-info">Cancel</button>
 		</div>
@@ -359,6 +341,14 @@ function selectNumberOption($min, $max) {
 					</div>
 				</div>
 			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col" style="text-align: right">
+			<button type="button" class="btn btn-info">Cancel</button>
+		</div>
+		<div class="col" style="text-align: left">
+			<button type="Submit" class="btn btn-info" name="next" value="next">Save</button>
 		</div>
 	</div>
 </div>	
