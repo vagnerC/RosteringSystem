@@ -12,11 +12,11 @@ $firstName= $lastName = $emailAddress = $phoneNumber = $secondaryPhoneNumber = "
 <table class="table table-hover">
   <thead>
     <tr class="table-secondary">
-      <th scope="col">Request Id</th>
-      <th scope="col">From / Type</th>
-      <th scope="col">Start Date</th>
-      <th scope="col">End Date</th>
-      <th scope="col">Status</th>
+      <td scope="col">Request Id</td>
+      <td scope="col">From / Type</td>
+      <td scope="col">Start Date</td>
+      <td scope="col">End Date</td>
+      <td scope="col">Status</td>
     </tr>
   </thead>
   <tbody>
@@ -35,7 +35,7 @@ $firstName= $lastName = $emailAddress = $phoneNumber = $secondaryPhoneNumber = "
       <td>Not approved</td>
     </tr>
      <tr>
-      <th scope="row">3</th>
+      <td scope="row">3</td>
       <td>Mark</td>
       <td>10/04/2018</td>
       <td>15/04/2018</td>
