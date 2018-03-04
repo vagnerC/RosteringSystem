@@ -36,3 +36,8 @@ staff_search.php
 	lastName
 	phoneNumber
 	emailAddress
+	
+index.php
+username, text
+password, text
+submit,  button

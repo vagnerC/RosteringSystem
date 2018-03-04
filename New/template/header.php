@@ -55,11 +55,11 @@
 	<header id="header">
 		<div class="container">
 			<div id="logo" class="pull-left">
-				<h1><a href="#body" class="scrollto">Rostering<span>System</span></a></h1>
+				<h1><a href="#body" class="scrollto">Rostering<span>System-</span></a></h1>
 			</div>
   		
 			<nav id="nav-menu-container">
-				<?php include 'template/menu_manager.php';?> 
+				<?php include 'template/menu_staff.php';?> 
 			</nav><!-- #nav-menu-container -->   
 		</div>
 	</header><!-- #header -->

@@ -24,41 +24,40 @@ require_once(TEMPLATE_PATH . "/header.php");
 		<div class="col-md-10 ">
 			<form class="form-horizontal">
 			<fieldset>
-
-<!-- Form Name -->
-<legend>Message</legend>
+<br>
 
 <!-- Text input-->
 <div class="form-group">
-	<label class="col-md-4 control-label" for=â€œsendToâ€�>Send to:</label>  
+	<label class="col-md-4 control-label" for=“sendTo”>Send To:</label>  
     <div class="col-md-4">
 		<div class="input-group">
 			<div class="input-group-addon">
-     		<i class="fa fa-male"></i>
+     		<i class="fa fa-envelope-o"></i>
 			</div>
-    		<input id="emailAddress" name=â€œSend Toâ€œ type="text" placeholder="Email Address" class="form-control input-md" value="<?php echo $emailAddress;?>">
+    		<input id="emailAddress" name="Email Address" type="text" placeholder=Name class="form-control input-md">
 		</div>
  	</div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-	<label class="col-md-4 control-label" for=â€œsubjectâ€�>Subject</label>  
+	<label class="col-md-4 control-label" for=“Subject”>Subject</label>  
     <div class="col-md-4">
- 		<div class="input-group">
+		<div class="input-group">
 			<div class="input-group-addon">
-			<i class="fa fa-envelope-o" style="font-size: 10px;"></i>
-       	    </div>
-       		<input id=â€œsubjectâ€� name=â€œsubjectâ€� type="text" placeholder=â€œSubjectâ€� class="form-control input-md" value="<?php echo $nextOfKinName;?>">
-        </div>
-    </div>
+     		<i class="fa fa-envelope-o"></i>
+			</div>
+    		<input id=“Subject” name=“Subject” type="text" placeholder=Subject class="form-control input-md">
+
+		</div>
+ 	</div>
 </div>
 
 <!-- Textarea -->
 <div class="form-group">
 	<label class="col-md-4 control-label" for="Overview (max 200 words)">Message (max 200 words)</label>
     <div class="col-md-4">                     
-    	<textarea class="form-control" rows="10"  id="Overview (max 200 words)" name="Overview (max 200 words)">Overview</textarea>
+    	<textarea class="form-control" rows="10"  id="Overview (max 200 words)" name="Overview (max 200 words)">Message text area!</textarea>
   	</div>
 </div>
 
