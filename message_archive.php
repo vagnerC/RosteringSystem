@@ -13,26 +13,6 @@ require_once(TEMPLATE_PATH . "/header.php");
 <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha256-3dkvEK0WLHRJ7/Csr0BZjAWxERc5WH7bdeUya2aXxdU= sha512-+L4yy6FRcDGbXJ9mPG8MT/3UCDzwR9gPeyFNMCtInsol++5m3bk2bXWKdZjvybmohrAsn3Ua5x8gfLnbE1YkOg==" crossorigin="anonymous">
 
-<!-- Custom CSS -->
-<style>
-.othertop{margin-top:10px;}
-
-.btn-search {
-	  background: #424242;
-	  border-radius: 0;
-	  color: #fff;
-	  border-width: 1px;
-	  border-style: solid;
-	  border-color: #1c1c1c;
-	}
-.btn-search:link, .btn-search:visited {
-	  color: #fff;
-	}
-.btn-search:active, .btn-search:hover {
-	  background: #1c1c1c;
-	  color: #fff;
-	}
-</style>
 
 <div class="container">
 	<div class="row">
@@ -41,30 +21,51 @@ require_once(TEMPLATE_PATH . "/header.php");
 			<fieldset>
 
 <!-- Form Name -->
-<legend>Message Archive</legend><br>
 
-<div class="container">
-<div class="input-group">
-	<input type="text" class="form-control" placeholder="Search for...">
-      <span class="input-group-btn">
-        <button class="btn btn-search" type="button"><i class="fa fa-search fa-fw"></i> Search</button>
-      </span>
-</div><br><br>
+<br>
 <!-- Table -->
 <div>
 <div>
-<table class="table table-hover">
+<table class="table table-hover" border=2>
   <thead>
     <tr class="table-secondary">
       <th scope="col">Subject</th>
       <th scope="col">To</th>
-      <th scope="col">Date</th>		
+      <th scope="col">Date</th>	
+      <th scope="col">Action</th>
+      <th scope=“col”><i class="fa fa-trash"></i></th>
+      		
     </tr>
   </thead>
     <tr>
 	<td>
-	<input type="checkbox" name="type">
-	</td>	
+	<input type="checkbox" name="type"> Holiday
+	</td>
+	<td>Manager</td>	
+	<td>02/02/2018</td>
+	<td><a href=“message_view.php” target=“_self”>View</a></td>
+	<td><i class="fa fa-trash"></i></td>
+	
+    </tr>
+
+    <tr>
+	<td>
+	<input type="checkbox" name="type"> Day Off
+	</td>
+	<td>Manager</td>	
+	<td>03/02/2018</td>
+	<td><a href=“message_view.php” target=“_self”>View</a></td>
+	<td><i class="fa fa-trash"></i></td>
+    </tr>
+
+   <tr>
+	<td>
+	<input type="checkbox" name="type"> Holiday
+	</td>
+	<td>Manager</td>	
+	<td>02/03/2018</td>
+	<td><a href=“message_view.php” target=“_self”>View</a></td>
+	<td><i class="fa fa-trash"></i></td>
     </tr>
 
 	
