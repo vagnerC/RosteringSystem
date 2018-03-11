@@ -97,13 +97,7 @@ $firstName= $lastName = $emailAddress = $phoneNumber = $secondaryPhoneNumber = $
             </div>
     		<input id="phoneNumber" name="phoneNumber" type="text" placeholder="Primary Phone number " class="form-control input-md" value="<?php echo $phoneNumber;?>">
         </div>
-			<div class="input-group othertop">
-	        	<div class="input-group-addon">
-	    		<i class="fa fa-mobile fa-1x" style="font-size: 20px;"></i>
-	        	</div>
-    			<input id="secondaryPhoneNumber" name="secondaryPhoneNumber" type="text" placeholder=" Secondary Phone number " class="form-control input-md" value="<?php echo $secondaryPhoneNumber;?>">
-     		</div>
-		</div>
+    </div>
 </div>
 
 <!-- Text input-->

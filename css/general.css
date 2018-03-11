@@ -3,7 +3,8 @@
 height: 15%;
 width:100%;
 text-align: center;
-font-family:Courier New;
+color: white;
+font-family:Courier New bold;
 font-size: 350%;
 padding-top: 1.5%;
 }
@@ -13,33 +14,23 @@ background-repeat: no-repeat;
 background-size: cover;
 }
 
-.container1 {
-  padding-right: 1.5px;
-  padding-left: 10px;
-  margin-right: auto;
-  margin-left: auto;
-  width: 85%;
-  height:50px;
-   
+
+.boxmain{   /* Main content box */
+    margin: auto;
+    width: 90%;
+    height: 50%;
+    border-radius: 5px;
+    background-color: white;
+    border: 3px solid white;
 }
 
-.container{
-padding-right: 1.5px;
-padding-left: 1.5px;
-margin-right: auto;
-margin-left: auto;
-margin-top: -5px;
-position: fixed;
-left:5%;
-right:5%;
-width: 90%;
-height: 75%;
-background-color: white;
-color: black;
-text-align: left;
-padding:1px 0;
-border-radius: 5px;
-overflow-y: auto;
+.container1{   /* Menu box */
+    margin: auto;
+    width: 90%;
+    height: 50%;
+    border-radius: 5px;
+    border: 3px solid;
+	
 }
 
 .footer {
@@ -56,63 +47,114 @@ font-size: 90%;
 
 }
 
-/* FORM INDEX */
-.form-signin {
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
+body {margin:0;font-family:Arial}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
 }
 
-/* MANAGER/STAFF MENU */ 
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  font-family:Courier New;
+}
 
-body{
-margin:0;
-background: #f2f2f2f;
+.active {
+  background-color: grey;
+  color: white;
 }
-.nav{
-width:83.5%;
-background:#000000;
-height:7%;
-position:fixed;
-border-radius: 5px;
+
+.topnav .icon {
+  display: none;
 }
-.fixed-menu{ z-index: 9999; position: fixed; top: 0; 
+
+.dropdown {
+    float: left;
+    overflow: hidden;
+    font-family:Courier New;
+    
 }
-ul{
-list-style:none;
-padding:0;
-margin:0;
-position:absolute;
+
+.dropdown .dropbtn {
+    font-size: 17px;    
+    border: none;
+    outline: none;
+    color: white;
+    padding: 14px 16px;
+    background-color: inherit;
+    font-family: inherit;
+    margin: 0;
+    
 }
-ul li {
-float:left;
-margin-top:0;
+
+.dropdown-content {
+    display: none;
+    position: relative;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
 }
-ul li a{
-width:150px;
-color:white;
-display:block;
-text-decoration:none;
-font-size:17px;
-text-align:center;
-padding:10px;
-border-raidus:10px;
-font-family:Courier New;
+
+.dropdown-content a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+    
 }
-a:hover{
-background:#c0c0c0;
+
+.topnav a:hover, .dropdown:hover .dropbtn {
+  background-color: #555;
+  color: white;
 }
-ul li ul {
-background:#000000;
+
+.dropdown-content a:hover {
+    background-color: #ddd;
+    color: black;
 }
-ul li ul li{
-float:none;
+
+.dropdown:hover .dropdown-content {
+    display: block;
 }
-ul li ul{
-display:none;
+
+@media screen and (max-width: 600px) {
+  .topnav a:not(:first-child), .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
 }
-ul li:hover ul {
-display:block;
+
+@media screen and (max-width: 600px) {
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive .dropdown {float: none;}
+  .topnav.responsive .dropdown-content {position: relative;}
+  .topnav.responsive .dropdown .dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
 }
 
 /* CALENDAR */ 
@@ -127,190 +169,3 @@ div.day-number		{ background:#999; padding:5px; color:#fff; font-weight:bold; fl
 td.calendar-day, td.calendar-day-np { width:120px; padding:5px; border-bottom:1px solid #999; border-right:1px solid #999; }
 
 
-/* new form*/
-
-.form-style-1 {
-    margin:10px auto;
-    max-width: 400px;
-    padding: 20px 12px 10px 20px;
-    font: 13px "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-}
-.form-style-1 li {
-    padding: 0;
-    display: block;
-    list-style: none;
-    margin: 10px 0 0 0;
-}
-.form-style-1 label{
-    margin:0 0 3px 0;
-    padding:0px;
-    display:block;
-    font-weight: bold;
-}
-.form-style-1 input[type=text], 
-.form-style-1 input[type=date],
-.form-style-1 input[type=datetime],
-.form-style-1 input[type=number],
-.form-style-1 input[type=search],
-.form-style-1 input[type=time],
-.form-style-1 input[type=url],
-.form-style-1 input[type=email],
-textarea, 
-select{
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    border:1px solid #BEBEBE;
-    padding: 7px;
-    margin:0px;
-    -webkit-transition: all 0.30s ease-in-out;
-    -moz-transition: all 0.30s ease-in-out;
-    -ms-transition: all 0.30s ease-in-out;
-    -o-transition: all 0.30s ease-in-out;
-    outline: none;  
-}
-.form-style-1 input[type=text]:focus, 
-.form-style-1 input[type=date]:focus,
-.form-style-1 input[type=datetime]:focus,
-.form-style-1 input[type=number]:focus,
-.form-style-1 input[type=search]:focus,
-.form-style-1 input[type=time]:focus,
-.form-style-1 input[type=url]:focus,
-.form-style-1 input[type=email]:focus,
-.form-style-1 textarea:focus, 
-.form-style-1 select:focus{
-    -moz-box-shadow: 0 0 8px #88D5E9;
-    -webkit-box-shadow: 0 0 8px #88D5E9;
-    box-shadow: 0 0 8px #88D5E9;
-    border: 1px solid #88D5E9;
-}
-.form-style-1 .field-divided{
-    width: 49%;
-}
-
-.form-style-1 .field-long{
-    width: 100%;
-}
-.form-style-1 .field-select{
-    width: 100%;
-}
-.form-style-1 .field-textarea{
-    height: 100px;
-}
-.form-style-1 input[type=submit], .form-style-1 input[type=button]{
-    background: #4B99AD;
-    padding: 8px 15px 8px 15px;
-    border: 2px solid grey;
-    padding: 10px;
-    border-radius: 15px;
-    color: #fff;
-}
-.form-style-1 input[type=submit]:hover, .form-style-1 input[type=button]:hover{
-    background: #4691A4;
-    box-shadow:none;
-    -moz-box-shadow:none;
-    -webkit-box-shadow:none;
-}
-.form-style-1 .required{
-    color:red;
-}
-
-/* form 2 */
-.form-style-2{
-    max-width: 500px;
-    padding: 20px 12px 10px 20px;
-    font: 13px Arial, Helvetica, sans-serif;
-}
-.form-style-2-heading{
-    font-weight: bold;
-    font-style: italic;
-    border-bottom: 2px solid #ddd;
-    margin-bottom: 20px;
-    font-size: 15px;
-    padding-bottom: 3px;
-}
-.form-style-2 label{
-    display: block;
-    margin: 0px 0px 15px 0px;
-}
-.form-style-2 label > span{
-    width: 100px;
-    font-weight: bold;
-    float: left;
-    padding-top: 8px;
-    padding-right: 5px;
-}
-.form-style-2 span.required{
-    color:red;
-}
-.form-style-2 .tel-number-field{
-    width: 40px;
-    text-align: center;
-}
-.form-style-2 input.input-field{
-    width: 48%;
-    
-}
-
-.form-style-2 input.input-field, 
-.form-style-2 .tel-number-field, 
-.form-style-2 .textarea-field, 
- .form-style-2 .select-field{
-    box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    border: 1px solid #C2C2C2;
-    box-shadow: 1px 1px 4px #EBEBEB;
-    -moz-box-shadow: 1px 1px 4px #EBEBEB;
-    -webkit-box-shadow: 1px 1px 4px #EBEBEB;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-    padding: 7px;
-    outline: none;
-}
-.form-style-2 .input-field:focus, 
-.form-style-2 .tel-number-field:focus, 
-.form-style-2 .textarea-field:focus,  
-.form-style-2 .select-field:focus{
-    border: 1px solid #0C0;
-}
-.form-style-2 .textarea-field{
-    height:100px;
-    width: 55%;
-}
-.form-style-2 input[type=submit],
-.form-style-2 input[type=button]{
-    border: none;
-    padding: 8px 15px 8px 15px;
-    background: #FF8500;
-    color: #fff;
-    box-shadow: 1px 1px 4px #DADADA;
-    -moz-box-shadow: 1px 1px 4px #DADADA;
-    -webkit-box-shadow: 1px 1px 4px #DADADA;
-    border-radius: 3px;
-    -webkit-border-radius: 3px;
-    -moz-border-radius: 3px;
-}
-.form-style-2 input[type=submit]:hover,
-.form-style-2 input[type=button]:hover{
-    background: #EA7B00;
-    color: #fff;
-}
-
-/** roster_configuration.php **/
-
-.title{
-    text-align: center;
-    letter-spacing: 5px;
-   }
-.hline{
-    display: block;
-    width: 100%;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
-
-}

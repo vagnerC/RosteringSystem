@@ -1,46 +1,40 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title> Staff Menu</title>
-<style class="body"></style>
-</head>
-<body>
-<div class ="nav">
-<ul>
-<li><a href ="#"> Home</a></li>
-<li><a href ="#"> Requests</a>
-<ul>
-<li><a href ="#"> Day Off/ Holidays</a></li>
-<li><a href ="#"> View</a>
-//hss
-
-</ul>
-</li>
-<li><a href ="#"> Messages</a>
-<ul>
-<li><a href ="#"> New</a></li>
-<li><a href ="#"> View</a>
-
-
-</ul>
-</li>
-<li><a href ="#"> Roster</a>
-<ul>
-<li><a href ="#"> Change</a>
-
-
-</ul>
-</li>
-<li><a href ="#"> Payments</a>
-<ul>
-<li><a href ="#"> View</a>
-
-
-</ul>
-</li>
-<li><a href ="#"> Settings</a></li>
-<li><a href ="#"> Sign Out</a></li>
-</ul>
-</div>
-</body>
-</html>
+<div class="topnav" id="myTopnav">
+                <a href="#home" class="active">Home</a>
+                <div class="dropdown">
+                  <button class="dropbtn">Request
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div class="dropdown-content">
+                    <a href="#">Day Off / Day Off</a>
+                    <a href="#">View</a>
+                  </div>
+                </div>
+                <div class="dropdown">
+                  <button class="dropbtn">Roster
+                    <i class="fa fa-caret-down"></i>
+                  </button>
+                  <div class="dropdown-content">
+                    <a href="#">View</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                  </div>
+                </div>
+                <a href="#settings">Payments</a>
+                <a href="#settings">Settings</a>
+                <a href="#logout">Log out</a>
+                <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+ </div>
+              
+               
+       
+<script>
+function myFunction() {
+    var x = document.getElementById("myTopnav");
+    if (x.className === "topnav") {
+        x.className += " responsive";
+    } else {
+        x.className = "topnav";
+    }
+}
+</script>
+       
