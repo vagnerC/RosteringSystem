@@ -117,14 +117,19 @@ $name = $surname = $email = $telephone = $nextOfKinName = $nextOfKinPhone = $min
 	</div>
 </div>
 
-<!-- Textarea -->
+<!-- Input number-->
 <div class="form-group">
-	<label class="col-md-4 control-label" for="address)">Address: </label>
+	<label class="col-md-4 control-label" for="address)">Minimum Hour Available: </label>
   	<div class="col-md-4">                     
-
  	</div>
 </div>
 
+<!-- Input number -->
+<div class="form-group">
+	<label class="col-md-4 control-label" for="address)">Maximum Hour Available:</label>
+  	<div class="col-md-4">                     
+ 	</div>
+</div>
 <!-- Multiple Checkboxes -->
 <div class="form-group">
 	<label class="col-md-4 control-label" for="availability">Days Available: </label>

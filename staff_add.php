@@ -178,13 +178,22 @@ $firstName= $lastName = $emailAddress = $phoneNumber = $secondaryPhoneNumber = $
 	</div>
 </div>
 
-<!-- Textarea -->
+<!-- Input number-->
 <div class="form-group">
-	<label class="col-md-4 control-label" for="address)">Address</label>
+	<label class="col-md-4 control-label" for="address)">Minimum Hour Available</label>
   	<div class="col-md-4">                     
-    <textarea class="form-control" rows="1"  id="address" name="address"><?php echo $address;?> </textarea>
+    <input type="number" placeholder="0"min="0" max="40">
  	</div>
 </div>
+
+<!-- Input number -->
+<div class="form-group">
+	<label class="col-md-4 control-label" for="address)">Maximum Hour Available</label>
+  	<div class="col-md-4">                     
+    <input type="number" placeholder="0" min="0" max="40">
+ 	</div>
+</div>
+
 
 <!-- Multiple Checkboxes -->
 <div class="form-group">
@@ -239,7 +248,7 @@ $firstName= $lastName = $emailAddress = $phoneNumber = $secondaryPhoneNumber = $
 <div class="form-group">
 	<label class="col-md-4 control-label" for="Overview (max 200 words)">Notes (max 200 words)</label>
     <div class="col-md-4">                     
-    	<textarea class="form-control" rows="10"  id="Overview (max 200 words)" name="Overview (max 200 words)">Overview</textarea>
+    	<textarea class="form-control" rows="10"  id="Overview (max 200 words)" name="Overview (max 200 words)">Notes</textarea>
   	</div>
 </div>
 
@@ -258,6 +267,7 @@ $firstName= $lastName = $emailAddress = $phoneNumber = $secondaryPhoneNumber = $
 
 <div class="col-md-2 hidden-xs">
 	<img src="http://websamplenow.com/30/userprofile/images/avatar.jpg" class="img-responsive img-thumbnail ">
+	
 </div>
 
 	</div>

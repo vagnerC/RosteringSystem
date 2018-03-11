@@ -21,16 +21,15 @@ require_once("calendar.php");
     width: 90%;
  </style>
 
-	<br><br><br>
 	<div class="panel-group">
-    	<div class="panel panel-primary">
+    	<div class="panel panel-default">
         	<div class="panel-heading">Notification</div>
             	<div class="panel-body">
-                	<div class="alert alert-success alert-dismissable">
+                	<div class="alert alert-warning alert-dismissable">
 	    				<a href="#" class="close" data-dismiss="alert" aria-label="close">Read</a>
 	    				<strong>Success!</strong> This alert box could indicate a successful or positive action.
   					</div>
-                	<div class="alert alert-success alert-dismissable">
+                	<div class="alert alert-warning alert-dismissable">
 	    				<a href="#" class="close" data-dismiss="alert" aria-label="close">Read</a>
 	    				<strong>Success!</strong> This alert box could indicate a successful or positive action.
   					</div>
@@ -38,7 +37,7 @@ require_once("calendar.php");
 		</div>				
 	</div>			
 
-	<div class="panel panel-primary">
+	<div class="">
 	<div class="calendarClass">
 	<?php 
 		echo draw_calendar(date('m'), date('Y'));

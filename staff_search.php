@@ -61,16 +61,7 @@ $name = $surname = $email = $telephone = $nextOfKinName = $nextOfKinPhone = $min
        </div>
     <input id="Phone number " name="Phone number " type="text" placeholder="Primary Phone number " class="form-control input-md" value="<?php echo $phoneNumber?>">
     
-      </div>
-      <div class="input-group othertop">
-       <div class="input-group-addon">
-     <i class="fa fa-mobile fa-1x" style="font-size: 20px;"></i>
-        
        </div>
-    <input id="Phone number " name="Secondary Phone number " type="text" placeholder=" Secondary Phone number " class="form-control input-md" value="<?php echo $secondaryPhoneNumber;?>">
-    
-      </div>
-  
   </div>
 </div>
 
