@@ -70,19 +70,6 @@ $('document').ready(function()
 				</div>
 			</div>
 					
-<!-- 					<div class="form-group"> --> 
-<!-- 						<div class="col-md-16" style='border: 1px solid red;'>-->
-							<?php 
-// 							if(isset($_SESSION['user_info'])){
-// 							     echo "<br>NAME: ".$_SESSION['user_info']['name'];
-// 							     echo "<br>DEPARTMENT: ".$_SESSION['user_info']['department'];
-// 							     echo "<br>POSITION: ".$_SESSION['user_info']['position'];
-// 							     echo "  <a href='logout.php'>LOGOUT</a>";
-// 							}
-// 							?>
-<!-- 						</div> -->
-<!-- 					</div> -->
-					
 					<div class="form-group">
 					<label class="col-md-4 control-label" for="newEmail"></label>
 						<div class="col-md-4">
