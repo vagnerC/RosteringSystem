@@ -63,14 +63,12 @@ $('document').ready(function()
 	<div class="row">
 		<div class="col-md-12 ">
 			
-				<fieldset  style='border: 1px solid red;'>
-					
-					<div class="form-group">
-					<label class="col-md-4 control-label" for="newEmail"></label>
-						<div class="col-md-4">
-							<div id="error"></div> 
-						</div>
-					</div>
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="newEmail"></label>
+				<div class="col-md-4">
+					<div id="error"></div> 
+				</div>
+			</div>
 					
 <!-- 					<div class="form-group"> --> 
 <!-- 						<div class="col-md-16" style='border: 1px solid red;'>-->
