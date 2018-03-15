@@ -18,7 +18,7 @@ background-size: cover;
 .boxmain{   /* Main content box */
     margin: auto;
     width: 90%;
-    height: 70%;
+    height: 50%;
     border-radius: 5px;
     background-color: white;
     border: 3px solid white;
