@@ -1,5 +1,5 @@
 <div class="topnav" id="myTopnav">
-                <a href="#home" class="active">Home</a>
+                <a href="home.php" class="active">Home</a>
                 <div class="dropdown">
                   <button class="dropbtn">Staff
                     <i class="fa fa-caret-down"></i>

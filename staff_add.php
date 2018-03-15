@@ -4,8 +4,8 @@ define('__ROOT__', dirname(dirname(__FILE__)));
 require_once(__ROOT__ . "/RosteringSystem/resource/config.php");
 require_once(TEMPLATE_PATH . "/header.php");
 if(!isset($_SESSION['user_info'])):
-// header("Location: index.php");
-// die();
+ header("Location: index.php");
+ die();
 endif;
 
 
@@ -260,8 +260,9 @@ $firstName= $lastName = $emailAddress = $phoneNumber = $secondaryPhoneNumber = $
 <div class="form-group">
 	<label class="col-md-4 control-label" ></label>  
   	<div class="col-md-4">
-  	<a href="#" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Register</a>
-  	<a href="#" class="btn btn-danger" value="<?php echo $note;?>"><span class="glyphicon glyphicon-remove-sign"></span> Clear</a>
+  	<input class="btn btn-primary" type=â€œsubmitâ€� value="Register">
+  	<!-- <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Register</a>
+  	<a href="#" class="btn btn-danger" value="<?php echo $note;?>"><span class="glyphicon glyphicon-remove-sign"></span> Clear</a>-->
    </div>
 </div>
 
