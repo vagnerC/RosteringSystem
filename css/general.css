@@ -32,8 +32,6 @@ background-size: cover;
     height: 50%;
     border-radius: 5px;
     border: 3px solid;
-    
-	
 }
 
 .footer {
@@ -52,6 +50,8 @@ font-size: 90%;
 
 body {margin:0;font-family:Arial}
 
+
+/* MENU */
 .topnav {
   overflow: hidden;
   background-color: #333;
@@ -69,7 +69,7 @@ body {margin:0;font-family:Arial}
 }
 
 .active {
-  background-color: grey;
+  background-color: gray;
   color: white;
 }
 
@@ -81,7 +81,6 @@ body {margin:0;font-family:Arial}
     float: left;
     overflow: hidden;
     font-family:Courier New;
-    
 }
 
 .dropdown .dropbtn {
@@ -93,7 +92,6 @@ body {margin:0;font-family:Arial}
     background-color: inherit;
     font-family: inherit;
     margin: 0;
-    
 }
 
 .dropdown-content {
