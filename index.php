@@ -3,6 +3,10 @@ session_start();
 define('__ROOT__', dirname(dirname(__FILE__)));
 require_once(__ROOT__ . "/RosteringSystem/resource/config.php");
 require_once(TEMPLATE_PATH . "/header.php");
+if(isset($_SESSION['user_info'])):
+    header("Location: home.php");
+    die();
+endif;
 ?>
 <!-- Bootstrap Core CSS -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
@@ -63,27 +67,12 @@ $('document').ready(function()
 	<div class="row">
 		<div class="col-md-12 ">
 			
-				<fieldset  style='border: 1px solid red;'>
-					
-					<div class="form-group">
-					<label class="col-md-4 control-label" for="newEmail"></label>
-						<div class="col-md-4">
-							<div id="error"></div> 
-						</div>
-					</div>
-					
-<!-- 					<div class="form-group"> --> 
-<!-- 						<div class="col-md-16" style='border: 1px solid red;'>-->
-							<?php 
-// 							if(isset($_SESSION['user_info'])){
-// 							     echo "<br>NAME: ".$_SESSION['user_info']['name'];
-// 							     echo "<br>DEPARTMENT: ".$_SESSION['user_info']['department'];
-// 							     echo "<br>POSITION: ".$_SESSION['user_info']['position'];
-// 							     echo "  <a href='logout.php'>LOGOUT</a>";
-// 							}
-// 							?>
-<!-- 						</div> -->
-<!-- 					</div> -->
+			<div class="form-group">
+				<label class="col-md-4 control-label" for="newEmail"></label>
+				<div class="col-md-4">
+					<div id="error"></div> 
+				</div>
+			</div>
 					
 					<div class="form-group">
 					<label class="col-md-4 control-label" for="newEmail"></label>

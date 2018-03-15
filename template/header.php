@@ -18,7 +18,15 @@
               <h1>Rostering<span>System</h1>
        </header>
     <div class="container1">
-              <?php include 'template/menu_staff.php';?>
+		<?php 
+        if(isset($_SESSION['user_info'])):
+            if($_SESSION['user_info']['position'] == "Manager"):
+                include (TEMPLATE_PATH . "/menu_manager.php");
+            else:
+                include (TEMPLATE_PATH . "/menu_staff.php");
+            endif;
+        endif;
+        ?>
        </div>
               <div class="boxmain">
               
