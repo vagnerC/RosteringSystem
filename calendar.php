@@ -36,12 +36,15 @@ function draw_calendar($month,$year){
 	$calendar.= '<div class="day-number">'.$list_day.'</div>';
 	
 	/** QUERY THE DATABASE FOR AN ENTRY FOR THIS DAY !!  IF MATCHES FOUND, PRINT THEM !! **/
-	if($year == 2018 and $month == 02 AND $list_day == 3):
-	$calendar.= '<p>John (09 - 18)</p>';
-	elseif($year == 2018 and $month == 02 AND $list_day == 20):
+	if($year == 2018 and $month == 03 AND $list_day == 3):
 	$calendar.= '<p>Mary (13 - 22)</p>';
+	$calendar.= '<p>Joseph (13 - 22)</p>';
+	elseif($year == 2018 and $month == 03 AND $list_day == 20):
+	$calendar.= '<p>Mary (13 - 22)</p>';
+	$calendar.= '<p>Joseph (13 - 22)</p>';
 	else:
-	$calendar.= '<p></p>';
+	$calendar.= '<p>John (09 - 18)</p>';
+	$calendar.= '<p>Patrick (08 - 13)</p>';
 	endif;
 	
 	$calendar.= '</td>';

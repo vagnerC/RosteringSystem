@@ -19,9 +19,20 @@ function draw_calendar($month,$year){
 	$days_in_this_week = 1;
 	$day_counter = 0;
 	$dates_array = array();
+	$first_column = 0;
+	$last_column = 8;
+	
 	
 	/* row for week one */
 	$calendar.= '<tr class="calendar-row">';
+	
+	if($first_column == 0):
+	$calendar.= '<td class="calendar-day">';
+	$calendar.= '+++';
+	$calendar.= '</td>';
+	$first_column++;
+	endif;
+	
 	
 	/* print "blank" days until the first of the current week */
 	for($x = 0; $x < $running_day; $x++):
@@ -35,18 +46,19 @@ function draw_calendar($month,$year){
 	/* add in the day number */
 	$calendar.= '<div class="day-number">'.$list_day.'</div>';
 	
-	/** QUERY THE DATABASE FOR AN ENTRY FOR THIS DAY !!  IF MATCHES FOUND, PRINT THEM !! **/
+	/* QUERY THE DATABASE FOR AN ENTRY FOR THIS DAY !!  IF MATCHES FOUND, PRINT THEM !! */
 	if($year == 2018 and $month == 03 AND $list_day == 3):
 	$calendar.= '<p>John (09 - 18)</p>';
 	elseif($year == 2018 and $month == 03 AND $list_day == 20):
 	$calendar.= '<p>Mary (13 - 22)</p>';
 	else:
-	$calendar.= '<p></p>';
+	$calendar.= '<p>Mark (09 - 15)</p>';
 	endif;
 	
 	$calendar.= '</td>';
 	if($running_day == 6):
-	$calendar.= '</tr>';
+	   $calendar.= '</tr>';
+	   $first_column = 0;
 	if(($day_counter+1) != $days_in_month):
 	$calendar.= '<tr class="calendar-row">';
 	endif;

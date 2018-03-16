@@ -15,7 +15,7 @@
 <body class="background">
    
        <header class="header">
-              <h1>Rostering<span>System</h1>
+              <h1>RosteringSystem</h1>
        </header>
     <div class="container1">
 		<?php 

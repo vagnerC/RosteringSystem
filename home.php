@@ -24,15 +24,15 @@ require_once("calendar.php");
 
 	<div class="panel-group">
     	<div class="panel panel-default">
-        	<div class="panel-heading">Notification</div>
+        	<div class="panel-heading">Notifications:</div>
             	<div class="panel-body">
                 	<div class="alert alert-warning alert-dismissable">
-	    				<a href="#" class="close" data-dismiss="alert" aria-label="close">Read</a>
-	    				<strong>Success!</strong> This alert box could indicate a successful or positive action.
+	    				<a href="#" class="close" data-dismiss="alert" aria-label="close">Ok</a>
+	    				<strong>John</strong> is requesting holidays - 20/03/2018 - 25/03/2018
   					</div>
                 	<div class="alert alert-warning alert-dismissable">
-	    				<a href="#" class="close" data-dismiss="alert" aria-label="close">Read</a>
-	    				<strong>Success!</strong> This alert box could indicate a successful or positive action.
+	    				<a href="#" class="close" data-dismiss="alert" aria-label="close">Ok</a>
+	    				<strong>Mary</strong> is looking for a day off - 27/03/2018 (Tuesday)
   					</div>
 				</div>
 		</div>				

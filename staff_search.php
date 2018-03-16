@@ -1,8 +1,12 @@
 <?php
+session_start();
 define('__ROOT__', dirname(dirname(__FILE__)));
-require_once(__ROOT__.'/RosteringSystem/resource/config.php');
-
+require_once(__ROOT__ . "/RosteringSystem/resource/config.php");
 require_once(TEMPLATE_PATH . "/header.php");
+if(!isset($_SESSION['user_info'])):
+header("Location: index.php");
+die();
+endif;
 
 $name = $surname = $email = $telephone = $nextOfKinName = $nextOfKinPhone = $minHour = $maxHour = $department = $position = $availability ="";
 
@@ -32,7 +36,7 @@ $name = $surname = $email = $telephone = $nextOfKinName = $nextOfKinPhone = $min
        		<div class="input-group-addon">
         	<i class="fa fa-user"></i>
        		</div>
-       		<input id="firstName" name="firstName" type="text" placeholder="First Name" class="form-control input-md" value="<?php echo $firstName;?>">
+       		<input id="firstName" name="firstName" type="text" placeholder="First Name" class="form-control input-md" value="">
      	 </div>
 	</div>
 </div>
@@ -45,7 +49,7 @@ $name = $surname = $email = $telephone = $nextOfKinName = $nextOfKinPhone = $min
         	<div class="input-group-addon">
         	<i class="fa fa-user"></i>
         	</div>
-       		<input id="lastName" name="lastName" type="text" placeholder="Last Name" class="form-control input-md" value="<?php echo $lastName;?>">
+       		<input id="lastName" name="lastName" type="text" placeholder="Last Name" class="form-control input-md" value="">
 		</div>
 	</div>
 </div>
@@ -59,7 +63,7 @@ $name = $surname = $email = $telephone = $nextOfKinName = $nextOfKinPhone = $min
      <i class="fa fa-phone"></i>
         
        </div>
-    <input id="Phone number " name="Phone number " type="text" placeholder="Primary Phone number " class="form-control input-md" value="<?php echo $phoneNumber?>">
+    <input id="Phone number " name="Phone number " type="text" placeholder="Primary Phone number " class="form-control input-md" value="">
     
        </div>
   </div>
@@ -74,7 +78,7 @@ $name = $surname = $email = $telephone = $nextOfKinName = $nextOfKinPhone = $min
      <i class="fa fa-envelope-o"></i>
         
        </div>
-    <input id="Email Address" name="Email Address" type="text" placeholder="Email Address" class="form-control input-md" value="<?php echo $emailAddress;?>">
+    <input id="Email Address" name="Email Address" type="text" placeholder="Email Address" class="form-control input-md" value="">
     
       </div>
   
@@ -83,8 +87,9 @@ $name = $surname = $email = $telephone = $nextOfKinName = $nextOfKinPhone = $min
 <div class="form-group">
   <label class="col-md-4 control-label" ></label>  
   <div class="col-md-4">
-  <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Search</a>
-  <a href="#" class="btn btn-danger" value="<?php echo $note;?>"><span class="glyphicon glyphicon-remove-sign"></span> Clear</a>
+  <input class="btn btn-primary" type=â€œsubmitâ€� value="Search">
+  <!--  <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-thumbs-up"></span> Search</a>
+  <a href="#" class="btn btn-danger" value="<?php echo $note;?>"><span class="glyphicon glyphicon-remove-sign"></span> Clear</a>-->
     
   </div>
 </div>

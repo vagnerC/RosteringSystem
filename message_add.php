@@ -1,8 +1,12 @@
 <?php
+session_start();
 define('__ROOT__', dirname(dirname(__FILE__)));
-require_once(__ROOT__.'/RosteringSystem/resource/config.php');
-
+require_once(__ROOT__ . "/RosteringSystem/resource/config.php");
 require_once(TEMPLATE_PATH . "/header.php");
+if(!isset($_SESSION['user_info'])):
+header("Location: index.php");
+die();
+endif;
 ?>
 	
 <!-- Bootstrap Core CSS -->
@@ -41,7 +45,7 @@ require_once(TEMPLATE_PATH . "/header.php");
 
 <!-- Text input-->
 <div class="form-group">
-	<label class="col-md-4 control-label" for=“Subject”>Subject</label>  
+	<label class="col-md-4 control-label" for=“Subject”>Subject:</label>  
     <div class="col-md-4">
 		<div class="input-group">
 			<div class="input-group-addon">
@@ -55,9 +59,9 @@ require_once(TEMPLATE_PATH . "/header.php");
 
 <!-- Textarea -->
 <div class="form-group">
-	<label class="col-md-4 control-label" for="Overview (max 200 words)">Message (max 200 words)</label>
+	<label class="col-md-4 control-label" for="Overview (max 200 words)">Message:</label>
     <div class="col-md-4">                     
-    	<textarea class="form-control" rows="10"  id="Overview (max 200 words)" name="Overview (max 200 words)">Message text area!</textarea>
+    	<textarea class="form-control" rows="10"  id="Overview (max 200 words)" name="Overview (max 200 words)" placeholder="Message"></textarea>
   	</div>
 </div>
 
