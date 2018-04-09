@@ -1,8 +1,8 @@
 <?php
 session_start();
-define('__ROOT__', dirname(dirname(__FILE__)));
-require_once(__ROOT__ . "/RosteringSystem/resource/config.php");
-require_once(RESOURCE_PATH . "/database.php");
+//define('__ROOT__', dirname(dirname(__FILE__)));
+//require_once(__ROOT__ . "/RosteringSystem/resource/config.php");
+require_once("resource/database.php");
 
 $username 	= $_POST['username'];
 $password 	= $_POST['password'];
