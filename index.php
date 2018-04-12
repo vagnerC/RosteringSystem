@@ -2,7 +2,7 @@
 session_start();
 require_once("template/header.php");
 if(isset($_SESSION['user_info'])):
-    header("Location: home.php");
+    echo "<script>location.href = 'home.php';</script>";
     die();
 endif;
 ?>
