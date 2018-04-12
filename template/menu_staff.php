@@ -5,7 +5,7 @@
                     <i class="fa fa-caret-down"></i>
                   </button>
                   <div class="dropdown-content">
-                    <a href="request_add.php">Add</a>
+                    <a href="request_add.php">Request</a>
                     <a href="request_view.php">View</a>
                   </div>
                 </div>
