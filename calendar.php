@@ -1,7 +1,7 @@
 <?php
 function draw_calendar($month,$year){
-
-	/* draw table */
+    include("resource/database.php");
+    /* draw table */
 	$calendar = '<table cellpadding="0" cellspacing="0" class="calendar">';
 	
 	/* table headings */
@@ -36,16 +36,31 @@ function draw_calendar($month,$year){
 	$calendar.= '<div class="day-number">'.$list_day.'</div>';
 	
 	/** QUERY THE DATABASE FOR AN ENTRY FOR THIS DAY !!  IF MATCHES FOUND, PRINT THEM !! **/
-	if($year == 2018 and $month == 03 AND $list_day == 3):
-	$calendar.= '<p>Mary (13 - 22)</p>';
-	$calendar.= '<p>Joseph (13 - 22)</p>';
-	elseif($year == 2018 and $month == 03 AND $list_day == 20):
-	$calendar.= '<p>Mary (13 - 22)</p>';
-	$calendar.= '<p>Joseph (13 - 22)</p>';
-	else:
-	$calendar.= '<p>John (09 - 18)</p>';
-	$calendar.= '<p>Patrick (08 - 13)</p>';
-	endif;
+	try{
+	    $sql = "SELECT
+                typeRequest,
+                name
+                FROM request 
+                INNER JOIN staff ON staff_idStaff = idStaff
+                WHERE status = 'Approved'
+                AND '$year-$month-$list_day' BETWEEN startDate AND finishDate";
+	    
+	    $sth = $DBH->prepare($sql);
+	    
+	    $sth->execute();
+	    
+	    if($sth->rowCount() > 0){
+	        while ($row = $sth->fetch(PDO::FETCH_OBJ)){
+	            if($row->typeRequest == "Day Off"){
+	               $calendar.= '<div style= \'background-color: #FFEFD5\'>'.$row->name.' ('.$row->typeRequest.')</div>';
+	            } elseif($row->typeRequest == "Holidays"){
+	                $calendar.= '<div style= \'background-color: #FFC0CB\'>'.$row->name.' ('.$row->typeRequest.')</div>';
+	            } else {
+	                $calendar.= '<div style= \'background-color: #8FBC8F\'>'.$row->name.' ('.$row->typeRequest.')</div>';
+	            }
+	        }
+	    }
+	} catch(PDOException $e) {echo $e;}
 	
 	$calendar.= '</td>';
 	if($running_day == 6):

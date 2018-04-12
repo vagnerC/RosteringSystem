@@ -1,7 +1,5 @@
 <?php
 session_start();
-//define('__ROOT__', dirname(dirname(__FILE__)));
-//require_once(__ROOT__ . "/RosteringSystem/resource/config.php");
 require_once("resource/database.php");
 
 $username 	= $_POST['username'];
@@ -12,8 +10,9 @@ $password 	= $_POST['password'];
 try{
     $sql = "SELECT 
             idStaff,
-            nameStaff,
+            name,
             positionName,
+            management,
             departmentName
             FROM staff 
             INNER JOIN position ON position_idPosition = idPosition
@@ -32,11 +31,12 @@ try{
         
         $rec = $sth->fetch(PDO::FETCH_ASSOC);
         $idStaff            = $rec['idStaff'];
-        $nameStaff          = $rec['nameStaff'];
+        $nameStaff          = $rec['name'];
         $positionName       = $rec['positionName'];
+        $management         = $rec['management'];
         $departmentName     = $rec['departmentName'];
         
-        $user_info = array("id"=>$idStaff, "name"=>$nameStaff, "position"=>$positionName, "department"=>$departmentName);
+        $user_info = array("id"=>$idStaff, "name"=>$nameStaff, "position"=>$positionName, "management"=>$management, "department"=>$departmentName);
         
         $_SESSION['user_info'] = $user_info;
     }

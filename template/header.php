@@ -22,12 +22,11 @@
 		<?php 
         if(isset($_SESSION['user_info'])):
             if($_SESSION['user_info']['position'] == "Manager"):
-                include (TEMPLATE_PATH . "/menu_manager.php");
+                include ("template/menu_manager.php");
             else:
-                include (TEMPLATE_PATH . "/menu_staff.php");
+                include ("template/menu_staff.php");
             endif;
         endif;
         ?>
        </div>
               <div class="boxmain">
-              

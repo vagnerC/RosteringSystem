@@ -1,11 +1,11 @@
 <div class="topnav" id="myTopnav">
                 <a href="home.php" class="active">Home</a>
                 <div class="dropdown">
-                  <button class="dropbtn">Request
+                  <button class="dropbtn">Day Off / Holidays
                     <i class="fa fa-caret-down"></i>
                   </button>
                   <div class="dropdown-content">
-                    <a href="request_add.php">Day Off / Holidays</a>
+                    <a href="request_add.php">Add</a>
                     <a href="request_view.php">View</a>
                   </div>
                 </div>
@@ -30,8 +30,7 @@
                   </div>
                 </div>
                 
-                <a href="payment_view.php">Payments</a>
-                <a href="settings.php">Settings</a>
+                <a href="settings.php">My Profile</a>
                 <a href="logout.php">Log out</a>
                 <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
  </div>
@@ -47,4 +46,3 @@ function myFunction() {
     }
 }
 </script>
-       

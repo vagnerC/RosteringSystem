@@ -1,13 +1,13 @@
 <?php
 session_start();
-define('__ROOT__', dirname(dirname(__FILE__)));
-require_once(__ROOT__.'/RosteringSystem/resource/config.php');
-
-require_once(TEMPLATE_PATH . "/header.php");
-
-//require_once(TEMPLATE_PATH . "/menu_staff.php");
+require_once("template/header.php");
+require_once("resource/database.php");
 require_once("calendar.php");
 
+if(!isset($_SESSION['user_info'])):
+echo "<script>location.href = 'index.php';</script>";
+die();
+endif;
 ?>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -26,15 +26,26 @@ require_once("calendar.php");
     	<div class="panel panel-default">
         	<div class="panel-heading">Notifications:</div>
             	<div class="panel-body">
-                	<div class="alert alert-warning alert-dismissable">
-	    				<a href="#" class="close" data-dismiss="alert" aria-label="close">Ok</a>
-	    				<strong>John</strong> is requesting holidays - 20/03/2018 - 25/03/2018
-  					</div>
-                	<div class="alert alert-warning alert-dismissable">
-	    				<a href="#" class="close" data-dismiss="alert" aria-label="close">Ok</a>
-	    				<strong>Mary</strong> is looking for a day off - 27/03/2018 (Tuesday)
-  					</div>
-				</div>
+                	<?php 
+                	if($_SESSION['user_info']['management'] == "true"):
+                    	try{
+                    	    $sql = "   SELECT
+                    	               typeRequest,
+                    	               COUNT(*) AS total
+                    	               FROM request
+                    	               WHERE status = 'Pending'
+                    	               GROUP BY (typeRequest)";
+                    	    $sth = $DBH->prepare($sql);
+                    	    $sth->execute();
+                    	    while ($row = $sth->fetch(PDO::FETCH_OBJ)){
+                    	        echo "<div class='alert alert-warning'>";
+                    	        echo "<a href='request_view.php?t=$row->typeRequest' class='close'>Go</a>";
+                    	        echo "<strong>$row->total</strong> $row->typeRequest request to be approved/disapproved.";
+                    	        echo "</div>";
+                    	    }
+                    	} catch(PDOException $e) {echo $e;}
+                	endif;
+                	?>
 		</div>				
 	</div>			
 
@@ -47,7 +58,5 @@ require_once("calendar.php");
 	</div>
 
 <?php 
-//echo draw_calendar(date('m'), date('Y'));
-
-require_once(TEMPLATE_PATH . "/footer.php");
+require_once("template/footer.php");
 ?>
