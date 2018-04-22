@@ -11,7 +11,7 @@ echo "<script>location.href = 'logout.php';</script>";
 die();
 endif;
 
-$idStaff            = "";
+$idStaff            = $_GET['idStaff'];
 
 $sql                = " SELECT *,
 						DATE_FORMAT(dateOfBirth, '%d/%m/%Y') AS dateOfBirth
