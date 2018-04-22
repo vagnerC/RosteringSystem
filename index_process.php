@@ -13,7 +13,8 @@ try{
             name,
             positionName,
             management,
-            departmentName
+            departmentName,
+            idDepartment
             FROM staff 
             INNER JOIN position ON position_idPosition = idPosition
             INNER JOIN department ON department_idDepartment = idDepartment            
@@ -35,8 +36,9 @@ try{
         $positionName       = $rec['positionName'];
         $management         = $rec['management'];
         $departmentName     = $rec['departmentName'];
+        $idDepartment       = $rec['idDepartment'];
         
-        $user_info = array("id"=>$idStaff, "name"=>$nameStaff, "position"=>$positionName, "management"=>$management, "department"=>$departmentName);
+        $user_info = array("id"=>$idStaff, "name"=>$nameStaff, "position"=>$positionName, "management"=>$management, "department"=>$departmentName, "idDepartment"=>$idDepartment);
         
         $_SESSION['user_info'] = $user_info;
     }

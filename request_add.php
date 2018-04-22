@@ -43,7 +43,7 @@ endif;
 					
 					
 					<?php 
-					if($_SESSION['user_info']['position'] == "Manager"):
+					if($_SESSION['user_info']['management'] == "true"):
 					require_once("resource/database.php");
 					?>
 					<div class="form-group">

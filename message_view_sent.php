@@ -15,22 +15,6 @@ if($idMessage == "" OR $status == ""):
     echo "<script>location.href = 'message_archive.php';</script>";
     die();
 else:
-    if($status == "Not Read"):
-        try{
-            $sql = "UPDATE message SET status = 'Read' WHERE idMessage = ? LIMIT 1;";
-            
-            $sth = $DBH->prepare($sql);
-            
-            $sth->bindParam(1, $idMessage, PDO::PARAM_INT);
-            
-            if($sth->execute()):
-            else:
-                echo "ERROR!";
-                print_r($sth->errorInfo());
-            endif;
-        } catch(PDOException $e) {echo $e;}
-    endif;
-    
     try{
         $sql = " SELECT
                  DATE_FORMAT(date, '%d/%m/%Y %H:%m:%s') AS dateFormatted,
@@ -46,7 +30,6 @@ else:
         $sth = $DBH->prepare($sql);
         $sth->execute();
         $row = $sth->fetch(PDO::FETCH_OBJ);
-        //echo "<option value='".$row->idStaff."'>".$row->fullname."</option>";
         
     } catch(PDOException $e) {echo $e;}
 endif;
@@ -87,34 +70,11 @@ endif;
     								<?php echo $row->message; ?>
   							</div>
 						</div>
-                        
-				</fieldset>
-                        
-				<fieldset>
-					<legend>Reply: </legend>
-						
-						<div class="form-group">
-							<label class="col-md-4 control-label"></label>
-							<div class="col-md-4">
-								<div id="info"></div> 
-							</div>
-						</div>
-						
-						<input type="hidden" name='action' id='action' value="insert">
-						<input type="hidden" name='idMessage' id='idMessage' value="<?php echo $idMessage; ?>">
-						
-						<div class="form-group">
-							<label class="col-md-4 control-label" for="message">Message:</label>
-    							<div class="col-md-4">                     
-    								<textarea class="form-control" rows="10"  id="message" name="message" placeholder="Message"></textarea>
-  							</div>
-						</div>
 
 						<div class="form-group">
   							<label class="col-md-4 control-label" ></label>  
   							<div class="col-md-4">
-  								<input class="btn btn-primary" type="submit" value="Reply">
-  								<button class="btn btn-primary"  type="button" onclick="location.href='<?php echo "message_view_process.php?action=delete&idMessage=$idMessage"; ?>'">Delete</button>
+  								<button class="btn btn-primary"  type="button" onclick="location.href='<?php echo "message_view_process_sent.php?action=delete&idMessage=$idMessage"; ?>'">Delete</button>
   							</div>
 						</div>
 						

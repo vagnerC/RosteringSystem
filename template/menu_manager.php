@@ -35,6 +35,7 @@
                   <div class="dropdown-content">
                     <a href="message_add.php">New</a>
                     <a href="message_archive.php">Inbox</a>
+                    <a href="message_archive_sent.php">Sent</a>
                   </div>
                 </div>
                 <a href="logout.php">Log out</a>

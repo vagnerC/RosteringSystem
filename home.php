@@ -5,9 +5,10 @@ require_once("resource/database.php");
 require_once("calendar.php");
 
 if(!isset($_SESSION['user_info'])):
-echo "<script>location.href = 'index.php';</script>";
-die();
+    echo "<script>location.href = 'index.php';</script>";
+    die();
 endif;
+$idStaff = $_SESSION['user_info']['id'];
 ?>
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -24,7 +25,7 @@ endif;
 
 	<div class="panel-group">
     	<div class="panel panel-default">
-        	<div class="panel-heading">Notifications:</div>
+        	<div class="panel-heading">Welcome <?php echo $_SESSION['user_info']['name'];?></div>
             	<div class="panel-body">
                 	<?php 
                 	if($_SESSION['user_info']['management'] == "true"):
@@ -44,7 +45,42 @@ endif;
                     	        echo "</div>";
                     	    }
                     	} catch(PDOException $e) {echo $e;}
+                else:
+                    try{
+                        $sql = "  SELECT
+                                  idStaff
+                                  FROM staff
+                                  WHERE password = '12345'
+                                  AND idStaff = '$idStaff'";
+                        $sth = $DBH->prepare($sql);
+                        $sth->execute();
+                        $row = $sth->fetch(PDO::FETCH_OBJ);
+                        if($sth->rowCount() > 0):
+                        echo "<div class='alert alert-warning'>";
+                            echo "<a href='my_profile.php' class='close'>Go</a>";
+                            echo "<strong>Please change your password.</strong>";
+                        echo "</div>";
+                        endif;
+                    } catch(PDOException $e) {echo $e;}
                 	endif;
+                	
+                	try{
+                	    $sql = "   SELECT
+                                COUNT(*) total
+                                FROM message
+                                WHERE staffTo = '$idStaff'
+                                and status = 'Not Read'
+                                AND showTo = 'Yes'";
+                	    $sth = $DBH->prepare($sql);
+                	    $sth->execute();
+                    $row = $sth->fetch(PDO::FETCH_OBJ);
+                        if($row->total > 0):
+                	        echo "<div class='alert alert-warning'>";
+                	        echo "<a href='message_archive.php' class='close'>Go</a>";
+                	        echo "<strong>$row->total</strong> unread messages.";
+                	        echo "</div>";
+                	    endif;
+                	} catch(PDOException $e) {echo $e;}
                 	?>
 		</div>				
 	</div>			

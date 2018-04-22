@@ -10,7 +10,7 @@ endif;
 ?>
 <div class="panel-group">
     	<div class="panel panel-default">
-        	<div class="panel-heading"><b>Inbox</b></div>
+        	<div class="panel-heading"><b>Sent</b></div>
 		<div class="panel-body">
 
             	<div class="row">
@@ -30,7 +30,7 @@ endif;
             					<thead>
             						<tr>
                                       <th>Date</th>
-                                      <th>From</th>
+                                      <th>To</th>
                                       <th>Subject</th>
                                       <th>Action</th>
                                     </tr>
@@ -47,27 +47,18 @@ endif;
                                                 subject,
                                                 status
                                                 FROM message
-                                                INNER JOIN staff AS sF ON staffFrom = sF.idStaff
-                                                WHERE staffTo = '$idStaff'
-                                                AND showTo = 'Yes'
+                                                INNER JOIN staff ON staffTo = idStaff
+                                                WHERE staffFrom = '$idStaff'
+                                                AND showFrom = 'Yes'
                                                 ORDER BY date DESC";
                                        $sth = $DBH->prepare($sql);
                                        $sth->execute();
                                        while ($row = $sth->fetch(PDO::FETCH_OBJ)){
-                                           
-                                           if($row->status == "Not Read"):
-                                                $tdB = "<th>";
-                                                $tdE = "</th>";
-                                           else:
-                                                $tdB = "<td>";
-                                                $tdE = "</td>";
-                                           endif;
-                                           
                                            echo "<tr>";
-                                                echo "$tdB $row->dateFormatted $tdE";
-                                                echo "$tdB $row->name $tdE";
-                                                echo "$tdB $row->subject $tdE";
-                                               echo "$tdB <a href='message_view.php?id=$row->idMessage&s=$row->status'>View</a> $tdE";
+                                                echo "<td>$row->dateFormatted</td>";
+                                                echo "<td>$row->name</td>";
+                                                echo "<td>$row->subject</td>";
+                                               echo "<td><a href='message_view_sent.php?id=$row->idMessage&s=$row->status'>View</a></td>";
                                            echo "</tr>";
                                        }
                                    } catch(PDOException $e) {echo $e;}

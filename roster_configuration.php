@@ -1,72 +1,56 @@
 <?php
-/**
-*@author Felipe Mello
-*@version 0.3
-**/
-/**Roster Configuration 
-	In this section the manager will configure the week: what time and which days the shop will be opened, how many staff the shop will need per hour.
-**/
-define('__ROOT__', dirname(dirname(__FILE__)));
-require_once(__ROOT__.'/RosteringSystem/resource/config.php');
-require_once(TEMPLATE_PATH . "/header.php");
+session_start();
+require_once("template/header.php");
+require_once("resource/database.php");
+
+$idDepartment = $_SESSION['user_info']['idDepartment'];
+
+if(!isset($_SESSION['user_info'])):
+    echo "<script>location.href = 'index.php';</script>";
+    die();
+elseif($_SESSION['user_info']['management'] != "true"):
+    echo "<script>location.href = 'logout.php';</script>";
+    die();
+endif;
 
 if(isset($_POST['next'])){
-	$sundayOpen = $_POST['sundayOpen'];
-	$sundayClose = $_POST['sundayClose'];
-
-	$mondayOpen = $_POST['mondayOpen'];
-	$mondayClose = $_POST['mondayClose'];
+    foreach ($_POST as $variable => $value):
+        $$variable  = $value;
+    endforeach;
+} else {
+	$mondayOpen = "00:00";
+	$mondayClose = "00:00";
 	
-	$tuesdayOpen = $_POST['tuesdayOpen'];
-	$tuesdayClose = $_POST['tuesdayClose'];
+	$tuesdayOpen = "00:00";
+	$tuesdayClose = "00:00";
 
-	$wednesdayOpen = $_POST['wednesdayOpen'];
-	$wednesdayClose = $_POST['wednesdayClose'];
+	$wednesdayOpen = "00:00";
+	$wednesdayClose = "00:00";
 
-	$thursdayOpen = $_POST['thursdayOpen'];
-	$thursdayClose = $_POST['thursdayClose'];
+	$thursdayOpen = "00:00";
+	$thursdayClose = "00:00";
 
-	$fridayOpen = $_POST['fridayOpen'];
-	$fridayClose = $_POST['fridayClose'];
+	$fridayOpen = "00:00";
+	$fridayClose = "00:00";
 
-	$saturdayOpen = $_POST['saturdayOpen'];
-	$saturdayClose = $_POST['saturdayClose'];
-
-}else{
-	// do something else
-	$sundayOpen = "";
-	$sundayClose ="";
-
-	$mondayOpen ="";
-	$mondayClose = "";
+	$saturdayOpen = "00:00";
+	$saturdayClose = "00:00";
 	
-	$tuesdayOpen = "";
-	$tuesdayClose = "";
-
-	$wednesdayOpen = "";
-	$wednesdayClose = "";
-
-	$thursdayOpen = "";
-	$thursdayClose = "";
-
-	$fridayOpen = "";
-	$fridayClose = "";
-
-	$saturdayOpen = "";
-	$saturdayClose ="";
+	$sundayOpen = "00:00";
+	$sundayClose = "00:00";
 }
 
 /** My Functions**/
 /**This function return the time in a select output**/
-function get_times( $default = '00:00', $interval = '+30 minutes' ) {
+function get_times($default, $interval = '+1 hour' ) {
     $output = '';
     $current = strtotime( '00:00' );
     $end = strtotime( '23:59' );
     while( $current <= $end ) {
         $time = date( 'H:i', $current );
-        $sel = ( $time == $default ) ? ' ' : '';
+        $sel = ( $time == $default ) ? 'selected' : '';
 
-        $output .= "<option value=\"{$time}\"{$sel}>" . date( 'h.i A', $current ) .'</option>';
+        $output .= "<option value='$time' $sel>".$time.'</option>';
         $current = strtotime( $interval, $current );
     }
 
@@ -75,22 +59,20 @@ function get_times( $default = '00:00', $interval = '+30 minutes' ) {
 
 /** This function prints the time on the screen base on the opening and closing time of the shop**/
 $interval = "+60 minutes";
-function output_times($startTime, $fimishTime, 
-    $interval){
+function output_times($startTime, $fimishTime, $interval){
     $output = '';
     $current = strtotime($startTime);
     $end = strtotime($fimishTime);
-    while($current <= $end){
+    while($current < $end){
         $time = date('H:i', $current);
         $sel = ($time==$startTime)? ' ' : '';
-        $output .= "<p>From ".date('h.i.A', $current);
+        //$output .= "<p>From".date('h.i.A', $current);
         $current = strtotime($interval, $current);
 
-        $output .= " to ".date('h.i.A',$current).
-        "<div class='input-group mb-3'>
+        $output .= "<div class='input-group mb-3'>
         	<div class ='input-group-prepend'>
-        		<label class='input-group-text' for='inputGroupSelect01'>Number of Staff</label></div>
-        	<select class='custom-select'>".selectNumberOption(2,10)."</select></div>";
+        		<label class='input-group-text' for='inputGroupSelect01'>$time</label></div>
+        	<select class='custom-select'>".selectNumberOption(1,20)."</select></div>";
 
     }
     return $output;
@@ -105,19 +87,11 @@ function selectNumberOption($min, $max) {
     }
     return $output;
 }
-
-
-  
-  
-
 ?>
-
-<script type="text/javascript" src="js/jquery-3.3.1.js"></script> 
-
 <form method='post' action='roster_configuration.php'>
-
 	<div class="container" id="openClose">
-	<div class="jumbotron">
+	
+		<br>
 		<div class="row">
 			<div class="col">
 				<h3 class="title">Opening Hours</h3>
@@ -125,49 +99,33 @@ function selectNumberOption($min, $max) {
 		</div>
 		<br>
 		<div class="row">
-			<div class="col" id="sunday">
-				<div class="row"><p>Sunday</p></div>
-				<div class="row">
-					<select class="custom-select" id="sundayOpen" name="sundayOpen" value ="">
-						<option selected>Open...</option>
-						<?php echo get_times()?>
-					</select>
-				</div>
-
-				<div class="row">
-				<select class="custom-select" id="sundayClose" name="sundayClose" value ="">
-					<option selected>Close...</option>
-						<?php echo get_times(); ?>
-					</select>
-				</div>
-			</div>
 			<div class="col" id="monday">
 				<div class="row"><p>Monday</p></div>
 				<div class="row">
-					<select class="custom-select" id="mondayOpen" name="mondayOpen" value="">
-						<option selected>Open...</option>
-					<?php echo get_times()?>
+					<select class="custom-select" id="mondayOpen" name="mondayOpen">
+						<option value="">Open</option>
+					<?php echo get_times("$mondayOpen")?>
 					</select>
 				</div>
 				<div class="row">
-					<select class="custom-select" id="mondayClose" name="mondayClose" value="">
-						<option selected>Close...</option>
-					<?php echo get_times()?>
+					<select class="custom-select" id="mondayClose" name="mondayClose">
+						<option value="">Close</option>
+					<?php echo get_times("$mondayClose")?>
 					</select>
 				</div>
 			</div>
 			<div class="col" id="tuesday">
 				<div class="row"><p>Tuesday</p></div>
 				<div class="row">
-					<select class="custom-select" id="tuesdayOpen" name="tuesdayOpen" value="">
-						<option selected>Open...</option>
-					<?php echo get_times()?>
+					<select class="custom-select" id="tuesdayOpen" name="tuesdayOpen">
+						<option value="">Open</option>
+					<?php echo get_times("$tuesdayOpen")?>
 					</select>
 				</div>
 				<div class="row">
-					<select class="custom-select" id="tuesdayClose" name="tuesdayClose" value ="">
-					<option selected>Close...</option>
-					<?php echo get_times()?>
+					<select class="custom-select" id="tuesdayClose" name="tuesdayClose">
+					<option value="">Close</option>
+					<?php echo get_times("$tuesdayClose")?>
 					</select>
 				</div>
 				
@@ -175,30 +133,30 @@ function selectNumberOption($min, $max) {
 			<div class="col" id="wednesday">
 				<div class="row"><p>Wednesday</p></div>
 				<div class="row">
-					<select class="custom-select" id="wednesdayOpen" name="wednesdayOpen" value="">
-						<option selected>Open...</option>
-						<?php echo get_times()?>
+					<select class="custom-select" id="wednesdayOpen" name="wednesdayOpen">
+						<option value="">Open</option>
+						<?php echo get_times("$wednesdayOpen")?>
 					</select>
 				</div>
 				<div class="row">
-					<select class="custom-select" id="wednesdayClose" name="wednesdayClose" id="">
-						<option selected>Close...</option>
-						<?php echo get_times()?>
+					<select class="custom-select" id="wednesdayClose" name="wednesdayClose">
+						<option value="">Close</option>
+						<?php echo get_times("$wednesdayClose")?>
 					</select>
 				</div>
 			</div>
 			<div class="col" id="thursday">
 				<div class="row"><p>Thursday</p></div>
 				<div class="row">
-					<select class="custom-select" id="thursdayOpen" name="thursdayOpen" value="">
-						<option selected>Open...</option>
-						<?php echo get_times()?>
+					<select class="custom-select" id="thursdayOpen" name="thursdayOpen">
+						<option value="">Open</option>
+						<?php echo get_times("$thursdayOpen")?>
 					</select>
 				</div>
 				<div class="row">
-					<select class="custom-select" id="thursdayClose" name="thursdayClose" value="">					
-						<option selected>Close...</option>
-						<?php echo get_times()?>
+					<select class="custom-select" id="thursdayClose" name="thursdayClose">					
+						<option value="">Close</option>
+						<?php echo get_times("$thursdayClose")?>
 					</select>
 				</div>
 				
@@ -206,15 +164,15 @@ function selectNumberOption($min, $max) {
 			<div class="col" id="friday">
 				<div class="row"><p>Friday</p></div>
 				<div class="row">
-					<select class="custom-select" id="fridayOpen" name="fridayOpen" value="">
-						<option selected>Open...</option>
-						<?php echo get_times()?>
+					<select class="custom-select" id="fridayOpen" name="fridayOpen">
+						<option value="">Open</option>
+						<?php echo get_times("$fridayOpen")?>
 					</select>
 				</div>
 				<div class="row">
-					<select class="custom-select" id="fridayClose" name="fridayClose" value="">
-						<option selected>Close...</option>
-						<?php echo get_times()?>
+					<select class="custom-select" id="fridayClose" name="fridayClose">
+						<option value="">Close</option>
+						<?php echo get_times("$fridayClose")?>
 					</select>
 				</div>
 				
@@ -222,139 +180,135 @@ function selectNumberOption($min, $max) {
 			<div class="col" id="saturday">
 				<div class="row"><p>Saturday</p></div>
 				<div class="row">
-					<select class="custom-select" id="saturdayOpen" name="saturdayOpen" value="">
-					<option selected>Open...</option>
-					<?php echo get_times()?>
+					<select class="custom-select" id="saturdayOpen" name="saturdayOpen">
+					<option value="">Open</option>
+					<?php echo get_times("$saturdayOpen")?>
 					</select>
 				</div>
 				<div class="row">
-					<select class="custom-select" id="saturdayClose" name="saturdayClose" value="">
-					<option selected>Close...</option>
-					<?php echo get_times()?>
+					<select class="custom-select" id="saturdayClose" name="saturdayClose">
+					<option value="">Close</option>
+					<?php echo get_times("$saturdayClose")?>
 					</select>
 				</div>	
-				
-		</div>
-	</div>
-	<br>
-	<div class="row">
-		<div class="col" style="text-align: right">
-			<button type="button" class="btn btn-info">Cancel</button>
-		</div>
-		<div class="col" style="text-align: left">
-			<button type="Submit" class="btn btn-info" name="next" value="next">Next</button>
-		</div>
-	</div>
-</form>
-
-<br>
-<script type="text/javascript" src="js/felipe.js"></script> 
- 
-	<div class="hline"></div>
-	<br>
-	<div class="row">
-		<div class="col">
-			<h3 class="title">Staff Hours</h3>
-		</div>
-
-	</div>
-	<br>
-	<div class="row" id="staffHours">
-		<div class="col">
-
+			</div>
 			<div class="col" id="sunday">
-				<div class="col">
-					<p><strong>Sunday</strong></p>
-					<div class="col">
-						<?php 
-							echo output_times($sundayOpen, $sundayClose, $interval);
-						?>
-					</div>
+				<div class="row"><p>Sunday</p></div>
+				<div class="row">
+					<select class="custom-select" id="sundayOpen" name="sundayOpen">
+						<option value="">Open</option>
+						<?php echo get_times("$sundayOpen")?>
+					</select>
+				</div>
+
+				<div class="row">
+				<select class="custom-select" id="sundayClose" name="sundayClose">
+					<option value="">Close</option>
+						<?php echo get_times("$sundayClose"); ?>
+					</select>
 				</div>
 			</div>
+		</div>
+		
+		<br>
+		<div class="row">
+			<div class="col" style="text-align: center">
+				<button type="Submit" class="btn btn-primary" name="next">Next</button>
+			</div>
+		</div>
+<br>
+ 	
+ 	
+ 	<div class="row">
+			<div class="col">
+				<h3 class="title">Staff Hours</h3>
+			</div>
+	</div>
+	<br>
+	<div class="row">
 			<div class="col" id="monday">
-				<div class="col">
-					<p><strong>Monday</strong></p>
-					<div class="col">
-						<?php 
-							echo output_times($mondayOpen, $mondayClose, $interval);
-						?>
-					</div>
+				<div class="row"><p>Monday</p></div>
+				<div class="row">
+					<?php 
+					echo output_times($mondayOpen, $mondayClose, $interval);
+					?>
 				</div>
 			</div>
-
+			
 			<div class="col" id="tuesday">
-				<div class="col">
-					<p><strong>Tuesday</strong></p>
-					<div class="col">
-						<?php 
-							echo output_times($tuesdayOpen, $tuesdayClose, $interval);
-						?>
-					</div>
+				<div class="row"><p>Tuesday</p></div>
+				<div class="row">
+					<?php 
+					echo output_times($tuesdayOpen, $tuesdayClose, $interval);
+					?>
 				</div>
 			</div>
-
 
 			<div class="col" id="wednesday">
-				<div class="col">
-					<p><strong>Wednesday</strong></p>
-					<div class="col">
-						<?php 
-							echo output_times($wednesdayOpen, $wednesdayClose, $interval);
-						?>
-					</div>
+				<div class="row"><p>Wednesday</p></div>
+				<div class="row">
+					<?php 
+					echo output_times($wednesdayOpen, $wednesdayClose, $interval);
+					?>
 				</div>
 			</div>
-		
 
+ 	
 			<div class="col" id="thursday">
-				<div class="col">
-					<p><strong>Thursday</strong></p>
-					<div class="col">
-						<?php 
-							echo output_times($thursdayOpen, $thursdayClose, $interval);
-						?>
-					</div>
+				<div class="row"><p>Thursday</p></div>
+				<div class="row">
+					<?php 
+					echo output_times($thursdayOpen, $thursdayClose, $interval);
+					?>
 				</div>
 			</div>
-
-
+			
+		
 			<div class="col" id="friday">
-				<div class="col">
-					<p><strong>Friday</strong></p>
-					<div class="col">
-						<?php 
-							echo output_times($fridayOpen, $fridayClose, $interval);
-						?>
-					</div>
+				<div class="row"><p>Friday</p></div>
+				<div class="row">
+					<?php 
+					echo output_times($fridayOpen, $fridayClose, $interval);
+					?>
 				</div>
 			</div>
-
-
+			
 			<div class="col" id="saturday">
-				<div class="col">
-					<p><strong>Saturday</strong></p>
-					<div class="col">
-						<?php 
-							echo output_times($saturdayOpen, $saturdayClose, $interval);
-						?>
-					</div>
+				<div class="row"><p>Saturday</p></div>
+				<div class="row">
+					<?php 
+					echo output_times($saturdayOpen, $saturdayClose, $interval);
+					?>
 				</div>
 			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col" style="text-align: right">
-			<button type="button" class="btn btn-info">Cancel</button>
-		</div>
-		<div class="col" style="text-align: left">
-			<button type="Submit" class="btn btn-info" name="next" value="next">Save</button>
-		</div>
-	</div>
-</div>	
-</div>
-<br>
 
+			<div class="col" id="sunday">
+				<div class="row"><p>Sunday</p></div>
+				<div class="row">
+					<?php 
+					echo output_times($sundayOpen, $sundayClose, $interval);
+					?>
+				</div>
+			</div>
+			
+			
+		
+		
+	</div>
+	
+	<br>
+        		<div class="row">
+        			<div class="col" style="text-align: center">
+        				<button type="Submit" class="btn btn-primary" name="save">Save</button>
+        			</div>
+        		</div>
+	
+	
+</div>
+</form>
+	
+<br>
+<br>
 <?php
-require_once(TEMPLATE_PATH . "/footer.php");
+require_once("template/footer.php");
 ?>

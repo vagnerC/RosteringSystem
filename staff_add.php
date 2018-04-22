@@ -6,7 +6,7 @@ require_once("resource/database.php");
 if(!isset($_SESSION['user_info'])):
     echo "<script>location.href = 'index.php';</script>";
     die();
-elseif($_SESSION['user_info']['position'] != "Manager"):
+elseif($_SESSION['user_info']['management'] != "true"):
     echo "<script>location.href = 'logout.php';</script>";
     die();
 endif;
