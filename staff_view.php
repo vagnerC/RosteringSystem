@@ -70,9 +70,9 @@ endif;
                                                echo "<td>$row->positionName</td>";
                                                echo "<td>";
                                                    if($_SESSION['user_info']['management'] == "true"):
-                                                   echo "<a href='staff_profile.php?id=$row->idStaff&status=Edit'>View</a> | ";
-                                                   echo "<a href='staff_profile.php?id=$row->idStaff&status=Edit'>Edit</a> | ";
-                                                   echo "<a href='staff_profilephp?idS=$row->idStaff&status=Delete'>Delete</a>";
+                                                   echo "<a href='staff_profile.php?idStaff=$row->idStaff&status=View'>View</a> | ";
+                                                   echo "<a href='staff_profile.php?idStaff=$row->idStaff&status=Edit'>Edit</a> | ";
+                                                   echo "<a href='staff_profilephp?idStaff=$row->idStaff&status=Delete'>Delete</a>";
 	                                               endif;
 	                                           echo "</td>";
                                            echo "</tr>";

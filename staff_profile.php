@@ -4,8 +4,8 @@ require_once("template/header.php");
 require_once("resource/database.php");
 
 if(!isset($_SESSION['user_info'])):
-echo "<script>location.href = 'index.php';</script>";
-die();
+    echo "<script>location.href = 'index.php';</script>";
+    die();
 endif;
 
 $idStaff            = $_GET['idStaff'];
@@ -135,19 +135,7 @@ $row = $sth->fetch(PDO::FETCH_OBJ);
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 <script>
-	$(document).ready(function(){
-		var date_input=$('input[name="dateOfBirth"]'); //our date input has the name "date"
-		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-		date_input.datepicker({
-			format: 'dd/mm/yyyy',
-			container: container,
-			todayHighlight: true,
-			autoclose: true,
-		})
-	})
-	
 
-});	
 </script>
 <?php 
 require_once("template/footer.php");

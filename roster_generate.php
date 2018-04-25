@@ -4,6 +4,7 @@ require_once("template/header.php");
 require_once("resource/database.php");
 
 $idDepartment = $_SESSION['user_info']['idDepartment'];
+$week_number  = $_GET['w'];
 
 if(!isset($_SESSION['user_info'])):
     echo "<script>location.href = 'index.php';</script>";
@@ -12,16 +13,19 @@ elseif($_SESSION['user_info']['management'] != "true"):
     echo "<script>location.href = 'logout.php';</script>";
     die();
 endif;
+?>
+<div class="panel-group">
+    	<div class="panel panel-default">
+        	<div class="panel-heading">Select a week | Opening Hours | Staff Per Hour | <b>Generate Roster</b></div>
+		<div class="panel-body">
+            	<div class="row">
+            		<div class="col-md-12">
+            			<fieldset>
+						<div class="row">
+        						<div class="col" style="text-align: center">
+<?php
 
-//Function to show the current week
-function weekNumber(){
-    return (new DateTime())->format("W");
-}
 
-if(isset($_POST['Generate'])):
-
-    // Week number chose by the user.
-    $week_number        = $_POST['week_number'];
 
     // Array: days_array[][]
     // Key = Day of the week.                       Eg: Monday
@@ -110,9 +114,9 @@ if(isset($_POST['Generate'])):
     }catch(PDOException $e) {echo $e;}
    
     
-    echo "<hr>";
-    print_r($staff_array);
-    echo "<hr>";
+//     echo "<hr>";
+//     print_r($staff_array);
+//     echo "<hr>";
     
     
     foreach ($days_array as $dayWeek => $arraysDays){
@@ -165,11 +169,13 @@ if(isset($_POST['Generate'])):
         }
     }
     
-    echo "<hr>";
-    print_r($days_array);
-    echo "<hr>";
-    print_r($staff_array);
-    echo "<hr>";
+//     echo "<hr>";
+//     echo "<br>DAYS: ";
+//     print_r($days_array);
+//     echo "<hr>";
+//     echo "<br>STAFF: ";
+//     print_r($staff_array);
+//     echo "<hr>";
 //     echo "<hr>";
     //$ePH = array_column($days_array, 'employeePerHour');
     //print_r($first_names);
@@ -180,7 +186,7 @@ if(isset($_POST['Generate'])):
         echo "<tr>";
             echo "<td rowspan='2'></td>";
             foreach ($days_array as $key => $item){
-                echo "<th>$key - ".$item["day"]."</th>";
+                echo "<th>$key ".$item["day"]."</th>";
             }
         echo "</tr>";
         
@@ -191,6 +197,7 @@ if(isset($_POST['Generate'])):
         echo "</tr>";
         
         for($i=$min_openingTime; $i<$max_closingTime; $i++){
+            $i = str_pad($i, 2, "0", STR_PAD_LEFT);
             echo "<tr>";
             echo "<td> $i:00:00 </td>";
             
@@ -211,71 +218,43 @@ if(isset($_POST['Generate'])):
             echo "</tr>";
         }
         
-        echo "<tr>";
-        foreach ($days_array as $dayWeek => $arraysDays){
-            echo "<td>";
-            foreach ($staff_array as $idStaff => $arraysStaff){
-                if (in_array($dayWeek, $arraysStaff['daysAvailable'])) {
+//         echo "<tr>";
+//         foreach ($days_array as $dayWeek => $arraysDays){
+//             echo "<td>";
+//             foreach ($staff_array as $idStaff => $arraysStaff){
+//                 if (in_array($dayWeek, $arraysStaff['daysAvailable'])) {
                     
-                    echo $arraysStaff["fullname"]." = ".$arraysStaff["workedHours"]."<br>";
+//                     echo $arraysStaff["fullname"]." = ".$arraysStaff["workedHours"]."<br>";
                     
-                }
-                else{
-                    echo "&nbsp;";
-                }
-            }
-            echo "</td>";
-        }
-        echo "</tr>";
+//                 }
+//                 else{
+//                     echo "&nbsp;";
+//                 }
+//             }
+//             echo "</td>";
+//         }
+//         echo "</tr>";
 
     echo "</table>";
-endif;
 ?>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style>
-.calendarClass {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 2%;
-    width: 90%;
- </style>
 
-<div class="panel-group">
-    <div class="panel panel-primary">
-        <div class="panel-body">
-             
-            <div class="bs-calltoaction bs-calltoaction-default">
-                <div class="row">
-					<div class="col" style="text-align: right">
-						<form action='roster_generate.php' method='post' id='roster_generate-form' name='roster_generate-form'>
-						<select name ='week_number' class="input-xlarge" width="50%" id="sel1">
-						<?php 
-						for ($i=weekNumber(); $i<(weekNumber()+4);$i++):
-						      echo "<option value='$i'> Week $i</option>";
-						  endfor;
-						?>
-						</select>
-						
-					</div>
-				<div class="col" style="text-align: left">
-				<input class="btn btn-primary" type="submit" value="Generate" name='Generate'>
-				</div>
-					</form>
-               	</div>
-				<div class="calendarClass">
-					<?php 
-					
-					?>
-				</div>	        
-			</div>		
-		</div>		     
+        							
+        							
+        							
+        							
+        						</div>
+        					</div>
+					</fieldset>
+            		</div>
+            	</div>
+		</div>   
 	</div>
 </div>
-			
 
+
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
 <?php 
 require_once("template/footer.php");
 ?>
