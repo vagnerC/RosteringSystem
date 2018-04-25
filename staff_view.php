@@ -4,12 +4,11 @@ require_once("template/header.php");
 require_once("resource/database.php");
 
 if(!isset($_SESSION['user_info'])):
-    echo "<script>location.href = 'index.php';</script>";
-    die();
-elseif($_SESSION['user_info']['management'] != "true"):
-    echo "<script>location.href = 'logout.php';</script>";
-    die();
+echo "<script>location.href = 'index.php';</script>";
+die();
 endif;
+
+
 ?>
 <div class="panel-group">
     	<div class="panel panel-default">
@@ -37,13 +36,20 @@ endif;
                                       <th>Phone Number</th>
                                       <th>Department</th>
                                       <th>Position</th>
-                                      <th>Actions</th>
+                                      <th>Action</th>
                                     </tr>
                                   </thead>
                                   <tbody class="searchable">
                                    <?php 
+                                   if($_SESSION['user_info']['management'] == "true"):
+                                   $where = "";
+                                   else:
+                                   $where = " WHERE staff_idStaff = ".$_SESSION['user_info']['id'];
+                                   endif;
+                                   
                                    try{
                                        $sql = " SELECT
+												staff.*,
                                                 CONCAT(name, ' ', surname) AS fullname,
                                                 email,
                                                 phoneNumber,
@@ -62,7 +68,13 @@ endif;
                                                echo "<td>$row->phoneNumber</td>";
                                                echo "<td>$row->departmentName</td>";
                                                echo "<td>$row->positionName</td>";
-                                               echo "<td>Edit | View | Delete</td>";
+                                               echo "<td>";
+                                                   if($_SESSION['user_info']['management'] == "true"):
+                                                   echo "<a href='staff_profile.php?id=$row->idStaff&status=Edit'>View</a> | ";
+                                                   echo "<a href='staff_profile.php?id=$row->idStaff&status=Edit'>Edit</a> | ";
+                                                   echo "<a href='staff_profilephp?idS=$row->idStaff&status=Delete'>Delete</a>";
+	                                               endif;
+	                                           echo "</td>";
                                            echo "</tr>";
                                        }
                                    } catch(PDOException $e) {echo $e;}
