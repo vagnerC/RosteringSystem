@@ -22,15 +22,14 @@ if($idRoster != "" and $action != ""){
     if($action == "d"):
         try{
             $sql = "DELETE FROM roster WHERE idRoster = ? LIMIT 1";
-            echo $sql."> ".$idRoster;
-//             $sth = $DBH->prepare($sql);
-//             $sth->bindParam(1, $idRoster, PDO::PARAM_INT);
-//             if($sth->execute()):
-//                 echo "<script>location.href = 'roster_change_manager.php?week=$week';</script>";
-//             else:
-//                 echo "ERROR!";
-//                 print_r($sth->errorInfo());
-//             endif;
+            $sth = $DBH->prepare($sql);
+            $sth->bindParam(1, $idRoster, PDO::PARAM_INT);
+            if($sth->execute()):
+                echo "<script>location.href = 'roster_change_manager.php?week=$week';</script>";
+            else:
+                echo "ERROR!";
+                print_r($sth->errorInfo());
+            endif;
         } catch(PDOException $e) {echo $e;}
     //Edit
     elseif($action == "e"):
