@@ -20,7 +20,9 @@ $week           = $_GET['w'];
 try{
                $sql = " SELECT 
                         DATE_FORMAT(openingTime, '%d/%m/%Y %H:%i:%s') AS openingT,
-                        DATE_FORMAT(closingTime, '%d/%m/%Y %H:%i:%s') AS closingT
+                        DATE_FORMAT(closingTime, '%d/%m/%Y %H:%i:%s') AS closingT,
+                        DATE_FORMAT(openingTime, '%H') AS openingH,
+                        DATE_FORMAT(closingTime, '%H') AS closingH
                         FROM businesshours
                         WHERE idbusinessHours = '$idBusiness'";
                $sth = $DBH->prepare($sql);
@@ -28,6 +30,8 @@ try{
                $row = $sth->fetch(PDO::FETCH_OBJ);
                $openingTime = $row-> openingT;
                $closingTime = $row-> closingT;
+               $openingHour = $row-> openingH;
+               $closingHour = $row-> closingH;
                
 } catch(PDOException $e) {echo $e;}
 ?>
@@ -98,28 +102,33 @@ try{
 						</div>
 
 						<div class="form-group">
-							<label class="col-md-4 control-label" for="from">From:</label>  
+							<label class="col-md-4 control-label" for="from">Time:</label>  
     							<div class="col-md-4">
 								<div class="input-group">
 									<div class="input-group-addon">
      									<i class="fa fa-envelope-o"></i>
 									</div>
-    									<input id="from" name="from" type="text" placeholder="From" class="form-control input-md">
+    									<select class="form-control" name="timeFrom" id="timeFrom">
+                            			<option value=''></option>
+        									<?php
+        									    for($i=$openingHour; $i<=$closingHour;$i++){
+        									       echo "<option value='$i'>$i</option>";
+        									    }
+        									?>
+        								</select>
+        								to 
+        								<select class="form-control" name="timeTo" id="timeTo">
+                            			<option value=''></option>
+        									<?php
+        									    for($i=$openingHour; $i<=$closingHour;$i++){
+        									       echo "<option value='$i'>$i</option>";
+        									    }
+        									?>
+        								</select>
 								</div>
  							</div>
 						</div>
 
-						<div class="form-group">
-							<label class="col-md-4 control-label" for="to">To:</label>  
-    							<div class="col-md-4">
-								<div class="input-group">
-									<div class="input-group-addon">
-     									<i class="fa fa-envelope-o"></i>
-									</div>
-    									<input id="to" name="to" type="text" placeholder="To" class="form-control input-md">
-								</div>
- 							</div>
-						</div>
 
 						<div class="form-group">
   							<label class="col-md-4 control-label" ></label>  
