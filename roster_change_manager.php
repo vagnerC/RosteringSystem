@@ -56,7 +56,7 @@ if(isset($_POST['View']) OR isset($_GET['week'])){
 </div>
 
 <?php 
-if(isset($_POST['View'])){
+if(isset($_POST['View']) OR isset($_GET['week'])){
 ?>
 <div class="panel-group">
     	<div class="panel panel-default">
@@ -90,6 +90,7 @@ if(isset($_POST['View'])){
                                    try{
                                        $sql = " SELECT
                                                 idRoster,
+                                                businessHours_idBusinessHours,
                                                 startingTime,
                                                 finishingTime,
                                                 DATE_FORMAT(openingTime, '%d/%m/%Y %H:%i:%s') AS openingTimeDate, 
@@ -107,7 +108,7 @@ if(isset($_POST['View'])){
                                        while ($row = $sth->fetch(PDO::FETCH_OBJ)){
                                            if($row->openingTimeDate != $opening):
                                                 echo "<tr>";
-                                                    echo "<th colspan='4'>Opening Hours: $row->openingTimeDate - $row->closingTimeDate [Add]</th>";
+                                                echo "<th colspan='4'>Opening Hours: $row->openingTimeDate - $row->closingTimeDate <a href='roster_change_manager_action.php?id=$row->businessHours_idBusinessHours&a=i&w=$week'>[Add Staff]</a></th>";
                                                 echo "</tr>";
                                            endif;
                                            
