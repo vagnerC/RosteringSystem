@@ -11,36 +11,56 @@ elseif($_SESSION['user_info']['management'] != "true"):
     die();
 endif;
 
-$idBusiness     = $_GET['id'];
-$action         = $_GET['a'];
-$week           = $_GET['w'];
-               
-           
-           
+$idBusiness     = $_REQUEST['id'];
+$week           = $_REQUEST['w'];
+
+if(isset($_POST['Save'])){
+    $idStaff    = $_POST['idStaff'];
+    $timeFrom   = $_POST['timeFrom'].":00:00";
+    $timeTo     = $_POST['timeTo'].":00:00";
+    try{
+        $sql = "INSERT INTO roster (businessHours_idBusinessHours, staff_idStaff, startingTime, finishingTime) VALUES (?, ?, ?, ?);";
+        $sth = $DBH->prepare($sql);
+        
+        $sth->bindParam(1, $idBusiness, PDO::PARAM_INT);
+        $sth->bindParam(2, $idStaff, PDO::PARAM_INT);
+        $sth->bindParam(3, $timeFrom, PDO::PARAM_INT);
+        $sth->bindParam(4, $timeTo, PDO::PARAM_INT);
+        
+        if($sth->execute()) {
+            echo "<script>location.href = 'roster_change_manager.php?week=$week';</script>";
+        } else {
+            echo "Error.";
+        }
+    } catch(PDOException $e) {echo $e;}
+}
+
 try{
                $sql = " SELECT 
                         DATE_FORMAT(openingTime, '%d/%m/%Y %H:%i:%s') AS openingT,
                         DATE_FORMAT(closingTime, '%d/%m/%Y %H:%i:%s') AS closingT,
                         DATE_FORMAT(openingTime, '%H') AS openingH,
                         DATE_FORMAT(closingTime, '%H') AS closingH
-                        FROM businesshours
+                        FROM businessHours
                         WHERE idbusinessHours = '$idBusiness'";
                $sth = $DBH->prepare($sql);
                $sth->execute();
                $row = $sth->fetch(PDO::FETCH_OBJ);
-               $openingTime = $row-> openingT;
-               $closingTime = $row-> closingT;
-               $openingHour = $row-> openingH;
-               $closingHour = $row-> closingH;
-               
+               $openingTime = $row->openingT;
+               $closingTime = $row->closingT;
+               $openingHour = $row->openingH;
+               $closingHour = $row->closingH;
 } catch(PDOException $e) {echo $e;}
 ?>
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 ">
-			<form class="form-horizontal" method="post" id="roster_change_manager_add-form">
+			<form class="form-horizontal" method="post" action="roster_change_manager_add.php" id="roster_change_manager_add-form">
+				<input type="hidden" name="id" value="<?php echo $idBusiness;?>">
+				<input type="hidden" name="w" value="<?php echo $week;?>">
+				
 				<fieldset>
-					<legend>Add Staff</legend>
+					<legend>Add</legend>
                         
 						<div class="form-group">
 							<label class="col-md-4 control-label"></label>
@@ -112,7 +132,8 @@ try{
                             			<option value=''></option>
         									<?php
         									    for($i=$openingHour; $i<=$closingHour;$i++){
-        									       echo "<option value='$i'>$i</option>";
+        									        $i = str_pad($i, 2, "0", STR_PAD_LEFT);
+        									        echo "<option value='$i'>$i</option>";
         									    }
         									?>
         								</select>
@@ -121,7 +142,8 @@ try{
                             			<option value=''></option>
         									<?php
         									    for($i=$openingHour; $i<=$closingHour;$i++){
-        									       echo "<option value='$i'>$i</option>";
+        									        $i = str_pad($i, 2, "0", STR_PAD_LEFT);
+        									        echo "<option value='$i'>$i</option>";
         									    }
         									?>
         								</select>
@@ -133,7 +155,7 @@ try{
 						<div class="form-group">
   							<label class="col-md-4 control-label" ></label>  
   							<div class="col-md-4">
-  								<input class="btn btn-primary" type="submit" value="Send">
+  								<input class="btn btn-primary" type="submit" name="Save" value="Save">
   							</div>
 						</div>
 				</fieldset>
@@ -143,60 +165,6 @@ try{
 </div>
 <!-- Bootstrap Core CSS -->
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
-
-
-<script>
-	$('document').ready(function()
-	{ 
-		/* validation */
-		$("#message_add-form").validate({
-		rules:
-		{
-			idStaff: {
-				required: true
-			},
-			subject: {
-				required: true
-            },
-            message: {
-				required: true
-            },
-		},
-		messages:
-		{
-			idStaff: "Please choose a Staff to send the message to.",
-			subject: "Please write a subject.",
-			message: "Please write a message.",
-		},
-	    submitHandler: submitForm
-	});  
-	   
-	/* login submit */
-	function submitForm()
-	{		
-		var data = $("#message_add-form").serialize();
-				
-		$.ajax({
-			type : 'POST',
-			url  : 'message_add_process.php',
-			data : data,
-			success: function(response)
-			{						
-				if(response=="ok"){
-					$("#info").fadeIn(1000, function(){
-						$("#info").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-thumbs-up"></span> Message successfully sent.</div>');
-					});
-				} else {
-					$("#info").fadeIn(1000, function(){						
-						$("#info").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-thumbs-down"></span> &nbsp; '+response+'</div>');
-					});
-				}
-			}
-		});
-		return false;
-	}
-});	
-</script>
 <?php 
 require_once("template/footer.php");
 ?>

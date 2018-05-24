@@ -12,14 +12,10 @@ elseif($_SESSION['user_info']['management'] != "true"):
 endif;
 
 $idRoster       = $_GET['id'];
-$action         = $_GET['a'];
 $week           = $_GET['w'];
 
 
-if($idRoster != "" and $action != ""){
-    
-    //Delete
-    if($action == "d"):
+if($idRoster != "" and $week != ""){
         try{
             $sql = "DELETE FROM roster WHERE idRoster = ? LIMIT 1";
             $sth = $DBH->prepare($sql);
@@ -31,13 +27,5 @@ if($idRoster != "" and $action != ""){
                 print_r($sth->errorInfo());
             endif;
         } catch(PDOException $e) {echo $e;}
-    //Edit
-    elseif($action == "e"):
-    
-    //Insert
-    elseif($action == "i"):
-    
-    endif;
-    
 }
 ?>

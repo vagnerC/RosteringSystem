@@ -108,7 +108,7 @@ if(isset($_POST['View']) OR isset($_GET['week'])){
                                        while ($row = $sth->fetch(PDO::FETCH_OBJ)){
                                            if($row->openingTimeDate != $opening):
                                                 echo "<tr>";
-                                                echo "<th colspan='4'>Opening Hours: $row->openingTimeDate - $row->closingTimeDate <a href='roster_change_manager_action.php?id=$row->businessHours_idBusinessHours&a=i&w=$week'>[Add Staff]</a></th>";
+                                                echo "<th colspan='4'>Opening Hours: $row->openingTimeDate - $row->closingTimeDate <a href='roster_change_manager_add.php?id=$row->businessHours_idBusinessHours&w=$week'>[Add Staff]</a></th>";
                                                 echo "</tr>";
                                            endif;
                                            
@@ -116,7 +116,7 @@ if(isset($_POST['View']) OR isset($_GET['week'])){
                                                echo "<td>$row->fullname</td>";
                                                echo "<td>$row->startingTime</td>";
                                                echo "<td>$row->finishingTime</td>";
-                                               echo "<td><a href='roster_change_manager_action.php?id=$row->idRoster&a=e&w=$week'>Edit</a> | <a href='roster_change_manager_action.php?id=$row->idRoster&a=d&w=$week'>Delete</a></td>";
+                                               echo "<td><a href='roster_change_manager_edit.php?id=$row->idRoster&w=$week'>Edit</a> | <a href='roster_change_manager_delete.php?id=$row->idRoster&w=$week'>Delete</a></td>";
                                            echo "</tr>";
                                            $opening = $row->openingTimeDate;
                                        }
