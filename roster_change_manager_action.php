@@ -34,10 +34,10 @@ if($idRoster != "" and $action != ""){
     //Edit
     elseif($action == "e"):
     
+    //Insert
+    elseif($action == "i"):
+    
     endif;
     
 }
-
-
-
 ?>
