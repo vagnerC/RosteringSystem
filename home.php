@@ -56,7 +56,7 @@ $idStaff = $_SESSION['user_info']['id'];
                     	    $sth = $DBH->prepare($sql);
                     	    $sth->execute();
                     	    $row = $sth->fetch(PDO::FETCH_OBJ);
-                    	    if($sth->rowCount() > 0):
+                    	    if($row->total > 0):
                         	    echo "<div class='alert alert-warning'>";
                         	    echo "<a href='roster_change_request.php' class='close'>Go</a>";
                         	    echo "<strong>$row->total Roster Change request(s)</strong> to be approved/disapproved.";

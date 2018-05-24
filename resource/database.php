@@ -1,6 +1,6 @@
 <?php
 //include_once "https://rosteringsystem.000webhostapp.com/resource/database.php";
-mysql://:@/?reconnect=true
+//mysql://:@/?reconnect=true
 
 try {
     $host = 'eu-cdbr-west-02.cleardb.net';
