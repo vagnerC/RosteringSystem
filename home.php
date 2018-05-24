@@ -29,6 +29,7 @@ $idStaff = $_SESSION['user_info']['id'];
             	<div class="panel-body">
                 	<?php 
                 	if($_SESSION['user_info']['management'] == "true"):
+                    //Requests
                     	try{
                     	    $sql = "   SELECT
                     	               typeRequest,
@@ -41,11 +42,29 @@ $idStaff = $_SESSION['user_info']['id'];
                     	    while ($row = $sth->fetch(PDO::FETCH_OBJ)){
                     	        echo "<div class='alert alert-warning'>";
                     	        echo "<a href='request_view.php?t=$row->typeRequest' class='close'>Go</a>";
-                    	        echo "<strong>$row->total</strong> $row->typeRequest request to be approved/disapproved.";
+                    	        echo "<strong>$row->total $row->typeRequest request(s)</strong> to be approved/disapproved.";
                     	        echo "</div>";
                     	    }
                     	} catch(PDOException $e) {echo $e;}
+                    	
+                    	//Roster change Request
+                    	try{
+                    	    $sql = "  SELECT
+                                  COUNT(idRosterChange) AS total
+                                  FROM rosterChange
+                                  WHERE status = 'Pending'";
+                    	    $sth = $DBH->prepare($sql);
+                    	    $sth->execute();
+                    	    $row = $sth->fetch(PDO::FETCH_OBJ);
+                    	    if($sth->rowCount() > 0):
+                        	    echo "<div class='alert alert-warning'>";
+                        	    echo "<a href='roster_change_request.php' class='close'>Go</a>";
+                        	    echo "<strong>$row->total Roster Change request(s)</strong> to be approved/disapproved.";
+                        	    echo "</div>";
+                    	    endif;
+                    	} catch(PDOException $e) {echo $e;}
                 else:
+                    //Check the password
                     try{
                         $sql = "  SELECT
                                   idStaff
@@ -62,8 +81,31 @@ $idStaff = $_SESSION['user_info']['id'];
                         echo "</div>";
                         endif;
                     } catch(PDOException $e) {echo $e;}
+                    
+                    //Show a message if manager has answered a roster change request
+                    try{
+                        $sql = "  SELECT
+                                  idRosterChange,
+                                  status
+                                  FROM rosterChange
+                                  INNER JOIN roster ON roster_idRoster = idRoster
+                                  WHERE status != 'Pending'
+                                  AND notification = 'Not Read'
+                                  AND staff_idStaff = '$idStaff'";
+                        $sth = $DBH->prepare($sql);
+                        $sth->execute();
+                        $row = $sth->fetch(PDO::FETCH_OBJ);
+                        if($sth->rowCount() > 0):
+                        echo "<div class='alert alert-warning'>";
+                        echo "<a href='roster_change.php?id=".$row->idRosterChange."' class='close'>Go</a>";
+                        echo "<strong>Your request for a roster change has been ".$row->status.".</strong>";
+                        echo "</div>";
+                        endif;
+                    } catch(PDOException $e) {echo $e;}
+                    
                 	endif;
-                	
+                
+                	// Show message.
                 	try{
                 	    $sql = "   SELECT
                                 COUNT(*) total
@@ -77,7 +119,7 @@ $idStaff = $_SESSION['user_info']['id'];
                         if($row->total > 0):
                 	        echo "<div class='alert alert-warning'>";
                 	        echo "<a href='message_archive.php' class='close'>Go</a>";
-                	        echo "<strong>$row->total</strong> unread messages.";
+                	        echo "<strong>$row->total unread message(s).</strong>";
                 	        echo "</div>";
                 	    endif;
                 	} catch(PDOException $e) {echo $e;}
@@ -88,7 +130,7 @@ $idStaff = $_SESSION['user_info']['id'];
 	<div class="">
 	<div class="calendarClass">
 	<?php 
-		echo draw_calendar(date('m'), date('Y'));
+	   echo draw_calendar(date('m'), date('Y'), 'specific');
 	?>
 	</div>
 	</div>

@@ -143,17 +143,17 @@ endif;
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label class="col-md-4 control-label" for="minHours">* Minimum Hour Available</label>
-  						<div class="col-md-4">
-  							<div class="input-group">
-                           		<div class="input-group-addon">
-                         			<i class="fa fa-hourglass-o"></i>
-								</div>
-                        			<input name="minHours" id="minHours" type="number" placeholder="0" min="0" max="40" class="form-control input-md">
-                     		</div>
- 						</div>
-					</div>
+<!-- 					<div class="form-group"> -->
+<!-- 						<label class="col-md-4 control-label" for="minHours">* Minimum Hour Available</label> -->
+<!--   						<div class="col-md-4"> -->
+<!--   							<div class="input-group"> -->
+<!--                            		<div class="input-group-addon"> -->
+<!--                          			<i class="fa fa-hourglass-o"></i> -->
+<!-- 								</div> -->
+<!--                         			<input name="minHours" id="minHours" type="number" placeholder="0" min="0" max="40" class="form-control input-md"> -->
+<!--                      		</div> -->
+<!--  						</div> -->
+<!-- 					</div> -->
 					
 					<div class="form-group">
 						<label class="col-md-4 control-label" for="maxHours">* Maximum Hour Available</label>

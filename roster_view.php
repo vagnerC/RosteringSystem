@@ -1,15 +1,38 @@
 <?php
 session_start();
-define('__ROOT__', dirname(dirname(__FILE__)));
-require_once(__ROOT__.'/RosteringSystem/resource/config.php');
-require_once(TEMPLATE_PATH . "/header.php");
+require_once("template/header.php");
+require_once("resource/database.php");
 require_once("calendar.php");
+
+if(!isset($_SESSION['user_info'])):
+    echo "<script>location.href = 'index.php';</script>";
+    die();
+endif;
 ?>
-	<div id="size" class="calendarBox">
-	<?php 	echo draw_calendar(date('m'), date('Y')); ?>
+<div class="panel-group">
+    	<div class="panel panel-default">
+        	<div class="panel-heading"><b>Roster View</b></div>
+		<div class="panel-body">
+            	<div class="row">
+            		<div class="col-md-12">
+            			<fieldset>
+						<div class="row">
+        						<div class="col" style="text-align: center">
+        							<?php 
+        							echo draw_calendar(date('m'), date('Y'),'not specific');
+        							?>
+        						</div>
+        					</div>
+					</fieldset>
+            		</div>
+            	</div>
+		</div>   
 	</div>
-<?php
-	require_once(TEMPLATE_PATH . "/footer.php");
+</div>
+
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+<link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script> 
+<?php 
+require_once("template/footer.php");
 ?>
-<!-- Bootstrap Core CSS -->
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">

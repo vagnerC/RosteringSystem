@@ -1,13 +1,33 @@
 <?php
-function draw_calendar($month,$year){
+function draw_calendar($month,$year,$type){
     include("resource/database.php");
+    
+    if(isset($_GET['m']) AND isset($_GET['y'])):
+        $month  = $_GET['m'];
+        $year   = $_GET['y'];
+    endif;
+    
+    if($type == "specific"):
+        $where = " AND staff_idStaff = '".$_SESSION['user_info']['id']."'";
+    else:
+        $where = "";
+    endif;
+    
+    
     /* draw table */
 	$calendar = '<table cellpadding="0" cellspacing="0" class="calendar">';
 	
 	/* table headings */
 	
+	$last_month    = date('m', strtotime("$year-$month-01".'last month'));
+	$last_year     = date('Y', strtotime("$year-$month-01".'last month'));
+	$next_month    = date('m', strtotime("$year-$month-01".'next month'));
+	$next_year     = date('Y', strtotime("$year-$month-01".'next month'));
+	
 	$calendar .= '<tr class="calendar-row">';
-	$calendar .= '<td colspan="7" class="calendar-day-head">'.date("F", mktime(0, 0, 0, $month, 10))."/".$year.'</td>';
+	   $calendar .= '<td class="calendar-day-head"><a href="?m='.$last_month.'&y='.$last_year.'">'.date('F', strtotime("$year-$month-01".'last month')).'</a></td>';
+	   $calendar .= '<td colspan="5" class="calendar-day-head">'.date("F", mktime(0, 0, 0, $month, 10))."/".$year.'</td>';
+	   $calendar .= '<td class="calendar-day-head"><a href="?m='.$next_month.'&y='.$next_year.'">'.date('F', strtotime("$year-$month-01".'next month')).'</a></td>';
 	$calendar .= '</tr>';
 	
 	$headings = array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
@@ -31,7 +51,10 @@ function draw_calendar($month,$year){
 	
 	/* keep going with days.... */
 	for($list_day = 1; $list_day <= $days_in_month; $list_day++):
-	$calendar.= '<td class="calendar-day">';
+	
+	$list_day = str_pad($list_day, 2, "0", STR_PAD_LEFT);
+	
+	$calendar.= '<td class="calendar-day" valign="top">';
 	/* add in the day number */
 	$calendar.= '<div class="day-number">'.$list_day.'</div>';
 	
@@ -43,6 +66,7 @@ function draw_calendar($month,$year){
                 FROM request 
                 INNER JOIN staff ON staff_idStaff = idStaff
                 WHERE status = 'Approved'
+                $where
                 AND '$year-$month-$list_day' BETWEEN startDate AND finishDate";
 	    
 	    $sth = $DBH->prepare($sql);
@@ -61,6 +85,39 @@ function draw_calendar($month,$year){
 	        }
 	    }
 	} catch(PDOException $e) {echo $e;}
+	
+	
+	
+	
+	try{
+	    $sql = "SELECT
+                idStaff,
+                name,
+                DATE_FORMAT(startingTime, '%H:%i') AS startingTime,
+                DATE_FORMAT(finishingTime, '%H:%i') AS finishingTime
+                FROM roster
+                INNER JOIN staff ON staff_idStaff = idStaff
+                INNER JOIN businessHours ON businessHours_idBusinessHours = idbusinessHours
+                WHERE openingTime LIKE '$year-$month-$list_day%'
+                $where";
+	    
+	    $sth = $DBH->prepare($sql);
+	    
+	    $sth->execute();
+	    
+	    if($sth->rowCount() > 0){
+	        while ($row = $sth->fetch(PDO::FETCH_OBJ)){
+	            if($row->idStaff == $_SESSION['user_info']['id']):
+	               $calendar.= '<div style= \'background-color: #8FBC8F\'>'.$row->name.' ('.$row->startingTime." - ".$row->finishingTime.')</div>';
+	            else:
+	               $calendar.= '<div style= \'background-color: #b4eeb4\'>'.$row->name.' ('.$row->startingTime." - ".$row->finishingTime.')</div>';
+	            endif;
+	        }
+	    }
+	} catch(PDOException $e) {echo $e;}
+	
+	
+	
 	
 	$calendar.= '</td>';
 	if($running_day == 6):

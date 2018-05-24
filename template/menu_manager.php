@@ -24,8 +24,10 @@
                     <i class="fa fa-caret-down"></i>
                   </button>
                   <div class="dropdown-content">
-                    <a href="roster_generate.php">Generate</a>
+                    <a href="roster_configuration.php">Generate</a>
                     <a href="roster_view.php">View</a>
+                    <a href="roster_change_manager.php">Change</a>
+                    <a href="roster_change_request.php">Change Request</a>
                   </div>
                 </div>
                 <div class="dropdown">

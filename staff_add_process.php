@@ -13,8 +13,9 @@ endif;
 //Get POST
 foreach ($_POST as $variable => $value):
     $$variable  = $value;
+    //echo "<br>$variable: ".$value;
 endforeach;
-
+//return;
 //Get Days Available
 $dA = "";
 foreach ($daysAvailable as $days){
@@ -37,8 +38,8 @@ try{
         echo "Email already in the system.";
     }
     else{
-        $sql = "INSERT INTO staff (name, surname, dateOfBirth, email, password, phoneNumber, nextOfKinName, nextOfKinPhoneNumber, minHours, maxHours, daysAvailable, position_idPosition) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+        $sql = "INSERT INTO staff (name, surname, dateOfBirth, email, password, phoneNumber, nextOfKinName, nextOfKinPhoneNumber, maxHours, daysAvailable, position_idPosition) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
         $sth = $DBH->prepare($sql);
         
         $sth->bindParam(1,  $name, PDO::PARAM_INT);
@@ -49,10 +50,9 @@ try{
         $sth->bindParam(6,  $phoneNumber, PDO::PARAM_INT);
         $sth->bindParam(7,  $nextOfKinName, PDO::PARAM_INT);
         $sth->bindParam(8,  $nextOfKinPhoneNumber, PDO::PARAM_INT);
-        $sth->bindParam(9,  $minHours, PDO::PARAM_INT);
-        $sth->bindParam(10, $maxHours, PDO::PARAM_INT);
-        $sth->bindParam(11, $dA, PDO::PARAM_INT);
-        $sth->bindParam(12, $position_idPosition, PDO::PARAM_INT);
+        $sth->bindParam(9, $maxHours, PDO::PARAM_INT);
+        $sth->bindParam(10, $dA, PDO::PARAM_INT);
+        $sth->bindParam(11, $position_idPosition, PDO::PARAM_INT);
         
         if($sth->execute()) {
             echo "ok";
