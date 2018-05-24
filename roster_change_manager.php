@@ -13,8 +13,8 @@ endif;
 
 $idDepartment   = $_SESSION['user_info']['idDepartment'];
 
-if(isset($_POST['View'])){
-    $week = $_POST['week'];
+if(isset($_POST['View']) OR isset($_GET['week'])){
+    $week = $_REQUEST['week'];
 }
 ?>
 <form action='roster_change_manager.php' method='post' id='roster_change_manager-form' name='roster_change_manager-form'>
@@ -89,6 +89,7 @@ if(isset($_POST['View'])){
                                    <?php 
                                    try{
                                        $sql = " SELECT
+                                                idRoster,
                                                 startingTime,
                                                 finishingTime,
                                                 DATE_FORMAT(openingTime, '%d/%m/%Y %H:%i:%s') AS openingTimeDate, 
@@ -114,7 +115,7 @@ if(isset($_POST['View'])){
                                                echo "<td>$row->fullname</td>";
                                                echo "<td>$row->startingTime</td>";
                                                echo "<td>$row->finishingTime</td>";
-                                               echo "<td>Edit | Delete</td>";
+                                               echo "<td><a href='roster_change_manager_action.php?id=$row->idRoster&a=e&w=$week'>Edit</a> | <a href='roster_change_manager_action.php?id=$row->idRoster&a=d&w=$week'>Delete</a></td>";
                                            echo "</tr>";
                                            $opening = $row->openingTimeDate;
                                        }
