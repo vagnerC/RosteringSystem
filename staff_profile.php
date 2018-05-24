@@ -4,26 +4,27 @@ require_once("template/header.php");
 require_once("resource/database.php");
 
 if(!isset($_SESSION['user_info'])):
-    echo "<script>location.href = 'index.php';</script>";
-    die();
+echo "<script>location.href = 'index.php';</script>";
+die();
 endif;
 
 $idStaff            = $_GET['idStaff'];
+$newPassword        = "";
+$newPasswordRepeat  = "";
 
 $sql                = " SELECT *,
-						DATE_FORMAT(dateOfBirth, '%d/%m/%Y') AS dateOfBirth
-						FROM staff
-						WHERE idStaff = '$idStaff'";
+DATE_FORMAT(dateOfBirth, '%d/%m/%Y') AS dateOfBirth
+FROM staff
+WHERE idStaff = '$idStaff'";
 
 $sth = $DBH->prepare($sql);
 $sth->execute();
 $row = $sth->fetch(PDO::FETCH_OBJ);
-
 ?>
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 ">
-			<form class="form-horizontal">
+			<form class="form-horizontal" method="post" id="edit_profile-form">
 				<fieldset>
 
 			<!-- Form Name -->
@@ -79,7 +80,7 @@ $row = $sth->fetch(PDO::FETCH_OBJ);
        							<div class="input-group-addon">
     	    								<i class="fa fa-phone"></i>
             						</div>
-    								<input id="phoneNumber" name="phoneNumber" type="text" placeholder="Phone number " class="form-control input-md" value="<?php echo $row->phoneNumber; ?>">
+    								<input disabled id="phoneNumber" name="phoneNumber" type="text" placeholder="Phone number " class="form-control input-md" value="<?php echo $row->phoneNumber; ?>">
         						</div>
     						</div>
 					</div>
@@ -91,7 +92,7 @@ $row = $sth->fetch(PDO::FETCH_OBJ);
 								<div class="input-group-addon">
      								<i class="fa fa-envelope-o"></i>
 								</div>
-    								<input id="email" name="email" type="email" placeholder="Email Address" class="form-control input-md" value="<?php echo $row->email; ?>">
+    								<input disabled id="email" name="email" type="email" placeholder="Email Address" class="form-control input-md" value="<?php echo $row->email; ?>">
 							</div>
  						</div>
 					</div>
@@ -103,7 +104,7 @@ $row = $sth->fetch(PDO::FETCH_OBJ);
                     				<div class="input-group-addon">
                     					<i class="fa fa-male" style="font-size: 20px;"></i>
                            	    </div>
-                           		<input id="nextOfKinName" name="nextOfKinName" type="text" placeholder="Next of Kin Name" class="form-control input-md" value="<?php echo $row->nextOfKinName; ?>">
+                           		<input disabled id="nextOfKinName" name="nextOfKinName" type="text" placeholder="Next of Kin Name" class="form-control input-md" value="<?php echo $row->nextOfKinName; ?>">
 							</div>
 						</div>
                     </div>
@@ -115,13 +116,95 @@ $row = $sth->fetch(PDO::FETCH_OBJ);
                            		<div class="input-group-addon">
                          			<i class="fa fa-phone"></i>
 								</div>
-                        			<input id="nextOfKinPhoneNumber" name="nextOfKinPhoneNumber" type="text" placeholder="Next of Kin Phone number " class="form-control input-md"  value="<?php echo $row->nextOfKinPhoneNumber; ?>">
+                        			<input disabled id="nextOfKinPhoneNumber" name="nextOfKinPhoneNumber" type="text" placeholder="Next of Kin Phone number " class="form-control input-md"  value="<?php echo $row->nextOfKinPhoneNumber; ?>">
                      		</div>
 						</div>
 					</div>
-	
-			
-				</fieldset>
+					<div class="form-group">
+                     	<label class="col-md-4 control-label" for="position_idPosition">* Position</label>  
+                      	<div class="col-md-4">
+                      		<div class="input-group">
+                           		<div class="input-group-addon">
+                         			<i class="fa fa-briefcase"></i>
+								</div>
+                        			<select disabled class="form-control input-md" name="position_idPosition" id="position_idPosition">
+                        				<option value=''>Position</option>
+        								<?php
+        								try{
+                                        $dep = "";
+        								   $sql = "SELECT * 
+                                                FROM position
+                                                INNER JOIN department ON department_idDepartment = idDepartment
+                                                ORDER BY departmentName, positionName";
+                                        $sth = $DBH->prepare($sql);
+                                        $sth->execute();
+                                        while ($row2 = $sth->fetch(PDO::FETCH_OBJ)):
+                                            if($dep != $row2->departmentName):
+                                                echo "<optgroup label='$row2->departmentName'>";
+                                                    //echo "<option value='$row2->idPosition'>$row2->positionName</option>";
+                                                $dep = $row2->departmentName;
+                                            endif;
+                                            if($row2->idPosition == $row->position_idPosition){
+                                                echo "<option value='$row2->idPosition' selected>$row2->positionName</option>";
+                                            } else {
+                                                echo "<option value='$row2->idPosition'>$row2->positionName</option>";
+                                            }
+                                            
+        									endwhile;
+        								} catch(PDOException $e) {echo $e;}
+        								?>
+        							</select>
+                     		</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="maxHours">* Maximum Hour Available</label>
+  						<div class="col-md-4">
+  							<div class="input-group">
+                           		<div class="input-group-addon">
+                         			<i class="fa fa-hourglass"></i>
+								</div>
+                        			<input disabled name="maxHours" id="maxHours" type="number" placeholder="0" min="0" max="40" class="form-control input-md" value="<?php echo $row->maxHours; ?>">
+                     		</div>
+ 						</div>
+					</div>
+					
+					<div class="form-group">
+						<label  class="col-md-4 control-label" for="daysAvailable">* Days Available</label>
+  						<div class="col-md-4">
+  							<div class="input-group">
+                           		<div class="input-group-addon">
+                         			<i class="fa fa-hourglass"></i>
+								</div>
+                        			<input disabled name="daysA" id="daysA" type="text" placeholder="0" min="0" max="40" class="form-control input-md" value="<?php echo $row->daysAvailable;?>">
+                     		</div>
+ 						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-md-4 control-label"></label>
+						<div class="col-md-4">
+							<div id="info"></div> 
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-md-4 control-label"></label>
+						<div class="col-md-4">
+							<div id="info"></div> 
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-md-4 control-label"></label>
+						<div class="col-md-4">
+							<div id="info"></div> 
+						</div>
+					</div>
+					
+					
+     			</fieldset>
 			</form>
 		</div>
 	</div>
@@ -135,7 +218,63 @@ $row = $sth->fetch(PDO::FETCH_OBJ);
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 <script>
-
+	$(document).ready(function(){
+		var date_input=$('input[name="dateOfBirth"]'); //our date input has the name "date"
+		var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
+		date_input.datepicker({
+			format: 'dd/mm/yyyy',
+			container: container,
+			todayHighlight: true,
+			autoclose: true,
+		})
+	})
+	
+	
+	$('document').ready(function(){ 
+		/* validation */
+		$("#edit_profile-form").validate({
+		rules:
+		{
+            email: {
+				required: true,
+				email: true
+            },
+            newPasswordRepeat: {
+            		equalTo: newPassword
+            },
+		},
+		messages:
+		{
+			email: "Please enter an email."
+		},
+	    submitHandler: submitForm
+	});  
+	   
+	/* login submit */
+	function submitForm()
+	{		
+		var data = $("#edit_profile-form").serialize();
+				
+		$.ajax({
+			type : 'POST',
+			url  : 'staff_profile_edit_process.php',
+			data : data,
+			success: function(response)
+			{						
+				if(response=="ok"){
+					$("#info").fadeIn(1000, function(){
+						$("#info").html('<div class="alert alert-success"> <span class="glyphicon glyphicon-thumbs-up"></span> Profile successfully updated.</div>');
+					});
+				} else {
+					$("#info").fadeIn(1000, function(){						
+						$("#info").html('<div class="alert alert-danger"> <span class="glyphicon glyphicon-thumbs-down"></span> &nbsp; '+response+'</div>');
+					});
+				}
+			}
+		});
+		return false;
+	}
+});	
 </script>
 <?php 
 require_once("template/footer.php");

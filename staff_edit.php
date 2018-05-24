@@ -4,34 +4,28 @@ require_once("template/header.php");
 require_once("resource/database.php");
 
 if(!isset($_SESSION['user_info'])):
-	echo "<script>location.href = 'index.php';</script>";
-	die();
+echo "<script>location.href = 'index.php';</script>";
+die();
 endif;
 
 $idStaff            = $_GET['idStaff'];
-$newPhoneNumber       = "";
-$newNextOfKin  = "";
-$newNextOfKinPhoneNumber   = "";
-$newEmail  = "";
 $newPassword        = "";
 $newPasswordRepeat  = "";
 
 $sql                = " SELECT *,
-						DATE_FORMAT(dateOfBirth, '%d/%m/%Y') AS dateOfBirth
-						FROM staff
-						WHERE idStaff = '$idStaff'";
+DATE_FORMAT(dateOfBirth, '%d/%m/%Y') AS dateOfBirth
+FROM staff
+WHERE idStaff = '$idStaff'";
 
 $sth = $DBH->prepare($sql);
 $sth->execute();
 $row = $sth->fetch(PDO::FETCH_OBJ);
-
-
 ?>
-
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 ">
-			<form class="form-horizontal">
+			<form class="form-horizontal" method="post" id="staff_edit-form">
+			<input type="hidden" name="idStaff" value="idStaff">
 				<fieldset>
 
 			<!-- Form Name -->
@@ -51,7 +45,7 @@ $row = $sth->fetch(PDO::FETCH_OBJ);
        							<div class="input-group-addon">
         								<i class="fa fa-user"></i>
        							</div>
-       							<input disabled id="name" name="name" type="text" placeholder="First Name" class="form-control input-md" value="<?php echo $row->name; ?>">
+       							<input id="name" name="name" type="text" placeholder="First Name" class="form-control input-md" value="<?php echo $row->name; ?>">
      	 					</div>
 						</div>
 					</div>
@@ -63,7 +57,7 @@ $row = $sth->fetch(PDO::FETCH_OBJ);
                             		<div class="input-group-addon">
                             			<i class="fa fa-user"></i>
                             		</div>
-                           		<input disabled id="surname" name="surname" type="text" placeholder="Last Name" class="form-control input-md" value="<?php echo $row->surname; ?>">
+                           		<input id="surname" name="surname" type="text" placeholder="Last Name" class="form-control input-md" value="<?php echo $row->surname; ?>">
                     			</div>
                     		</div>
                     </div>
@@ -75,57 +69,129 @@ $row = $sth->fetch(PDO::FETCH_OBJ);
                             		<div class="input-group-addon">
                              		<i class="fa fa-calendar"></i>
                             		</div>
-                            		<input disabled class="form-control" id="dateOfBirth" name="dateOfBirth" placeholder="MM/DD/YYYY" type="text"/  value="<?php echo $row->dateOfBirth; ?>">
+                            		<input class="form-control" id="dateOfBirth" name="dateOfBirth" placeholder="MM/DD/YYYY" type="text"/  value="<?php echo $row->dateOfBirth; ?>">
                           	</div>
 						</div> 
                     </div>
 
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="newPhoneNumber">New Phone number </label>  
+						<label class="col-md-4 control-label" for="phoneNumber">Phone number </label>  
   						<div class="col-md-4">
   							<div class="input-group">
        							<div class="input-group-addon">
     	    								<i class="fa fa-phone"></i>
             						</div>
-    								<input id="newPhoneNumber" name="newPhoneNumber" type="text" placeholder="Phone number " class="form-control input-md" value="<?php echo $row->phoneNumber; ?>">
+    								<input id="phoneNumber" name="phoneNumber" type="text" placeholder="Phone number " class="form-control input-md" value="<?php echo $row->phoneNumber; ?>">
         						</div>
     						</div>
 					</div>
 
 					<div class="form-group">
-						<label class="col-md-4 control-label" for="email">* New Email Address</label>  
+						<label class="col-md-4 control-label" for="email">* Email Address</label>  
     						<div class="col-md-4">
 							<div class="input-group">
 								<div class="input-group-addon">
      								<i class="fa fa-envelope-o"></i>
 								</div>
-    								<input id="newEmail" name="newEmail" type="email" placeholder="Email Address" class="form-control input-md" value="<?php echo $row->email; ?>">
+    								<input id="email" name="email" type="email" placeholder="Email Address" class="form-control input-md" value="<?php echo $row->email; ?>">
 							</div>
  						</div>
 					</div>
 
                     <div class="form-group">
-                    		<label class="col-md-4 control-label" for="newNextOfKinName">New Next of kin Name</label>  
+                    		<label class="col-md-4 control-label" for="nextOfKinName">Next of kin Name</label>  
 						<div class="col-md-4">
                      		<div class="input-group">
                     				<div class="input-group-addon">
                     					<i class="fa fa-male" style="font-size: 20px;"></i>
                            	    </div>
-                           		<input id="newNextOfKinName" name="newNextOfKinName" type="text" placeholder="Next of Kin Name" class="form-control input-md" value="<?php echo $row->nextOfKinName; ?>">
+                           		<input id="nextOfKinName" name="nextOfKinName" type="text" placeholder="Next of Kin Name" class="form-control input-md" value="<?php echo $row->nextOfKinName; ?>">
 							</div>
 						</div>
                     </div>
 
                     <div class="form-group">
-                     	<label class="col-md-4 control-label" for="newNextOfKinPhoneNumber"> New Next of Kin Phone Number </label>  
+                     	<label class="col-md-4 control-label" for="nextOfKinPhoneNumber"> Next of Kin Phone Number </label>  
                       	<div class="col-md-4">
                       		<div class="input-group">
                            		<div class="input-group-addon">
                          			<i class="fa fa-phone"></i>
 								</div>
-                        			<input id="newNextOfKinPhoneNumber" name="newNextOfKinPhoneNumber" type="text" placeholder="Next of Kin Phone number " class="form-control input-md"  value="<?php echo $row->nextOfKinPhoneNumber; ?>">
+                        			<input id="nextOfKinPhoneNumber" name="nextOfKinPhoneNumber" type="text" placeholder="Next of Kin Phone number " class="form-control input-md"  value="<?php echo $row->nextOfKinPhoneNumber; ?>">
                      		</div>
 						</div>
+					</div>
+					<div class="form-group">
+                     	<label class="col-md-4 control-label" for="position_idPosition">* Position</label>  
+                      	<div class="col-md-4">
+                      		<div class="input-group">
+                           		<div class="input-group-addon">
+                         			<i class="fa fa-briefcase"></i>
+								</div>
+                        			<select class="form-control input-md" name="position_idPosition" id="position_idPosition">
+                        				<option value=''>Position</option>
+        								<?php
+        								try{
+                                        $dep = "";
+        								   $sql = "SELECT * 
+                                                FROM position
+                                                INNER JOIN department ON department_idDepartment = idDepartment
+                                                ORDER BY departmentName, positionName";
+                                        $sth = $DBH->prepare($sql);
+                                        $sth->execute();
+//                                         while ($row2 = $sth->fetch(PDO::FETCH_OBJ)):
+//                                             if($dep != $row2->departmentName):
+//                                                 echo "<optgroup label='$row2->departmentName'>";
+//                                                 echo "<option value='$row2->idPosition'>$row2->positionName</option>";
+//                                                 $dep = $row2->departmentName;
+//                                             else:
+//                                                 echo "<option value='$row2->idPosition'>$row2->positionName</option>";
+//                                             endif;
+//         									endwhile;
+        									while ($row2 = $sth->fetch(PDO::FETCH_OBJ)):
+        									   if($dep != $row2->departmentName):
+        									       echo "<optgroup label='$row2->departmentName'>";
+                									//echo "<option value='$row2->idPosition'>$row2->positionName</option>";
+        									       $dep = $row2->departmentName;
+        									   endif;
+        									   
+        									   if($row2->idPosition == $row->position_idPosition){
+                                                echo "<option value='$row2->idPosition' selected>$row2->positionName</option>";
+        									   } else {
+        									       echo "<option value='$row2->idPosition'>$row2->positionName</option>";
+        									   }
+        									endwhile;
+        									
+        									
+        								} catch(PDOException $e) {echo $e;}
+        								?>
+        							</select>
+                     		</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label class="col-md-4 control-label" for="maxHours">* Maximum Hour Available</label>
+  						<div class="col-md-4">
+  							<div class="input-group">
+                           		<div class="input-group-addon">
+                         			<i class="fa fa-hourglass"></i>
+								</div>
+                        			<input name="maxHours" id="maxHours" type="number" placeholder="0" min="0" max="40" class="form-control input-md" value="<?php echo $row->maxHours; ?>">
+                     		</div>
+ 						</div>
+					</div>
+					
+					<div class="form-group">
+						<label  class="col-md-4 control-label" for="daysAvailable">* Days Available</label>
+  						<div class="col-md-4">
+  							<div class="input-group">
+                           		<div class="input-group-addon">
+                         			<i class="fa fa-hourglass"></i>
+								</div>
+                        			<input name="daysAvailable" id="daysAvailable" type="text" placeholder="0" min="0" class="form-control input-md" value="<?php echo $row->daysAvailable;?>">
+                     		</div>
+ 						</div>
 					</div>
 					
 					<div class="form-group">
@@ -155,7 +221,7 @@ $row = $sth->fetch(PDO::FETCH_OBJ);
 					<div class="form-group">
 						<label class="col-md-4 control-label" ></label>  
   						<div class="col-md-4">
-  							<input class="btn btn-primary" type="submit" value="Edit">
+  							<input class="btn btn-primary" type="submit" value="Update">
 						</div>
 					</div>
 					
@@ -164,7 +230,9 @@ $row = $sth->fetch(PDO::FETCH_OBJ);
   						<div class="col-md-4">
 						</div>
 					</div>
-					
+						
+	
+			
 				</fieldset>
 			</form>
 		</div>
@@ -193,16 +261,16 @@ $row = $sth->fetch(PDO::FETCH_OBJ);
 	
 	$('document').ready(function(){ 
 		/* validation */
-		$("#my_profile-form").validate({
+		$("#staff_edit-form").validate({
 		rules:
 		{
-		      email: {
-					required: true,
-					email: true
-	            },
-	            newPasswordRepeat: {
-	            		equalTo: newPassword
-	            },
+            email: {
+				required: true,
+				email: true
+            },
+            newPasswordRepeat: {
+            		equalTo: newPassword
+            },
 		},
 		messages:
 		{
@@ -214,11 +282,11 @@ $row = $sth->fetch(PDO::FETCH_OBJ);
 	/* login submit */
 	function submitForm()
 	{		
-		var data = $("#my_profile-form").serialize();
+		var data = $("#staff_edit-form").serialize();
 				
 		$.ajax({
 			type : 'POST',
-			url  : 'my_profile_process.php',
+			url  : 'staff_edit_process.php',
 			data : data,
 			success: function(response)
 			{						
@@ -239,4 +307,4 @@ $row = $sth->fetch(PDO::FETCH_OBJ);
 </script>
 <?php 
 require_once("template/footer.php");
-?>
+?>	

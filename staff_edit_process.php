@@ -12,8 +12,6 @@ foreach ($_POST as $variable => $value):
 	$$variable  = $value;
 endforeach;
 
-$idStaff = $_SESSION['user_info']['id'];
-
 try{
 	$sql = "SELECT idStaff FROM staff WHERE email = ? and idStaff != ?";
 	$sth = $DBH->prepare($sql);

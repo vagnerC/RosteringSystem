@@ -71,9 +71,12 @@ endif;
                                                echo "<td>";
                                                    if($_SESSION['user_info']['management'] == "true"):
                                                    echo "<a href='staff_profile.php?idStaff=$row->idStaff&status=View'>View</a> | ";
-                                                   echo "<a href='staff_profile.php?idStaff=$row->idStaff&status=Edit'>Edit</a> | ";
-                                                   echo "<a href='staff_profilephp?idStaff=$row->idStaff&status=Delete'>Delete</a>";
-	                                               endif;
+                                                   echo "<a href='staff_edit.php?idStaff=$row->idStaff&status=Edit'>Edit</a> | ";
+                                                   echo "<a href='staff_profile_delete.php?idStaff=$row->idStaff&status=Delete'>Delete</a>";
+	                               
+                                                
+                                                   
+                                                   endif;
 	                                           echo "</td>";
                                            echo "</tr>";
                                        }
