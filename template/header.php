@@ -20,7 +20,7 @@
 		<?php 
         if(isset($_SESSION['user_info'])):
             if($_SESSION['user_info']['management'] == "true"):
-                include ("template/menu_manager.php");
+                include ("template/menu_test.php");
             else:
                 include ("template/menu_staff.php");
             endif;

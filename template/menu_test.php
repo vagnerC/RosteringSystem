@@ -1,66 +1,62 @@
 <style>
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-li {
-    float: left;
-}
-
-li a, .dropbtn {
-    display: inline-block;
-    color: white;
+-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    color: #fff;
+    background: #19c589;
     text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-li a:hover, .dropdown:hover .dropbtn {
-    background-color: red;
-}
-
-li.dropdown {
-    display: inline-block;
-}
-
-.dropdown-content {
+    padding: 10px 0;
     display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
 }
-
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    text-align: left;
+/*Hide checkbox*/
+input[type=checkbox]{
+    display: none;
 }
-
-.dropdown-content a:hover {background-color: #f1f1f1}
-
-.dropdown:hover .dropdown-content {
+/*Show menu when invisible checkbox is checked*/
+input[type=checkbox]:checked ~ #menu{
     display: block;
 }
+/*Responsive Styles*/
+@media screen and (max-width : 760px){
+    /*Make dropdown links appear inline*/
+    ul {
+        position: static;
+        display: none;
+    }
+    /*Create vertical spacing*/
+    li {
+        margin-bottom: 1px;
+    }
+    /*Make all menu links full width*/
+    ul li, li a {
+        width: 100%;
+    }
+    /*Display 'show menu' link*/
+    .show-menu {
+        display:block;
+    }
+}
+
+
 </style>
-
-
-<ul>
-  <li><a href="#home">Home</a></li>
-  <li><a href="#news">News</a></li>
-  <li class="dropdown">
-    <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
-    <div class="dropdown-content">
-      <a href="#">Link 1</a>
-      <a href="#">Link 2</a>
-      <a href="#">Link 3</a>
-    </div>
-  </li>
-</ul>
+    <label for="show-menu" class="show-menu">Show Menu</label>
+    <input type="checkbox" id="show-menu" role="button">
+        <ul id="menu">
+        <li><a href="#">Home</a></li>
+        <li>
+            <a href="#">About ￬</a>
+            <ul class="hidden">
+                <li><a href="#">Who We Are</a></li>
+                <li><a href="#">What We Do</a></li>
+            </ul>
+        </li>
+        <li>
+            <a href="#">Portfolio ￬</a>
+            <ul class="hidden">
+                <li><a href="#">Photography</a></li>
+                <li><a href="#">Web & User Interface Design</a></li>
+                <li><a href="#">Illustration</a></li>
+            </ul>
+        </li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Contact</a></li>
+    </ul>
