@@ -25,8 +25,9 @@ $row = $sth->fetch(PDO::FETCH_OBJ);
 	<div class="row">
 		<div class="col-md-10 ">
 			<form class="form-horizontal" method="post" id="staff_edit-form">
-			<input type="hidden" name="idStaff" value="idStaff">
+			<input type="hidden" name="idStaff" value="<?php echo $idStaff; ?>">
 				<fieldset>
+				
 
 			<!-- Form Name -->
 					<legend>User profile </legend>
@@ -217,7 +218,29 @@ $row = $sth->fetch(PDO::FETCH_OBJ);
                      		</div>
 						</div>
 					</div>
-
+					
+					<div class="form-group">
+                     	<label class="col-md-4 control-label" for="disabled"> Disable staff? </label>  
+                      	<div class="col-md-4">
+                      		<div class="input-group">
+                           		<div class="input-group-addon">
+                         			<i class="fa fa-phone"></i>
+								</div>
+                        			<select class="form-control input-md" name="disabled" id="disabled">
+        								<?php
+        									   if($row->disabled == "Yes"){
+                                                echo "<option value='Yes' selected>Yes</option>";
+                                                echo "<option value='No'>No</option>";
+        									   } else {
+        									       echo "<option value='Yes'>Yes</option>";
+        									       echo "<option value='No' selected>No</option>";
+        									   }
+        								?>
+        							</select>
+                     		</div>
+						</div>
+					</div>
+					
 					<div class="form-group">
 						<label class="col-md-4 control-label" ></label>  
   						<div class="col-md-4">

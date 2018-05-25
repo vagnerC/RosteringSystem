@@ -24,17 +24,28 @@ try{
 		echo "Email already in the system.";
 	}
 	else{
-		$sql = "UPDATE staff SET email = ?, password = ?, phoneNumber = ?, nextOfKinName = ?, nextOfKinPhoneNumber = ?
-                WHERE idStaff = ?
+		$sql = "UPDATE staff SET 
+                name = '$name',
+                surname = '$surname',
+                email = '$email',
+                password = '$newPassword', 
+                phoneNumber = '$phoneNumber', 
+                nextOfKinName = '$nextOfKinName', 
+                nextOfKinPhoneNumber = '$nextOfKinPhoneNumber',
+                maxHours = '$maxHours',
+                daysAvailable = '$daysAvailable',
+                position_idPosition = '$position_idPosition',
+                disabled = '$disabled'
+                WHERE idStaff = '$idStaff'
                 LIMIT 1;";
 		$sth = $DBH->prepare($sql);
 		
-		$sth->bindParam(1,  $newEmail, PDO::PARAM_INT);
-		$sth->bindParam(2,  $newPassword, PDO::PARAM_INT);
-		$sth->bindParam(3,  $newPphoneNumber, PDO::PARAM_INT);
-		$sth->bindParam(4,  $newNextOfKinName, PDO::PARAM_INT);
-		$sth->bindParam(5,  $newNextOfKinPhoneNumber, PDO::PARAM_INT);
-		$sth->bindParam(6,  $idStaff, PDO::PARAM_INT);
+// 		$sth->bindParam(1,  $newEmail, PDO::PARAM_INT);
+// 		$sth->bindParam(2,  $newPassword, PDO::PARAM_INT);
+// 		$sth->bindParam(3,  $newPphoneNumber, PDO::PARAM_INT);
+// 		$sth->bindParam(4,  $newNextOfKinName, PDO::PARAM_INT);
+// 		$sth->bindParam(5,  $newNextOfKinPhoneNumber, PDO::PARAM_INT);
+// 		$sth->bindParam(6,  $idStaff, PDO::PARAM_INT);
 		
 		if($sth->execute()) {
 			echo "ok";
