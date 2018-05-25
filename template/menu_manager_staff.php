@@ -7,19 +7,6 @@ if(!isset($_SESSION['user_info'])):
     die();
 endif;
 ?>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<style>
-.calendarClass {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 2%;
-    width: 90%;
- </style>
-
 	<div class="panel-group">
     	<div class="panel panel-default">
         	<div class="panel-heading">Staff</div>
