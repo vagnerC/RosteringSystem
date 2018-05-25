@@ -33,7 +33,9 @@ endif;
 
                 	?>
 		</div>				
-	</div>			
+	</div>	
+	</div>
+			
 
 
 <?php 
