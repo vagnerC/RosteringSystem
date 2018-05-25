@@ -5,7 +5,7 @@ require_once("template/header.php");
 if(!isset($_SESSION['user_info'])):
     echo "<script>location.href = 'index.php';</script>";
     die();
-endif;
+endif; 
 ?>
 	<div class="panel-group">
     	<div class="panel panel-default">
