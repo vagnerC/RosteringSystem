@@ -29,7 +29,7 @@ endif;
                     	        echo "<div class='alert alert-warning'>";
                     	        echo "<a href='staff_add.php' class='close'>Go</a>";
                     	        echo "<strong>Add Staff.</strong>";
-                    	        echo "</div>";
+                    	        echo "</div>"; 
 
                 	?>
 		</div>				
